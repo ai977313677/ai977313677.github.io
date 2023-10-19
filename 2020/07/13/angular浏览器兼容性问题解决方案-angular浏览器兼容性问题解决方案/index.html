@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || angular浏览器兼容性问题解决方案</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>angular浏览器兼容性问题解决方案 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2020/7/13
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/学习笔记">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                学习笔记
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/浏览器兼容" style=color:#ff7d73>
+                    浏览器兼容
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p><em><strong>问题</strong></em>：edge浏览器下，固定列的边框消失</p>
+<p><em><strong>原因</strong></em>：ng-zorro-antd表格组件使用nzLeft和nzRight指令固定的表格列，这两个指令的实现css3中的标签：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">position</span>: -webkit-sticky <span class="meta">!important</span>;</span><br><span class="line"><span class="attribute">position</span>: sticky <span class="meta">!important</span>;</span><br></pre></td></tr></table></figure>
+
+<p>谷歌、火狐及-webkit-内核的浏览器均支持该属性（css3），IE不支持该属性，所以在IE中，会自动降级，表格无固定列，可滑动的形式。<br>Edge浏览器在1703之后的版本使用了chromium内核，对css3的属性支持较好，也支持sticky属性，可以使用，可以固定表格列，但边框会消失。 </p>
+<p><em><strong>解决方案</strong></em>：<br>目前可行的解决方案有如下几种：</p>
+<ol>
+<li><p>不使用固定列，若产品没有明确要求使用固定列，可以放弃使用nzLeft及nzRight来固定表格。从而使各个浏览器下的展示效果一致。</p>
+<p>针对Edge浏览器降级处理，与IE浏览器效果一致，无固定列，整体可横向滚动。</p>
+</li>
+<li><p>自定义实现固定列，不使用组件的固定列实现，通过使用<code>position: absolute;</code>这种方式来实现表格的固定列。</p>
+</li>
+</ol>
+<p>第二个方案的详细过程如下：</p>
+<p>使用div包裹表格，当表格宽度超过div宽度时，开启滚动：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.scroll-table</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对表格，我们可以指定宽度，让其超过外层div宽度（这样可以看到滚动效果）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fixed-table</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1300px</span>; <span class="comment">/* 可由th，td动态扩充，也可指定宽度 */</span></span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后一个最核心的问题，就是固定列的实现了，非常简单，将表格的一列设置成绝对定位,在设置了绝对定位后，该列会脱离原来的文档流，表格少了一列，所以需要加一个背景板来保证表格能够给这个固定列留出一个位置。</p>
+<p>HTML代码大致如下，这个fixed-col可以为固定列的样式，也可以设置成背景板的样式，demo中是用其指定了固定列的样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;scroll-table&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;fixed-table&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>无效背景板<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;fixed-col&quot;</span>&gt;</span>固定列<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>无效背景板<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;fixed-col&quot;</span>&gt;</span>固定列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参考代码：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/guyg/p/6896847.html">Ironape</a></p>
+<hr>
+<p><em><strong>问题</strong></em>：Edge浏览器的日历（nz-range-picker）确认按钮需要点两次</p>
+<p><em><strong>原因</strong></em>：尚未明确</p>
+<p><em><strong>解决方案</strong></em>：</p>
+<ol>
+<li><strong>升级组件版本</strong>，目前ng-zorro-antd 8.5之上的版本未见这个问题。</li>
+<li><strong>自定义页脚</strong>，加入额外的页脚，来替代确定功能，此时有两种方式来实现：<br>只覆盖对应的按钮，如确定按钮，此时按钮的样式与默认的页脚按钮是不一致的，为保持一致，可以自定义样式，也可以直接使用默认页脚中按钮的样式，下例中选择直接使用组件库的样式：ant-calendar-ok-btn，第二步则是覆盖原来的按钮，可以使用绝对定位的方式来实现覆盖：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nz-range-picker</span> [<span class="attr">nzRenderExtraFooter</span>]=<span class="string">&quot;renderExtraFooterTpl&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> #<span class="attr">renderExtraFooterTpl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">nz-button</span> <span class="attr">nzType</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ant-calendar-ok-btn abs-right&quot;</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对应css：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.abs-right</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">7px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除默认页脚，完全自定义实现页脚。此时需要删除原来的页脚，可通过：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::ng-deep .ant-calendar-footer-btn &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这种方式删除默认页脚，此时额外的页脚不可使用绝对定位。</p>
+</blockquote>
+<hr>
+<p><em><strong>问题</strong></em>：IE浏览器下，在多个tab页中切换，echart所在容器高度坍塌</p>
+<p><em><strong>原因</strong></em>：IE浏览器下父元素不能动态调整高度（即通过子元素动态改变调整高度）</p>
+<p><em><strong>解决方案</strong></em>：固定echart图表所在的容器高度</p>
+<hr>
+<p><em><strong>问题</strong></em>：IE浏览器下，初始化表单时，触发表单验证</p>
+<p><em><strong>原因</strong></em>：这个是IE的问题，IE10+实现了input事件，但是触发的时机却是错误的。比如在placeholder改变时，placeholder的文字不是英语的时候就会触发，Edge15+修复了这个问题，但是IE可能永远都不会修复这个问题。</p>
+<p><em><strong>解决方案</strong></em>：</p>
+<ol>
+<li>使用表单的reset()重置表单，但是重置的操作需要放在setTimeout中，或者通过其他手段将重置的操作作为表单初始化时的最后一个宏任务执行。这种方式经验证，最终的效果是，初始化表单后，表单输入元素的边框闪烁（红色）一下。</li>
+<li>使用自定义的服务商插件（较为推荐），这种方式对原有代码的破坏性小（遵循了OCP原则），该插件是由DerSizeS提供的。只需要在对应的module中增加一个服务商即可</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">NgModule</span>(&#123;</span><br><span class="line">    <span class="attr">providers</span>: [&#123;</span><br><span class="line">	    <span class="attr">provide</span>: <span class="variable constant_">EVENT_MANAGER_PLUGINS</span>, <span class="attr">multi</span>: <span class="literal">true</span>,</span><br><span class="line">	    <span class="attr">useClass</span>: <span class="title class_">UniqueInputEventPlugin</span>, <span class="attr">deps</span>: [<span class="variable constant_">UNIQUE_INPUT_EVENT_PLUGIN_CONFIG</span>],</span><br><span class="line">	&#125;]	</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 需要注意的是，插件需要自己添加到项目文件中（根据angular团队所说，这个插件修复了一个IE10或者IE11的bug，但是提交了太多的代码，这会给增加现有的应用的打包体积，虽然后面关于这个PR讨论了挺久，但是看样子是准备把这个放到FAQ里面，而不会把他并入框架），并在对应的模块中引用。</p>
+</blockquote>
+<ol start="3">
+<li>IE的输入框会因为placeholder为中文而触发表单验证，placeholder改变了也会触发表单验证，所以，有一个讨巧的方法，<em><strong>placeholder里面的内容写成英文形式(推荐）</strong></em>，但这显然不符合中文产品的需求，而且这显然没有国际化。所以可以想办法绕过这一条，使用 <em><strong>HTML实体</strong></em>（已验证，可行），Unicode编码（不可以）</li>
+</ol>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

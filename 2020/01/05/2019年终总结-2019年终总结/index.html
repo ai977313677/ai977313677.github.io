@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || 2019年终总结</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>2019年终总结 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2020/1/5
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/年终总结">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                年终总结
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/年终总结" style=color:#00a596>
+                    年终总结
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="2019碎碎念"><a href="#2019碎碎念" class="headerlink" title="2019碎碎念"></a>2019碎碎念</h3><p>19年发生了很多事情，值得记录的也有很多，但感觉上，于我而言最重要的一件事请就是转到了前端。</p>
+<p>准确的来说，转前端并不是我完全自愿做出的选择，而是被公司分配过去的，也不知道是根据什么因素分配的。为什么说不是 <strong>完全</strong> 自愿选择的？因为期间有几次可以转后端的机会，我都放弃了。因为现阶段无论是在前端还是在后端，你要学的东西其实是相似的，可能说技术栈不同，看上去后端的更丰富，有Java、SQL、Mybatis、MQ、Spring Boot、shell、JUnit等等，而前端却只有HTML+CSS+JavaScript+一套框架（如Angular、Vue、React），但事实上，前端也有单元测试如Karma，也会用到SQL如在Node.js中（一般web开发不用），shell脚本也是前端必须掌握的，那MQ究其本质依旧是一个生产者-消费者模型（说到这里，我要感谢在学校学到的看似无用的知识，正是这些理论知识让我能站在一个比较高的起点上去很快的接受学习不同的技术，真的，这些知识太有用了，技术发展是日新月异的，但是我们总是能够用已有的知识去解释新的技术。），而这两年我们能很清楚的感觉到前后端分离的大趋势，这是不可逆的，技术变得更加精细且繁多，这也使得各端的职责愈加细化。</p>
+<p>在适应了一周后就开始在项目里做一些边边角角的工作，又过了半个月左右，组里有一位前辈离职，组长找到我，让我去跟前辈交接一下，跟进这个项目。</p>
+<p>这算是我第一次正式接触并维护一个大型（？）项目，前端只有我一个人，非常刺激（后来和师父聊，才知道这是一个oa项目，内部用的，功能算是比较完善了，后端也就做做增删改查，前端也就修修补补，每个月增加个小功能组件就行了，所以对我去跟进这个项目还是比较放心的）。</p>
+<p>跟进项目之后，心态就变得平和起来了，又开始按时上下班，手上没活的时候看看书，学习，感觉非常充实的。后来这项目交接给另一组的时候，我这心里还有一点舍不得呢……但是呢，一想到可以开始跟进toB项目，而且还是同时跟进维护两个到三个项目，又感觉有点心潮澎湃。</p>
+<h3 id="2020新征程"><a href="#2020新征程" class="headerlink" title="2020新征程"></a>2020新征程</h3><p>2020年，给自己定一个小目标：成长到中级前端。</p>
+<p>除此之外，还有一些小目标</p>
+<ol>
+<li>能够保证每周能有一篇优质的博客，每个月能有一篇深度的博客，提高博客和公众号的曝光度。</li>
+<li>保持自身技术的高速稳定增长，在今年结束之前达成中级前端的目标。</li>
+<li>参加一些技术社区，论坛活动，技术沙龙，涨涨见识。</li>
+<li>开源项目方面，多提点有意义的issue和pr，阅读别人的代码，无论是好的还是坏的，都会有所收获。</li>
+<li>锻炼身体吧，要开始养生了……</li>
+</ol>
+<p>今年，诸事顺利。</p>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

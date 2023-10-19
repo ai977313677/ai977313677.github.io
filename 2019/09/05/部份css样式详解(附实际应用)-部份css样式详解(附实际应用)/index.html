@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || 部份css样式详解(附实际应用)</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>部份css样式详解(附实际应用) </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2019/9/5
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/前端基础">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                前端基础
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端开发" style=color:#00a596>
+                    前端开发
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/css" style=color:#ffa2c4>
+                    css
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端基础" style=color:#03a9f4>
+                    前端基础
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <blockquote>
+<p>本文的所有实例均基于博客园的页面定制。<br>所有表格内容来自W3CSchool。</p>
+</blockquote>
+<h1 id="页面背景（background）"><a href="#页面背景（background）" class="headerlink" title="页面背景（background）"></a>页面背景（background）</h1><p>博客开通之后，很多人最先做的事情一定是改页面的背景，换成一张图片或者换上一个自己喜欢的颜色，这时候用到的就是background属性。</p>
+<p>但是，在什么地方用呢？</p>
+<blockquote>
+<p>所有的html标签都支持这个属性。所以，随便用。</p>
+</blockquote>
+<p>我们经常能看到类似<code>background: #fff;</code>这种使用方式，如果背景是张图片，那可能会看到<code>background: url(&#39;xxx.jpg&#39;);</code>这种使用方式。</p>
+<p>即使没有系统的学过css，仅看这两条代码也能知道前者是在设置背景色，后者则是在设置背景图片。</p>
+<blockquote>
+<p>实际就是选择图片做背景还是选择颜色做背景。</p>
+</blockquote>
+<p>那么现在设置一下博客的背景：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line"> <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
+<p>我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合</p>
+<p><img src="https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
+<p>对于单纯的背景颜色来说，这一系列的属性通常可以无视，对于图像背景，则按需设置这些内容（一般是<code>postion, size, repeat, attachment</code>这几条）。</p>
+<p>这些属性的具体使用方式可以通过手册查找到，这里不再叙述。</p>
+<p>上面换上了背景图像之后，我们使用手机打开，发现图像平铺了（未设置repeat），但是关闭了这条属性，手机浏览器只是居中显示一张图像(在手机上只能看到图像的一部分)，不好看，这显然是违背了我们更改样式的初衷（我们肯定是要美化博客不是）。</p>
+<p>那怎么解决呢？这属于多终端兼容问题，并不是可以通过css就能解决的。可以通过响应式设计来解决。</p>
+<p>负责任的说一句，css其实是可以解决这个问题的，但也只是简单的做一些适应性调整，个人认为这并非是一个很好的解决方案（有些场合可能就足够了，比如这里），解决方法用到的是@media查询。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span> : <span class="number">480px</span>) &#123;</span><br><span class="line"> <span class="selector-tag">body</span> &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line"> &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
+<p>附background的详细属性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">描述</th>
+<th align="left">CSS标准支持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">background-color</td>
+<td align="left">规定要使用的背景颜色。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">background-position</td>
+<td align="left">规定背景图像的位置。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">background-size</td>
+<td align="left">规定背景图片的尺寸。</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">background-repeat</td>
+<td align="left">规定如何重复背景图像。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">background-origin</td>
+<td align="left">规定背景图片的定位区域。</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">background-clip</td>
+<td align="left">规定背景的绘制区域。</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">background-attachment</td>
+<td align="left">规定背景图像是否固定或者随着页面的其余部分滚动。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">background-image</td>
+<td align="left">规定要使用的背景图像。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">inherit</td>
+<td align="left">规定应该从父元素继承 background 属性的设置。</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>建议使用background属性，而不是使用表中的单条属性。</p>
+</blockquote>
+<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><blockquote>
+<p>注意，是伪元素，而不是伪类。<br>伪元素针对元素的特定内容进行操作，伪类则是选择元素当前的状态。<br>关于伪元素和伪类的区别，可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ihardcoder/p/5294927.html">寒月十八的文章</a></p>
+</blockquote>
+<p>现在我想在公告栏加一段文字，应该怎么做，如果有js权限，那么可以通过：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boardcast = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;#blog-news&#x27;</span>);</span><br><span class="line">boardcast.<span class="property">before</span> = <span class="string">&quot;something&quot;</span>;</span><br><span class="line">boardcast.<span class="property">after</span> = <span class="string">&#x27;something&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是为了加个固定的内容去申请js权限，显然是大材小用了，我们完全可以通过伪元素<code>:before</code>和<code>:after</code>来实现。</p>
+<blockquote>
+<p>css3的标准规定伪元素是以双冒号开头的，但是部分浏览器（如IE8）并不兼容，所以也依然支持单冒号的写法，为了向后兼容，咱也得写成单冒号开头的形式。在浏览器的控制台中，可以看到对应的标签后有一个<code>::before</code>。</p>
+</blockquote>
+<p>具体为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;粉丝好少，我好伤心&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
+<p>这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。</p>
+<p>比js操作更方便的是，通过css，我们可以直接对这个content设定样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个还是有局限的，content中的内容只会被解析成字符串，即使有HTML标签，也会被当成字符串显示。<br>原因是，<em><strong>css并不能改变DOM树</strong></em></p>
+</blockquote>
+<p>这里列出几个比较常用的伪元素：</p>
+<table>
+<thead>
+<tr>
+<th align="left">伪元素</th>
+<th align="left">描述</th>
+<th align="left">CSS标准支持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:before</td>
+<td align="left">在某个元素之前插入内容。</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">:after</td>
+<td align="left">在某个元素之后插入内容。</td>
+<td align="left">2</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>知道这个之后，可能就会有人有些想法了，这个粉丝数啥的是不是也能改呢？嘿嘿。确实能改，有了js权限更好改，但是这完全就是欺骗自己，没啥必要的&#x3D;。&#x3D;</p>
+</blockquote>
+<h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p>我发现SimpleMemory模板的标题动画不太合我的口味，我鼠标放上去不能向右移，我想让他放大，这得改改。</p>
+<p>鼠标放上去，这是一个状态，在上一节提到，<strong>伪类是选择元素当前的状态</strong>。</p>
+<p>那么，我就可以根据当前元素的状态来应用不同的样式了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.postTitle</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">color</span>: <span class="number">#0f3647</span>;</span><br><span class="line">	<span class="attribute">text-decoration</span>: underline;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这么做完之后，放大的速度有点慢，原因是什么？因为模板中设置了<code>transition: all 0.1s linear 0s;</code>，这是设置过渡效果的。</p>
+<p>如果不设置这个属性，那么就不会有过渡效果。</p>
+<blockquote>
+<p>transition属性属于css3标准，所以低版本浏览器（IE8）是不兼容的。</p>
+</blockquote>
+<p>这里列出部分出现次数最多的伪类：</p>
+<table>
+<thead>
+<tr>
+<th align="left">伪类</th>
+<th align="left">描述</th>
+<th align="left">CSS标准支持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:active</td>
+<td align="left">向被激活的元素添加样式。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">:focus</td>
+<td align="left">向拥有键盘输入焦点的元素添加样式。</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">:hover</td>
+<td align="left">当鼠标悬浮在元素上方时，向元素添加样式。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">:link</td>
+<td align="left">向未被访问的链接添加样式。</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">:visited</td>
+<td align="left">向已被访问的链接添加样式。</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<h1 id="锚点、定位"><a href="#锚点、定位" class="headerlink" title="锚点、定位"></a>锚点、定位</h1><p>博客主页看上去基本没啥要改的了，那点进博文看看。</p>
+<p>不错不错，也挺好，不过貌似缺点儿啥？</p>
+<p>是目录！</p>
+<p>虽然内置的有目录，但是这并不酷，而且用处好少，往下翻翻，这个目录就没了。怎么才能像别的网站那样右下角一直有个目录呢？</p>
+<p>申请js权限之前，让我先想想css能不能做，毕竟js建个目录也挺复杂的。</p>
+<p>这时候就顺势想到博文中已存在的目录，能不能对它操作呢？</p>
+<p>找到这个目录结点，设置如下样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-attr">[class=<span class="string">&#x27;toc&#x27;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现目录出现在了右下角，而且是固定在这里，不乱跑的。</p>
+<blockquote>
+<p>不过有点小问题，就是在手机之类的小屏幕上，这个目录可能就有点……但也可以通过上面提到过的@media来取消这里设定的样式。</p>
+</blockquote>
+<p>这段css代码里面出现了一些以前没见过的东西，咱先看看position。</p>
+<p>position有五种可能值，详细如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">absolute</td>
+<td align="left">生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td align="left">fixed</td>
+<td align="left">生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td align="left">relative</td>
+<td align="left">生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</td>
+</tr>
+<tr>
+<td align="left">static</td>
+<td align="left">默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</td>
+</tr>
+<tr>
+<td align="left">inherit</td>
+<td align="left">规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p> CSS3标准中新增了一个sticky:粘性定位<br><br>一般说定位的时候，都是在说前面三种<br><br>position: 绝对定位<br><br>relative: 相对定位<br><br>fixed: 固定定位</p>
+</blockquote>
+<p>看完这张表可能也不能完全理解absolute和relative。</p>
+<p>没有理解，其实主要是没懂文档流，上面表格的内容主要就是说文档流的问题，设置为absolute的元素会脱离文档流，设置为relative的元素不会脱离文档流，设置为fixed的元素会脱离文档流。</p>
+<blockquote>
+<p>在float属性也有脱离文档流的说法。</p>
+</blockquote>
+<p>接下来我们要回答下面的问题：</p>
+<ol>
+<li>文档流是什么？</li>
+</ol>
+<blockquote>
+<p>标准的说法是，将网页划分成多行，每行从左到右排列html元素。</p>
+</blockquote>
+<ol start="2">
+<li>脱离文档流去了哪里？</li>
+</ol>
+<blockquote>
+<p>标准的说法是，在离开当前层次，放置在另一层上。</p>
+</blockquote>
+<p>其实简单说来，我们可以以地面-天空两层模型来理解，当前网页的文档流是地面（脚踏实地），脱离文档流那就是上天了（飘了）。</p>
+<blockquote>
+<p>这个例子不好，但是理解起来非常容易，当了解了层布局模型的时候，会对文档流有一个更深入的认识，而这时候可以选择 <strong>横条笔记本-便利贴</strong> 模型，以笔记本的某一页作为当前文档流（你现在在这一页做笔记），当你觉得要做的某条笔记不应该放在当前页，也不应该放在下一页上，往往这时候你会撕下一页便利贴，粘在当前页的某处，这就是脱离了当前文档流，其内部有自己的布局。若在这张便利贴上再贴一张便利贴，那么这张便利贴就相对其父元素（上一张便利贴）定位。<br><br>带着这条内容去看层模型，一定会有所获。</p>
+</blockquote>
+<p>回到本节开头所附的代码，我们设定了文章目录所在的元素为固定定位，所以它脱离了当前的文档流，飘了。但被固定在了右下角（相对浏览器窗口定位）。</p>
+<blockquote>
+<p>就像放风筝，风筝虽然飘在天上，但放风筝的人是抓着线不让风筝乱飞的。</p>
+</blockquote>
+<p>以上是定位的内容。</p>
+<p>另外出现的<code>div[class=&#39;toc&#39;]</code>是选择器的内容，匹配时，它要先匹配div标签，其次匹配class为toc的标签，可以做到精确匹配。</p>
+<p>关于选择器，这里不展开说，因为关于选择器的内容，已经有很多很好的文章了，再讲，也很难跳出这个圈。</p>
+<blockquote>
+<p>提醒一点，选择器的内容，一定要和优先级的内容一起看。</p>
+</blockquote>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

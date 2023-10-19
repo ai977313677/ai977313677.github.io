@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || </title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                    
+<div id="archives">
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2023/10/19" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2023/10/19</div>
+                <a href="/2023/10/19/hello-world/">
+                    <h3>Hello World</h3>
+                </a>
+                <div class="info">
+                    
+
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2022/3/14" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2022/3/14</div>
+                <a href="/2022/03/14/浅浅的聊一下 WebSocket-qian-qian-de-liao-yi-xia-websocket/">
+                    <h3>浅浅的聊一下 WebSocket</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端基础">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端开发" style=color:#03a9f4>
+                                前端开发
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端" style=color:#00a596>
+                                前端
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/思考" style=color:#ff7d73>
+                                思考
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端基础" style=color:#00bcd4>
+                                前端基础
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/websocket" style=color:#00bcd4>
+                                websocket
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2021/5/30" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2021/5/30</div>
+                <a href="/2021/05/30/浅谈前端水印-浅谈前端水印/">
+                    <h3>浅谈前端水印</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/学习笔记">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端" style=color:#ff7d73>
+                                前端
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/总结" style=color:#ffa2c4>
+                                总结
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/canvas" style=color:#ffa2c4>
+                                canvas
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/安全" style=color:#00bcd4>
+                                安全
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/水印" style=color:#00a596>
+                                水印
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2020/12/27" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2020/12/27</div>
+                <a href="/2020/12/27/简单聊两句XSS-简单聊两句xss/">
+                    <h3>简单聊两句XSS</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端基础">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/安全" style=color:#ff7d73>
+                                安全
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/xss" style=color:#ff7d73>
+                                xss
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2020/7/13" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2020/7/13</div>
+                <a href="/2020/07/13/angular浏览器兼容性问题解决方案-angular浏览器兼容性问题解决方案/">
+                    <h3>angular浏览器兼容性问题解决方案</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/学习笔记">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/浏览器兼容" style=color:#ff7d73>
+                                浏览器兼容
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2020/4/1" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2020/4/1</div>
+                <a href="/2020/04/01/想学canvas？那一定要看看这篇文章-想学canvas那一定要看看这篇文章/">
+                    <h3>想学canvas？那一定要看看这篇文章</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/学习笔记">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/canvas" style=color:#00a596>
+                                canvas
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2020/2/21" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2020/2/21</div>
+                <a href="/2020/02/21/前端缓存技术概述-前端缓存/">
+                    <h3>前端缓存技术概述</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端基础">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端开发" style=color:#00bcd4>
+                                前端开发
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端" style=color:#00a596>
+                                前端
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/HTTP缓存" style=color:#03a9f4>
+                                HTTP缓存
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/总结" style=color:#00bcd4>
+                                总结
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/DNS缓存" style=color:#ffa2c4>
+                                DNS缓存
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/CDN缓存" style=color:#00a596>
+                                CDN缓存
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2020/1/5" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2020/1/5</div>
+                <a href="/2020/01/05/2019年终总结-2019年终总结/">
+                    <h3>2019年终总结</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/年终总结">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            年终总结
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/年终总结" style=color:#ffa2c4>
+                                年终总结
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/10/1" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/10/1</div>
+                <a href="/2019/10/01/《你不知道的JavaScript》笔记（一）-《你不知道的JavaScript》笔记（一）/">
+                    <h3>《你不知道的JavaScript》笔记（一）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/学习笔记">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/JavaScript" style=color:#ff7d73>
+                                JavaScript
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端" style=color:#00a596>
+                                前端
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/9/23" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/9/23</div>
+                <a href="/2019/09/23/数据结构碎碎念（二）-数据结构碎碎念（二）/">
+                    <h3>数据结构碎碎念（二）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/总结">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            总结
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/栈" style=color:#00a596>
+                                栈
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/数据结构" style=color:#ffa2c4>
+                                数据结构
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/思考" style=color:#ffa2c4>
+                                思考
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/数据结构碎碎念（一）-数据结构碎碎念（一）/">
+                    <h3>数据结构碎碎念（一）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/总结">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            总结
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/栈" style=color:#03a9f4>
+                                栈
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/斐波那契" style=color:#00a596>
+                                斐波那契
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/递归" style=color:#03a9f4>
+                                递归
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/部份css样式详解(附实际应用)-部份css样式详解(附实际应用)/">
+                    <h3>部份css样式详解(附实际应用)</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端基础">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端开发" style=color:#00bcd4>
+                                前端开发
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/css" style=color:#ff7d73>
+                                css
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端基础" style=color:#ffa2c4>
+                                前端基础
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/TypeScript中使用getElementXXX()-TypeScript中使用getElementXXX()/">
+                    <h3>TypeScript中使用getElementXXX()</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端框架">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端框架
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端开发" style=color:#ffa2c4>
+                                前端开发
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/TypeScript" style=color:#ffa2c4>
+                                TypeScript
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/angular" style=color:#ffa2c4>
+                                angular
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/css或Angular框架限制文本字数-css或Angular框架限制文本字数/">
+                    <h3>css或Angular框架限制文本字数</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/前端框架">
+                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                            前端框架
+                        </a>
+                    </span>
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/前端开发" style=color:#ff7d73>
+                                前端开发
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/angular" style=color:#ffa2c4>
+                                angular
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/css" style=color:#00bcd4>
+                                css
+                            </a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/JavaScript" style=color:#03a9f4>
+                                JavaScript
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+</div>
+
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+</body>
+
+</html>

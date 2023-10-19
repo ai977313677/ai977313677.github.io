@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || 《你不知道的JavaScript》笔记（一）</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>《你不知道的JavaScript》笔记（一） </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2019/10/1
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/学习笔记">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                学习笔记
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/JavaScript" style=color:#00bcd4>
+                    JavaScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端" style=color:#ff7d73>
+                    前端
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <blockquote>
+<p>用了一个星期把《你不知道的JavaScript》看完了，但是留下了很多疑惑，于是又带着这些疑惑回头看JavaScript的内容，略有所获。</p>
+</blockquote>
+<blockquote>
+<p>第二遍阅读这本书，希望自己能够有更为深刻的理解。</p>
+</blockquote>
+<h1 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h1><blockquote>
+<p>……如果是 <strong>有状态</strong> 的解析过程，还会赋予单词语义……</p>
+</blockquote>
+<p>这本书是以编译原理的部份内容结合JavaScript来开篇的，所以如果没有学过编译原理，这一小部分内容显得有些晦涩。</p>
+<p>虽然多数人没有接触过编译原理，但有一个东西必定知道，就是markdown语法。实际上，从markdown文件到HTML的过程就包含了词法化的过程。</p>
+<p>那什么是有状态？粗略来讲，就是一个模式匹配的问题，或者可以认为是字符串的匹配：</p>
+<p><em><strong>源串：<code>&quot;str782yui&quot;</code>，待匹配的串：<code>&quot;sj1&quot;</code></strong></em> ，思考一下朴素匹配的算法，我们是要从头开始比较的，那么在每一次比较的时候，就两种状态，字符相同&#x2F;不相同，每接受一个字符，就会走向其中一个状态。</p>
+<p><img src="https://iachieveall.com/upload/2019/10/%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-50b59613131e4c7f873727e96fe66c83.png" alt="朴素模式匹配"></p>
+<p>这就是所谓的状态。当然了，这也只是一种粗浅的比喻，可能会有更好的。</p>
+<p>说句心里话，编译原理是很有用的科目，但是真正学起来的时候还是挺痛苦的。</p>
+<blockquote>
+<p>考虑以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> b = a*<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params">c</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b, c);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">bar</span>(b*<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中有三个逐级 <strong>嵌套的作用域</strong>……</p>
+</blockquote>
+<p>对于java程序员来说，一对花括号就可以限制变量的作用域，而且作用域之间的关系有 <strong>同级</strong> 和 <strong>父子级</strong> 两种，同时还有包(package)这种很方便的东西。</p>
+<p>但是JavaScript就不一样了，一对花括号是不能定义一个作用域的，而且由于var声明的变量存在变量提升，所以有些时候我们会发现某个变量并不能像预期的那样被约束在某对花括号中，于是就出现很多经典的问题。</p>
+<p>JavaScript中函数和catch子块是能够创建作用域的，但是个人认为，为了创建一个作用域而使用catch子块，这等于是给catch增加了一个语义，二义性不好说，这可能会使程序变得不好阅读。但大家都这么做的话，那我也就随大流吧。</p>
+<p>想起一个不知道从哪里传出来的笑话，说：catch不是异常处理关键字，而是流程控制语句。</p>
+<p>提到了作用域，就一定要提变量的<strong>屏蔽</strong>，简单来说就一句话： <em><strong>内部作用域的变量会屏蔽外部作用域的同名变量</strong></em>。</p>
+<p>那可能就有人问了，（上述代码）我通过<code>foo.b</code>这种方式能不能访问呢？</p>
+<p>……想啥呢？想对象了是吧？不过可以通过<code>window.foo</code>这种方式来访问全局变量foo，为啥？这<code>window</code>不是一个全局的对象嘛，所有的全局变量都会自动的成为全局对象的属性。</p>
+<blockquote>
+<p>……词法作用域查找 <strong>只会</strong> 查找一级标识符……</p>
+</blockquote>
+<p>这句话就是在回答上面我提出来的问题。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">str, a</span>) &#123;</span><br><span class="line">  <span class="built_in">eval</span>(str);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="title function_">foo</span>(<span class="string">&quot;var b = 3&quot;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>eval(..)</code>调用中的”<code>var b = 3;</code>“这段diamante会被当做本来就在哪里一样处理……</p>
+</blockquote>
+<p>这话说的好拗口啊？</p>
+<p>有时候写程序的时候，我就会想，哎呀，要是能把一个字符串变成一个变量就好了，多方便啊。</p>
+<p>eval差不多就是在完成这件事。书上说的这么绕，可能是为了可以让读者更好的理解。</p>
+<p>在我看来，<strong>eval函数所做的就是动态的生成一段代码，插入到对应的位置上，变成了另一个程序，照此执行。</strong></p>
+<blockquote>
+<p>with声明实际上是根据你传递给它的对象凭空创建了一个 <strong>全新的词法作用域</strong>。</p>
+</blockquote>
+<p>到这里又增加了一个能够创建作用域的关键字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">with</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    a = <span class="number">2</span>;</span><br><span class="line">    b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>对上述代码，我们可以这么理解，with将obj声明为一个作用域，with内部的语句都是在这个作用域中的，so……</p>
+<blockquote>
+<p>eval(..)和with会在运行时修改或创建新的作用域，以此来欺骗其他书写时定义的词法作用域。</p>
+</blockquote>
+<p>eval是修改，with是创建作用域。</p>
+<p>这两个都会导致程序性能的下降，原因是影响了<strong>编译优化</strong>，其实这俩就像是一个开关，任意一个存在时，都会打开禁止编译优化的按钮。就像是所谓的禁止指令重排一样。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>|ू･ω･&#96; )：这本书真好看。</p>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

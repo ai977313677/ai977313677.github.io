@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || TypeScript中使用getElementXXX()</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>TypeScript中使用getElementXXX() </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2019/9/5
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/前端框架">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                前端框架
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端开发" style=color:#00bcd4>
+                    前端开发
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/TypeScript" style=color:#ff7d73>
+                    TypeScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/angular" style=color:#00bcd4>
+                    angular
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <blockquote>
+<p>如果只是看解决方法，可以直接跳到第二小节</p>
+</blockquote>
+<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>Angular 1.x版本是用JavaScript编写的，我们在百度Angular经常会搜索到AngularJS，并不是JavaScript的什么衍生版本，就是Angular 1.x。在后续版本中，改用TypeScript来重写了Angular框架。改动较大，所以做了个区分，Angular v1.x就叫AngularJS，v2及后续版本统称为Angular。</p>
+<blockquote>
+<p>查资料和解决方案的时候，经常会搜索到大量的AngularJS内容，注意区分。</p>
+</blockquote>
+<p>在这里提一下Angular的历史，是因为本文是在使用这个框架的时候遇到的，所以啰嗦两句。</p>
+<h1 id="问题来了"><a href="#问题来了" class="headerlink" title="问题来了"></a>问题来了</h1><p>现在有如下html文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这俩随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;infoInput&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoInput&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;8&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这俩也随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;some&quot;</span>&gt;</span>something happen!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;any&quot;</span>&gt;</span>anything ok!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我现在要通过TypeScript获取上面任意一个DOM元素，怎么做？有JS基础都知道，操作DOM可以通过<code>document</code>完成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由于DOM元素的ID是惟一的，所以这种方式获取的是唯一的DOM元素</span></span><br><span class="line">dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// name属性是不唯一的，所以这种方式获取的是所有 name=infoInput 的DOM元素，即一个数组</span></span><br><span class="line">dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>而在TypeScript中当然也可以这么做，但是在具体使用的时候除了需要声明变量保存获取到的DOM元素之外，还有一点小小的问题。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Angular框架中</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码写完会报一个错:</p>
+<blockquote>
+<p>Property ‘value’ does not exist on type ‘HTMLElement’<br>不要紧，即使有错误提示，我们依旧可以运行并得到正确的结果。如果想在ts文件编译失败时不生成js文件，可以通过配置实现。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/xmldom/dom_htmlelement.asp">HTMLElement</a>是什么？这是一个对象，它包含了所有HTML元素公有的属性。</p>
+<p>关于HTMLElement的详细内容以及浏览器的兼容，可以查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement">MDN的这篇文章</a></p>
+<p>来看一张图：</p>
+<p><img src="https://iachieveall.com/upload/2019/9/js%E7%B1%BB%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF-d130b3ce73cb47bdb13958b755730211.png" alt="js类间的继承"></p>
+<p>图源自nanaistaken的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009863666">博客</a>。</p>
+<blockquote>
+<p>如果你恰好有一点面向对象编程的知识，那么这张图就很容易理解，没有也没关系，毕竟无论是js还是ts，现在都增加了class关键字，引入了类的思想。</p>
+</blockquote>
+<p>经过上面的分析，我们能够知道：<code>getElementXXX()</code>返回的是一个HTMLElement对象，而这个对象包含了所有DOM元素的公有属性。而每种不同类别的DOM元素，又有自己的特性，也就是图中的子类。</p>
+<blockquote>
+<p>ts会做编译检查，所以会有错误提示，而js则不检查，所以这也会留下安全隐患。</p>
+</blockquote>
+<p>到这里，其实应该已经明白了现在这种情况该怎么解决以及以后该怎么使用getElementXXX函数了。</p>
+<p>修改后的代码：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// *. 做一次类型转换，或者做类型断言</span></span><br><span class="line">    <span class="keyword">let</span> dom = &lt;<span class="title class_">HTMLInputElement</span>&gt;<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>HTMLElement是DOM结点共有的属性，TypeScript库中抽取该属性作为一个公共接口，类似于其他面向对象语言如Java和c++中所说的基类。这样做可以保证在操作DOM结点的时候不会出现访问不存在属性的问题。</p>
+<p>HTMLInputElement是HTMLElement的一个子接口（或说子类，但TypeScript是支持class的，所以说接口更好一些），其内部封装了如input，textarea这类dom结点的属性。</p>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

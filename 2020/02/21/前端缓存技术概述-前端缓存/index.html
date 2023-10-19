@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || 前端缓存技术概述</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>前端缓存技术概述 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2020/2/21
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/前端基础">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                前端基础
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端开发" style=color:#ff7d73>
+                    前端开发
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端" style=color:#00bcd4>
+                    前端
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/HTTP缓存" style=color:#00a596>
+                    HTTP缓存
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/总结" style=color:#00bcd4>
+                    总结
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/DNS缓存" style=color:#03a9f4>
+                    DNS缓存
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/CDN缓存" style=color:#00a596>
+                    CDN缓存
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="缓存概述"><a href="#缓存概述" class="headerlink" title="缓存概述"></a>缓存概述</h2><blockquote>
+<p>在计算机领域中，缓存是一项十分重要的技术。  </p>
+</blockquote>
+<p>在软件开发，亦或者是在硬件设计开发中，缓存对性能的影响是十分显著的。</p>
+<p>学过Java，会知道在Integer的自动装箱中 <code>[-128,  127]</code> 这个范围中的转换会有些特殊的表现，稍加研究源码，会知道这是因为Integer中的缓存类有关（该缓存类会使用数组存储[-128, 127]范围内的常量）。当然，在实际开发中，可能存在Redis缓存，框架缓存等。</p>
+<p>再有，cpu cache可能是最常听到的一种硬件缓存机制了。对于计算机专业的同学来说，cpu cache可能了解的更多些，大致如图，这里就不多表述了：</p>
+<p><img src="https://iachieveall.com/upload/2020/2/4683D2A9-353E-461B-B56F-A5D10973D026-2d95875a3abb45c59a8e940a0d83032f.png" alt="CPU Cache"></p>
+<p>前端方向的缓存包括：浏览器缓存，HTTP缓存，DNS缓存，CDN缓存等。</p>
+<p>有人会说，浏览器缓存和前端肯定是有关系的，但是HTTP不是个协议吗，这个怎么缓存？DNS我倒是知道，这玩意儿是请求解析URL对应的IP地址的，这个跟前端又有啥关系？而且这CDN……</p>
+<h2 id="前端缓存"><a href="#前端缓存" class="headerlink" title="前端缓存"></a>前端缓存</h2><p>提到前端缓存，很多人立刻能想到的是浏览器缓存，然后又把浏览器缓存划分两种：1. 强缓存，2. 协商缓存。如果再向下深入，就按下F12打开控制台切换到Network选项卡，然后指着那些请求的Header的每一个字段说：你看，这个Cache-Control和Expires是用来控制强缓存的，这个Last-Modified，ETag还有这些If-xxx-xxx都是用于协商缓存的。</p>
+<p>再继续往下进行，就有人要说了：其实，这里还要划分缓存策略，浏览器按照发生的时间顺序划分策略，1. 存储策略，2. 过期策略，3. 协商策略，每个字段对应有不同的缓存策略，存在一个字段对应多个策略的情况。</p>
+<p>到这里，就有人意识到了，这说了半天本质上都在讲根据HTTP协议制定的缓存机制，也就是常说的HTTP缓存，也是一种浏览器缓存。</p>
+<p>那么，其他的呢？</p>
+<h3 id="客户端缓存"><a href="#客户端缓存" class="headerlink" title="客户端缓存"></a>客户端缓存</h3><p>通常，客户端缓存指的是浏览器缓存，更具体一点，就是本节开头所提到的HTTP缓存。</p>
+<h4 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h4><p>DNS是一个协议，用于域名URL到IP地址的映射，或者说是根据URL去查询IP地址。</p>
+<p>在Windows下，我们可以在C:\window\system32\drivers\etc\目录下找到一个hosts文件，这个文件记录了URL到IP的转换，通常来说，我们不需要手动去修改这个文件，而是在网络协议中配置DNS服务器，通过DNS查询完成URL到IP的转换。</p>
+<blockquote>
+<p>现在hosts还在继续使用，一般内网中会要求员工手动配置hosts文件，或者通过运行脚本进行hosts的写入，这样配置完成之后才可以访问某些内部网络。  </p>
+</blockquote>
+<p>简单来说，DNS协议的实现就是：客户端请求服务器得到结果，这个结果就是IP地址。</p>
+<p>假设DNS解析请求发出到收到结果的时间是100ms，不加DNS缓存：</p>
+<p>浏览器访问网站需要查询URL对应的IP地址，而网站的接口也需要进行查询IP，首先浏览器在DNS请求过程中等待，什么都不做，这时候浏览器只能保持白屏100ms，而在后续的接口请求中，我们还要进行DNS查询，这样的等待是没有意义的，而且这对DNS服务器带来的压力也不小……</p>
+<p>但是在加了DNS缓存后，我们就可以直接在缓存中找到URL对应的IP，省去了等待时间，响应速度一下就上去了。</p>
+<blockquote>
+<p>通常，DNS查询的时间在20ms左右。  </p>
+</blockquote>
+<p>现在的浏览器都实现了DNS缓存，不过采用的方式是不同的，至于具体采用了啥方式，这个我也不知道了，不过有一点，IE设置了30分钟的缓存时间，Chrome和FireFox则是设置了1分钟的DNS缓存有效期。但无论是30分钟还是1分钟，时间长短并不是区分其优劣性的因素。<br>时间设置的短：那么浏览器就对IP变化敏感，可以保证请求是正确的。<br>而时间设置的长了：那么就可以避免重复请求DNS服务器，节省时间。</p>
+<blockquote>
+<p>NOTE：还有一个协议需要了解，就是ARP协议（地址解析协议），我们在得到了IP之后，需要进行TCP握手，这一步需要找到MAC地址，而ARP协议的作用就是IP到MAC的映射。  </p>
+</blockquote>
+<h4 id="HTTP缓存、浏览器缓存"><a href="#HTTP缓存、浏览器缓存" class="headerlink" title="HTTP缓存、浏览器缓存"></a>HTTP缓存、浏览器缓存</h4><p>HTTP缓存就是老生常谈的东西了，HTTP本身只是一个协议，HTTP缓存则是浏览器实现的，在本文开篇就已经提到了，后文统称HTTP缓存。</p>
+<p>浏览器通过设置或者读取HTTP头来实现对应的缓存机制：</p>
+<ol>
+<li>强缓存</li>
+</ol>
+<p>当请求命中强缓存时，浏览器不会将本次请求发往服务器，而是直接从缓存中读取内容，在Chrome中打开控制台，切换到Network选项卡，可以看到一个比较不一样的状态码信息 200 OK (from disk cache)，如下图：</p>
+<p><img src="https://iachieveall.com/upload/2020/2/2C3CEB6E-551B-4317-B3FE-DA8E8FBC17BB-2f0c99c3e098443a8478d7080bfd5187.jpeg" alt="200 OK (from disk cache)"><br><img src="https://iachieveall.com/upload/2020/2/B31F08B9-89FA-441F-8D6D-CCC59EAD2A99-de4d9ab970e8421fa5ec6a32b5e44a81.png" alt="颜色不同的200 OK"></p>
+<p>控制强缓存的字段主要是Cache-Control和Expires（HTTP 1.0标准）。</p>
+<p>Cache-Control：常见的值有public，private，max-age，no-cache，no-store，must-revalidation；少见，但是用的也多的值有max-stale，min-fresh。</p>
+<p>max-age，max-stale，min-fresh这三个值同时使用时，其设置独立生效，但是最保守的缓存策略总是有效（所谓最保守，你可以认为，缓存时间最短的总是有效）。</p>
+<p>此外，no-cache字面意思是不缓存，但实际上，浏览器读到这个值之后，依旧会将资源缓存，在下次请求时检查资源是否有效，如果有效，那服务器就返回304状态码，浏览器读缓存；否则浏览器向服务器请求更新的资源。这与 <code>Cache-Control: max-age, must-validation</code> 效果相同。</p>
+<p>以上各个字段的意义均可在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers">MDN文档</a>中查询到，这里不再赘述。</p>
+<p><img src="https://iachieveall.com/upload/2020/2/66ABC578-CFCF-49D1-80CB-458420A3A782-5668983a6c9641c5aec62f84ab29dba7.png" alt="部分HTTP Header字段"></p>
+<p>Expires：资源到期时间，这个时间是服务器的时间，所以这里就会出现一个问题，服务器时间和本地时间不一致。但问题不大，只是这样本地强缓存会失效而已……等等，本地时间和服务器时间不一致并不一定是本地时间超出了指定的到期时间，也有可能是本地时间被修改至到期时间之前，那么这不就使得本地缓存有效了吗？那不就可能存在本地缓存和服务器资源不一致的问题了？</p>
+<blockquote>
+<p>NOTE：<code>Cache-Control:max-age</code> 的优先级要比Expires高  </p>
+</blockquote>
+<p>如果某天看到HTTP请求头中不包含这两个字段同时也不存在其他缓存设置，是不是就用不到缓存了呢？当然不是，浏览器自身会实现一个启发式缓存算法，通常是取出响应头中Date和Last-Modified两个字段，计算其差值的10%作为缓存时间：(Date - Last-Modified) * 10%。</p>
+<ol start="2">
+<li>协商缓存</li>
+</ol>
+<p>根据字面意思，就是前后端进行协商，校验缓存的有效性。</p>
+<p>相对来说，这一策略就有很多字段能控制了，不过也很好记，基本都是 <code>If-Xxx-Xxx</code> 这种形式的，而If前缀则表示这个字段是用于判断（验证）的。</p>
+<p>ETag：实体标签，服务器资源的唯一标识符，有点像哈希值。<br>Nginx官方采用的计算方式是“文件最后修改时间的16进制-文件长度的16进制”。<br>配合If-Match和If-None-Match使用，验证缓存的有效性。</p>
+<p>通过If-Match配合Range，我们还可以实现文件的断点续传、文件分段下载、并行下载这些听上去挺高大上的功能，原理很简单，就是请求头通过 <code>Range:bytes</code> 请求资源的某一部分，而 <code>If-Match:ETag</code> 可以保证新新范围的请求和前一个请求来自相同的源（ETag不一致，那就说明资源不一致咯）。</p>
+<p>Last-Modified：标记请求资源的最后一次修改时间，GMT时间（格林尼治标准时间），由此可知，该字段可以精确到秒级。此外，该字段记录资源最后的修改时间，但是并不会验证资源内容是否真的发生了变化（资源编译打包就会改变该字段的值）。配合If-Modified-Since和If-Unmodified-Since校验缓存的有效性。</p>
+<p>这个Last-Modified字段除了验证本地缓存资源的有效性之外，倒还可以用于当前请求的服务器文档是否被修改，比如说石墨文档，腾讯文档等共享文档之类的，当然了，这些软件都有很多的其他机制保证编辑修改操作能够正确的进行下去。通过 <code>If-Unmodified-Since:Last-Modified</code> 、 <code>If-Range:Etag | Date</code> 再搭配上 <code>Range:bytes</code> （没有Range字段，If-Range字段就会被忽略）可以保证只有服务器上的文档在没有修改的情况下执行更新，实现一个粗糙的文档协作。</p>
+<blockquote>
+<p>NOTE：<code>Last-Modified</code>字段优先级比<code>Etag</code>低。  </p>
+</blockquote>
+<p>到这里，我们可以知道缓存的优先级为：</p>
+<p>强缓存&gt;协商缓存，<br>Cache-Control&gt;Expires&gt;ETag&gt;Last-Modified</p>
+<blockquote>
+<p>多数人不对HTTP缓存和浏览器缓存区分的，或者说直接合在一起称为“浏览器HTTP缓存”，还有人直接称之为“前端缓存”，其实都在说同一个内容。  </p>
+</blockquote>
+<h3 id="服务器缓存"><a href="#服务器缓存" class="headerlink" title="服务器缓存"></a>服务器缓存</h3><p>提到服务器，一般来说都和后端是相关的，但是前端也必须要了解一些相关的知识，因为每次出现问题的时候，都是会在前端页面上显示出来，比如说接口500，这时候，测试就来到了我们身边，俯下身子在我们耳边吟唱死亡颂歌……</p>
+<blockquote>
+<p>当然了，上面说的有些夸大，因为多数时候遇到5xx的问题，测试会直接找到后端排查，若是遇到参数传递的问题，后端才会报告给前端去解决。  </p>
+</blockquote>
+<h4 id="CDN缓存"><a href="#CDN缓存" class="headerlink" title="CDN缓存"></a>CDN缓存</h4><p>在 <strong>DNS缓存</strong> 中提到过为了得到IP地址，需要进行一次DNS查询。</p>
+<p>在这里，DNS请求获取到的IP地址是服务器的IP地址，对于同一台服务器来说，接收处理的请求越来越多，那么服务器的负载也就越大，服务器对请求的响应可能就会超时。此外，不同地区访问网站的时延是不同的，若服务器在北京，用户在新疆或西藏地区，那么这个访问时延会非常大，用户等待的时间也就越长。</p>
+<p>CDN全称是Content Distribute Network，即内容分发网络。在使用了CDN的情况下，上述的两种情况都能得到很好的解决。</p>
+<p>CDN理论大致可表述如下：通过在 <strong>不同地区</strong> 建立 <strong>多个</strong> 节点服务器，使得用户的请求可以根据其所在地区、当前网络流量、服务器负载、网络连接等因素，被导向最佳的服务器节点。</p>
+<p>其适用场景较为广泛，如站点加速，直播，点播等。</p>
+<p>讲到这里，就应该对CDN有个模糊的概念：这以前没有CDN的时候，直接请求源站，现在有了CDN，那么请求肯定会被转发到其他服务器，而且这个服务器中的资源可能是一个源站资源的拷贝。咱们可以称这个服务器为 <strong>CDN节点</strong> 。</p>
+<p>CDN缓存是指，存在一个缓存服务器，当浏览器向服务器请求资源时，并不是直接向源站服务器请求，而是被导向CDN边缘节点。在这个边缘节点中缓存了用户的数据以及源站服务器资源，他（边缘cache）负责直接响应最终用户的访问请求，将缓存在本地的内容迅速提供给用户。同时，既然缓存了源站服务器的资源，那么就会涉及到资源的一致性，即保证边缘节点与源站服务器内容同步。</p>
+<p>说得简单点，CDN就是一个房产中介，他根据用户的诉求和他掌握的一些信息（如工作地点，交通情况，距离等）为用户提供一个合适的房子。</p>
+<blockquote>
+<p><strong>CDN系统</strong> 在功能上可划分为三大模块：分发服务，负载均衡，运营管理。本节所提到的CDN缓存其实只是从属于分发服务的一个小块。本节内容所说的内容只是一个小的范围-CDN分发服务系统中的边缘cache，并不是指代整个CDN系统。  </p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实还有一种缓存没有提到，这种缓存是用来做离线页面的，而且是直接在HTML中主动使用的——Manifest，使用起来十分简单，只需要一行代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!—- 写在html标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!—- 或者写在meta标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是很多网站并没有使用这种技术，原因在于这个配置的文件上：</p>
+<ol>
+<li>如果我们想要缓存页面的所有资源，只能手动将资源写入Manifest声明的配置文件中进行缓存，而不能使用通配符缓存，这太麻烦了。</li>
+<li>好不容易把Manifest配置文件写好了，浏览器这边访问起来也很快，这时候，网站的资源更新了，这个缓存会失效吗？不会的，如果不清除缓存，即使连上网络，资源也不会自动更新，浏览器加载的页面还是旧的页面。我们需要改变配置文件的名字，然后，才会更新本地缓存，通常会增加版本号或者使用hash的命名方式。</li>
+<li>解决了这些问题，你又会发现，Manifest在不同设备，不同浏览器上可能存在大小限制。</li>
+</ol>
+<p>综上，Manifest的使用还是比较麻烦的，而且用处看上去不大，但是对于一些静态网页，Manifest就显得比较有用了。</p>
+<p>此外，还有一些没有提到的缓存技术，如代理服务器缓存，反代理服务器缓存等。</p>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

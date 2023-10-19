@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || 数据结构碎碎念（一）</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>数据结构碎碎念（一） </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2019/9/5
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/总结">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                总结
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/栈" style=color:#ff7d73>
+                    栈
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/斐波那契" style=color:#03a9f4>
+                    斐波那契
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/递归" style=color:#03a9f4>
+                    递归
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>在大一学习C语言的时候，举过一个用栈实现的括号匹配算法，当时觉得很难，不过现在回顾起来，这个算法也算是比较简单的一个关于栈的应用了。而现在所常见的算法问题也都是什么中缀表达式转后缀表达式，双栈找最小值之类的。难度比之括号匹配稍有提升，不过倒也算是必须要掌握的算法。</p>
+<p>上述所说的表达式求值在程序设计语言中是一个最基本的问题，也是栈的实现的一个典型范例。</p>
+<p>为什么说是最基本？<br>我们知道，中缀表达式对于人来说是比较友好的，学过四则运算就可以对其求值，然而对于计算机来说，虽然也可以想办法计算，但是却算不上友好了；相反，后缀表达式虽然对人不友好，但是却是计算机所喜欢的。</p>
+<p>（话说，后缀表达式在编译原理中的重要性也是能栖身前列的。）</p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>在C语言入门的时候，我们就会通过 <strong>递归</strong> 来求 <strong>斐波那契数列</strong> ，很简单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fibonacci</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span> || n==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">fibonacci</span>(n<span class="number">-1</span>) + <span class="built_in">fibonacci</span>(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这段代码不是一般求斐波那契数列的方式，他一般只存在于教科书中，是一个经典的反例。绘制其调用过程，可以得到一棵树，还是二叉树。实际求解斐波那契数列的方式是使用一个循环。</p>
+</blockquote>
+<p>但是那时候还不懂原理，仅仅知道，递归就是 <strong>函数调用其本身</strong> ，但是接触到数据结构的时候，再一次提出了递归的概念。</p>
+<blockquote>
+<p> 什么是递归？递归就是<strong>函数调用其本身</strong>。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">reverse</span>(know) &#123;	<span class="comment">// 1. go on</span></span><br><span class="line">	<span class="keyword">if</span> (you know) <span class="keyword">return</span> you know; <span class="comment">// 2. look 4</span></span><br><span class="line">	<span class="keyword">else</span> back to see the <span class="number">1</span>; <span class="comment">// 3. go back to 1.</span></span><br><span class="line">&#125; <span class="comment">// 4. you know what is recurision now.</span></span><br></pre></td></tr></table></figure>
+
+<p>这时候，我们不仅知道递归真正的用法，同时也知道了一个事实，即<strong>递归程序的开销通常很大</strong>，但与之相反的，其代码量又是非常少的。</p>
+<p>通常情况下，我们会选择将递归程序改写成非递归程序，即所谓<strong>消除递归</strong>，但是当改写后和改写前的程序并不会有太大的性能提升，我们也没有必要去改写，比如：<code>cout &lt;&lt; fibonacci(5);</code>，为了这样的调用去消除递归，有必要吗？</p>
+<blockquote>
+<p>可实际情况是，一个应用所要处理的数据并不算小，消除递归是不可避免的。</p>
+</blockquote>
+<p><em><strong>递归的精髓在于能否将原始的问题转换为属性相同，但问题规模较小的问题</strong></em>，学过算法就知道，这同样也是贪心策略和动态规划的本质。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>对于递归程序的优化，我们通常会选择栈做辅助，为什么？我们知道，在操作系统中，有一种叫做 <strong>“函数调用堆栈”</strong> 的名词，大概的解释就是：当在某一函数A中调用另一函数B时，我们将A中的内容保存后，压入系统堆栈（你可以说这是在创建还原点，也可以说这个是现场保护，开心就好。），然后执行函数B的内容，当函数B执行结束后，将A从系统堆栈中弹出，继续从断点处执行，同时销毁之前申请的栈空间。</p>
+<p>同时，我们要知道，操作系统的主存是由空间上限的，不可能是无限的。系统堆栈的大小自然是受操作系统存储空间大小的约束的，而且绝对小于系统存储空间（不可能等于）。所以，当递归程序不断申请栈空间到达系统栈所能分配的上限时，就有了所谓的“ <strong>系统堆栈溢出</strong> ”，即我们通常所说的“爆栈”。</p>
+<ul>
+<li>斐波那契函数n&#x3D;6时，递归调用树</li>
+</ul>
+<p><img src="https://iachieveall.com/upload/2019/9/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%A0%91-26a0b9dea5044f0d9372f572dd31ba1b.jpg" alt="斐波那契函数n=6时，递归调用树"></p>
+<ul>
+<li><p>n&#x3D;3时，栈的申请情况<br><img src="https://iachieveall.com/upload/2019/9/n=3%E6%97%B6%E7%9A%84%E6%A0%88-bb702f39ec064f30b8cc3bfd35824403.jpg" alt="n=3时，栈的申请情况"></p>
+</li>
+<li><p>n&#x3D;6时，栈的申请情况<br><img src="https://iachieveall.com/upload/2019/9/n=6%E6%97%B6%E7%9A%84%E6%A0%88-6dd24132ff0d4f08a1362557a8117fc7.jpg" alt="n=6时，栈的申请情况"></p>
+</li>
+</ul>
+<blockquote>
+<p>java中，异常<font color="red">java.lang.StackOverflowError</font>就是一种堆栈溢出错误，不过，可以通过修改JVM参数来增大虚拟机栈空间，如<font color="black">-vm args-Xss128k</font>；但这也只是权宜之计，治标不治本呐。</p>
+</blockquote>
+<p>但是呢，一个递归程序并不一定非要用栈辅助改写成非递归程序（即消除递归），有时候，一个循环就够了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n, i=j=<span class="number">1</span>, tmp=<span class="number">0</span>;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n--) &#123;</span><br><span class="line">		tmp = i+j;</span><br><span class="line">		i = j;</span><br><span class="line">		j = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>暂时就说这么多，至于后面的，那就后面再说吧，毕竟这也只是（一）嘛。</p>
+</blockquote>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>

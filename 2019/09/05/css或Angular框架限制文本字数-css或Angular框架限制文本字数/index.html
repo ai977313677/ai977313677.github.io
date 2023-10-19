@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo || css或Angular框架限制文本字数</title>
+    <meta name="author" content="John Doe">
+    <meta name="description" content=" ">
+    <meta name="keywords" content=" ">
+    <link rel="icon" href="/image/profile.webp">
+    <link rel="stylesheet" href="/css/antd.min.css">
+    
+    <link rel="stylesheet" href="/css/full-theme.css">
+    
+    <script src="/js/vue.js"></script>
+    <script src="/js/antd.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div id="loading"
+        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
+        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
+        <div
+            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div id="loadcontent"
+                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
+                <div>
+                    <h2>LOADING...</h2>
+                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
+                    <div>
+                        <img src="/dancingkitty.gif" alt="loading">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layout">
+        <transition name="into">
+            <div v-show="show_page" style="display: none;">
+                <div id="menu_show">
+                     
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <span>
+                <a-icon type="home" theme="filled" />
+            </span>
+            <span>home</span>
+        </a>
+        
+        <a href="/archives">
+            <span>
+                <a-icon type="folder" theme="filled" />
+            </span>
+            <span>archives</span>
+        </a>
+        
+    </div>
+
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div :class="'title'" @click="menu_show=!menu_show">
+            <span style="margin-right: 10px;">
+                <a-icon type="appstore" theme="filled" />
+            </span>
+            <span>Hexo</span>
+        </div>
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="home" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width:20px; max-width:50px; width: 10%">
+                        <a-icon type="folder" theme="filled" />
+                    </div>
+                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="curtain" v-show="menu_show"></div>
+    </div>
+
+</nav>
+                </div>
+
+                <div id="main">
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>css或Angular框架限制文本字数 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2019/9/5
+        </span>
+
+        
+        <span class="category">
+            <a href="/categories/前端框架">
+                <span class="icon">
+                    <a-icon type="book" theme="filled" />
+                </span>
+                前端框架
+            </a>
+        </span>
+        
+
+        
+
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/前端开发" style=color:#ff7d73>
+                    前端开发
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/angular" style=color:#00bcd4>
+                    angular
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/css" style=color:#03a9f4>
+                    css
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/JavaScript" style=color:#00bcd4>
+                    JavaScript
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="提需求的来了"><a href="#提需求的来了" class="headerlink" title="提需求的来了"></a>提需求的来了</h1><p><img src="https://iachieveall.com/upload/2019/9/%E6%8F%90%E9%9C%80%E6%B1%82%E7%9A%84%E6%9D%A5%E4%BA%86-47fe072a503e4975bef75005a1abee02.jpg" alt="提需求的来了"></p>
+<p>某一期产品迭代时，新增了一个小功能，即：在单元格中的文本内容，字符超过20个字的时候，需要截断，并显示20个字符+一个省略号，未超过，无视。</p>
+<p>这需求看上去不怎么复杂，看起来可以用css做（写css写魔怔了，啥都想往这上面靠拢），那先搜一下，字还没打完，就有提示“css限制显示字数，文字长度超出部分用省略号表示”，哎哟我c，这下不就简单了吗？</p>
+<p><img src="https://iachieveall.com/upload/2019/9/%E5%A6%99%E5%95%8A-84ff164c816c49dfb6ff359b65a56440.jpg" alt="妙啊"></p>
+<h1 id="接受挑战"><a href="#接受挑战" class="headerlink" title="接受挑战"></a>接受挑战</h1><p>于是按照其他人的解决方案，对单元格样式增加了如下内容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* td的上级和同级标签都用element表示 */</span></span><br><span class="line">element element&gt;<span class="selector-tag">td</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  -webkit-line-clamp: <span class="number">2</span>;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://iachieveall.com/upload/2019/9/%E5%AE%8C%E7%BE%8E-17094e9241c2479f9038a7236bb1785e.jpg" alt="完美"></p>
+<table>
+<thead>
+<tr>
+<th align="left">姓名</th>
+<th align="left">爱好</th>
+<th align="left">个人介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">君子</td>
+<td align="left">音乐</td>
+<td align="left">我是一个君子，所谓窈窕淑女，我所欲也，怎样，姑娘加个微信可好？</td>
+</tr>
+<tr>
+<td align="left">贪婪</td>
+<td align="left">数钱</td>
+<td align="left">我是七宗罪中的贪婪，但好像我有点不太对劲，因为贪婪不应该只是对钱吧？</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>可以在这个表格上尝试，但是由于这个是markdown生成的表格，所以有些样式需要自己去改一下，下面的图片是我在w3cSchool中随便找了个表格改的样式。</p>
+</blockquote>
+<p>搞定收工，看下结果准备收拾东西回家……</p>
+<p><img src="https://iachieveall.com/upload/2019/9/%E6%93%8D%E4%BD%9C%E8%A1%A8%E6%A0%BC-aee79415270b4e8b97b5cc8c80938578.png" alt="操作表格"></p>
+<p>但是，这单元格怎么高度不对啊，而且显示的内容也不对。</p>
+<p><img src="https://iachieveall.com/upload/2019/9/%E4%BB%80%E4%B9%88%E7%8E%A9%E6%84%8F%E5%84%BF-33f1de7c561d475b8c6face81e31889a.jpg" alt="什么玩意儿"></p>
+<p>我陷入了沉思……</p>
+<p>于是在浏览器中的控制台增增减减以下几项内容：text-overflow，overflow，width，height，max-xxx，padding，margin……<br>但是发现木啥用，再度陷入沉思。</p>
+<p>这时候我又回头看那些博客记录的内容，发现清一色都是用的p标签，没有用到其他的标签，想了想，也许是这个问题？于是换成了p标签，然后加上上述代码（以及一个margin:0），发现显示的确实成功截断并显示内容了。</p>
+<p><img src="https://iachieveall.com/upload/2019/9/%E6%B7%BB%E5%8A%A0p%E6%A0%87%E7%AD%BE%E5%90%8E-48a7a67bf4e3493fa779aa7822afc631.png" alt="操作表格"></p>
+<blockquote>
+<p>这里注意，如果td中增加的是一个div标签，那么也不能够显示预期结果，如果对其增加一个属性<code>white-space: nowrap;</code>消去换行，以单行形式显示，那么也可以实现字符截断。</p>
+</blockquote>
+<p>但是这时候又发现了一个问题，截断的长度貌似不好控制，如果仅仅只是汉字，那么可以用<code>width: 20em</code>或者<code>width: 10em</code>（两行显示），但显然，在使用英文的时候，这个属性就不可用了。</p>
+<p><img src="https://iachieveall.com/upload/2019/9/%E5%B9%B6%E4%B8%8D%E7%AE%80%E5%8D%95-df05f1de25ad416bbca3441803edb471.jpg" alt="并不简单"></p>
+<p>于是换一种思路。</p>
+<blockquote>
+<p>后文以angular框架为例来讨论这个问题</p>
+</blockquote>
+<p>文本字符数&gt;&#x3D;20的时候截断并显示对吧？那这个文本是哪里来的？</p>
+<blockquote>
+<p>响应式嘛，那肯定是有绑定数据的。你说直接写在标签中的文本你怎么改？拿头改……不对，这种情况不就是DOM操作嘛，可以用原生js或者jQuery来完成，但在一个框架中使用原生js有时候就是在舍近求远（不是舍本逐末，js才是本）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let label of labelList&quot;</span>&gt;</span>&#123;&#123; label &#125;&#125;<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of list&quot;</span>&gt;</span>&#123;&#123; item | clip &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Pipe</span>(&#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;clip&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">clipPipe</span> implements <span class="title class_">PipeTransform</span> &#123;</span><br><span class="line">  <span class="title function_">transform</span>(<span class="params">val: string</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val &gt; <span class="number">20</span>) <span class="keyword">return</span> val.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">20</span>) + <span class="string">&#x27;...&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过管道的方式，我们可以直接输出截断后的数据，当然也有其他方式，但是我也没有想到其他比较好的方法。</p>
+<blockquote>
+<p>如果你有好的方法，可以留言评论，我尝试一下，嘿嘿</p>
+</blockquote>
+<p><img src="https://iachieveall.com/upload/2019/9/%E9%9A%BE%E8%BF%87-005c678c51044e45b1f65353bc801233.png" alt="难过"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>有时候我们考虑问题的时候会陷入牛角尖，觉得只能从某个方向解决。</p>
+<p>这时候可以先把问题放一下，看看窗外的风景，或者发会呆，平复一下心情，然后再去思考有没有其他的方式去解决我手上的这个问题。</p>
+<p>发散思维嘛。</p>
+
+    </div>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                     
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2018 - 2023 Hexo
+            <span class="footer-icon">
+                <a-icon type="flag" theme="filled" /></span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        
+    </div>
+
+</footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="/js/particle.js"></script>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#layout",
+        data: {
+            show_page: false,
+            onload_menu: false,
+            menu_show: false,
+            card_top: 100
+        },
+        created: function () {
+            var that = this
+            window.onload = function () {
+                that.show_page = true
+                document.getElementById("loadcontent").style.opacity = 0
+                setTimeout(function () {
+                    document.getElementById("loadleft").style.width = 0
+                    document.getElementById("loadright").style.width = 0
+                }, 300)
+                setTimeout(function () {
+                    document.getElementById("loading").style = "display:none"
+                }, 600)
+            }
+        },
+        mounted: function () {
+            var that = this
+            window.addEventListener('scroll', function (e) {
+                that.menu_show = false
+            })
+        },
+        methods: {
+            home_click: function () {
+                window.scrollTo({
+                    top: window.innerHeight - 80,
+                    behavior: "smooth",
+                });
+            }
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'hexo-theme-particle',      // The repository of store comments,
+        owner: 'korilin',
+        admin: ['korilin'],
+        language: 'en',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+
+</body>
+
+</html>
