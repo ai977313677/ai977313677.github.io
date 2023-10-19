@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || 想学canvas？那一定要看看这篇文章</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 想学canvas？那一定要看看这篇文章</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -135,7 +135,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/canvas" style=color:#03a9f4>
+                <a href="/tags/canvas" style=color:#00bcd4>
                     canvas
                 </a>
             </span>
@@ -171,13 +171,16 @@
 <p>canvas目前几乎被所有的浏览器支持，但是IE 9.0 之前的版本不支持 <code>canvas</code>元素</p>
 </blockquote>
 <h3 id="canvas基本使用"><a href="#canvas基本使用" class="headerlink" title="canvas基本使用"></a>canvas基本使用</h3><p>canvas是一个HTML元素，所以要使用canvas，首先需要：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;600&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span>&gt;</span></span><br><span class="line">	当前浏览器不支持canvas</span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;canvas id=&quot;canvas&quot; width=&quot;600&quot; height=&quot;300&quot;&gt;
+    当前浏览器不支持canvas
+&lt;/canvas&gt;
+</code></pre>
 <p>在第一行HTML代码中可以看到两个属性：<code>width</code> 和 <code>height</code> ，它指明了画布的宽高，在上文中提到过，不要使用CSS规定尺寸，因为当CSS规定的尺寸和画布尺寸比例不一致时，无法成比例缩放，导致绘制出来的图形变得扭曲。在没有设置画布大小时，canvas默认会初始化成300px * 150px的画布。</p>
 <p>“当前浏览器不支持canvas”是元素的内容，但他只是作为一个后备内容（即<a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/dom.html#fallback-content">fallback content</a>），只有当浏览器不支持canvas时，这个内容才会被显示出来。</p>
 <p>canvas元素本身没有绘制能力，只是作为一个容器，所以需要通过JavaScript这类脚本进行绘制：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> context = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">const canvas = document.getElementById(&#39;canvas&#39;);
+const context = canvas.getContext(&#39;2d&#39;);
+</code></pre>
 <p>上面的HTML+JS代码是使用canvas所必须的，无论要绘制什么内容，这几行代码不可缺少。</p>
 <p><code>getContext()</code> 是canvas元素提供的方法，用于获取绘制上下文（或者说渲染上下文，The rendering context），他只有一个参数：上下文格式。这里传入<code>2d</code> 表示获取2D图像绘制环境。由于<code>getContext</code>是canvas元素提供的方法，故我们可以通过检测<code>getContext</code>方法的存在性来检查浏览器的支持性。</p>
 <blockquote>
@@ -206,12 +209,21 @@
 <p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif" alt="三次贝塞尔曲线"></p>
 <p>以上图片按顺序分别是一次贝塞尔曲线，二次贝塞尔曲线，三次贝塞尔曲线。从图中，可以很清楚的看到，一次贝塞尔曲线实际上是一条直线。当然，还有更高阶次的曲线，不过canvas只提供了二次和三次贝塞尔曲线。</p>
 <p>以二次贝塞尔曲线的API为例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">quadraticCurveTo</span>(cp1x, cp1y, x, y);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">quadraticCurveTo(cp1x, cp1y, x, y);
+</code></pre>
 <p>(cp1x,  cp1y)表示控制点坐标，(x, y)表示结束点坐标。这里还缺少一个起始点坐标，假设是(x0, y0)，那这个(x0, y0)是谁？</p>
 <p>就是在调用 <code>quadraticCurveTo</code> 函数时，context（绘制上下文）所处的坐标。举个例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cxt = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>); <span class="comment">// 认为canvas已经获取到</span></span><br><span class="line">cxt.<span class="title function_">beginPath</span>();</span><br><span class="line">cxt.<span class="title function_">moveTo</span>(<span class="number">120</span>, <span class="number">90</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">130</span>, <span class="number">80</span>, <span class="number">130</span>, <span class="number">70</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">115</span>, <span class="number">70</span>, <span class="number">115</span>, <span class="number">50</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">115</span>, <span class="number">30</span>, <span class="number">155</span>, <span class="number">30</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">195</span>, <span class="number">30</span>, <span class="number">195</span>, <span class="number">50</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">195</span>, <span class="number">70</span>, <span class="number">155</span>, <span class="number">70</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">135</span>, <span class="number">90</span>, <span class="number">120</span>, <span class="number">90</span>);</span><br><span class="line">cxt.<span class="title function_">stroke</span>();</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var cxt = canvas.getContext(&#39;2d&#39;); // 认为canvas已经获取到
+cxt.beginPath();
+cxt.moveTo(120, 90);
+cxt.quadraticCurveTo(130, 80, 130, 70);
+cxt.quadraticCurveTo(115, 70, 115, 50);
+cxt.quadraticCurveTo(115, 30, 155, 30);
+cxt.quadraticCurveTo(195, 30, 195, 50);
+cxt.quadraticCurveTo(195, 70, 155, 70);
+cxt.quadraticCurveTo(135, 90, 120, 90);
+cxt.stroke();
+</code></pre>
 <p>这段代码运行结果就是一个对话框（在第一张图片中体现），可以看到，在调用二次贝塞尔曲线之前，我们设置了起点，即，将笔刷移动到坐标(120, 90)，在之后调用中，都是以前一次贝塞尔曲线的终点作为本次曲线的起点。</p>
 <p>这时候可能会有人问：我去掉这个<code>moveTo</code>的调用是不是就画不出来了？如果后续是调用<code>lineTo</code>函数，那还真就画不出来了。但是别忘了，还有一次贝塞尔曲线，这就是条直线，他是以(cp1x, cp1y)为起点，(x,y)为终点的一条直线。所以说，去掉<code>moveTo</code>后，只会影响到第一条曲线的绘制。但是如果删除最后一行代码<code>stroke()</code>，那么程序运行结束时，在浏览器上啥都看不到。</p>
 <p>由此，我们应该思考另一个问题：为什么<code>stroke()</code>函数是必须的呢？</p>
@@ -235,8 +247,13 @@
 <p><img src="https://iachieveall.com/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png" alt="平抛运动"></p>
 <p>从图中，我们可以看到一些很有意思的现象，如：小球的水平方向刚好和canvas画布的横轴一致，竖直方向也和纵轴方向保持一致。</p>
 <p>然后由平抛运动对应的物理公式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 竖直方向无初速度，水平方向没有外力</span></span><br><span class="line">x = v0 * t; <span class="comment">// 水平方向位移</span></span><br><span class="line">h = <span class="number">1</span>/<span class="number">2</span> * g * t * t; <span class="comment">// 竖直方向位移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 竖直方向有初速度</span></span><br><span class="line">h = vh * t - <span class="number">1</span>/<span class="number">2</span> * g * t * t; <span class="comment">// 竖直方向位移</span></span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">// 竖直方向无初速度，水平方向没有外力
+x = v0 * t; // 水平方向位移
+h = 1/2 * g * t * t; // 竖直方向位移
 
+// 竖直方向有初速度
+h = vh * t - 1/2 * g * t * t; // 竖直方向位移
+</code></pre>
 <p>发现(x, h)和canvas上的坐标(x, y)是一致的，而且我们也不是在做物理题，也就是说，v0, t, g, vh这些参数都是已知的，我们唯一需要做的就是，计算出任意时刻的(x, h)，也即小球在canvas上的坐标(x, y)。</p>
 <p>分析结束，我们现在可以得到小球在任意时刻的位置坐标，那么我们也就可以在画布上画出来任意时刻的小球。</p>
 <p>针对上面的分析，可能会有人说：你这不对，你这个应该是具有特殊性的吧，小球未必是从左边抛出去的，从右边也可以啊，向上抛也可以。</p>
@@ -244,23 +261,57 @@
 <p>分析这么多，说点儿咱最关心的实现。</p>
 <p>在之前的分析中，我们知道想求小球任意时刻所在位置坐标，需要的参数有：v0, t, g, vh。这些参数应该存放在哪里呢？怎么设计这个数据结构？</p>
 <p>我们当然可以直接将这些参数设为全局变量，但这显然是不合适的，这些参数里，唯一适合设为全局变量的是重力加速度g。而v0, t, vh这些都应该是小球自身的“属性”，所以我们应该将其抽象成一个类。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Ball</span>(<span class="params">r, v0, vh, t</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">r</span> = r;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">v0</span> = v0;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">vh</span> = vh;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">t</span> = t;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">x</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">h</span> = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">calcX</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">/* 计算水平位移 */</span> &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">calcH</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">/* 计算竖直位移 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ball = &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">h</span>: <span class="number">0</span>, <span class="attr">r</span>: <span class="number">10</span>, <span class="attr">v0</span>: <span class="number">0</span>, <span class="attr">vh</span>: <span class="number">0</span>, <span class="attr">g</span>: <span class="number">10</span>&#125;;</span><br><span class="line"><span class="comment">// 重力加速度无论是作为全局变量还是小球属性，均可</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// es6之后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Ball</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">function Ball(r, v0, vh, t) &#123;
+    this.r = r;
+    this.v0 = v0;
+    this.vh = vh;
+    this.t = t;
+    this.x = 0;
+    this.h = 0;
+    
+    this.calcX = function() &#123; /* 计算水平位移 */ &#125;
+    this.calcH = function() &#123; /* 计算竖直位移 */ &#125;
+&#125;
 
+var ball = &#123; x: 0, h: 0, r: 10, v0: 0, vh: 0, g: 10&#125;;
+// 重力加速度无论是作为全局变量还是小球属性，均可
+
+// es6之后
+class Ball &#123;
+    constructor();
+&#125;
+</code></pre>
 <p>以上三种方式，各有各的好处，选择一个合适的方式即可。</p>
 <p>“你这说物理我就头大，有没有更简单的？”</p>
 <p>更简单也有啊，反正并没有要求100%还原物理学场景：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ball = &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>, <span class="attr">r</span>: <span class="number">10</span>, <span class="attr">vx</span>: <span class="number">5</span>, <span class="attr">vy</span>: <span class="number">0</span>, <span class="attr">g</span>: <span class="number">5</span> &#125;;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ball.<span class="property">vy</span> += ball.<span class="property">g</span>; <span class="comment">// 竖直方向速度增加</span></span><br><span class="line">    ball.<span class="property">y</span> += ball.<span class="property">vy</span>; <span class="comment">// 竖直方向位移</span></span><br><span class="line">    ball.<span class="property">x</span> += ball.<span class="property">vx</span>; <span class="comment">// 水平方向位移</span></span><br><span class="line">    cxt.<span class="title function_">clearRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">300</span>);</span><br><span class="line">    cxt.<span class="title function_">beginPath</span>();</span><br><span class="line">    cxt.<span class="property">fillStyle</span> = <span class="string">&#x27;black&#x27;</span>;</span><br><span class="line">    cxt.<span class="title function_">arc</span>(ball.<span class="property">x</span>, ball.<span class="property">y</span>, ball.<span class="property">r</span>, <span class="number">0</span>, <span class="number">2</span>*<span class="title class_">Math</span>.<span class="property">PI</span>);</span><br><span class="line">    cxt.<span class="title function_">fill</span>();</span><br><span class="line">&#125;, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var ball = &#123; x: 0, y: 0, r: 10, vx: 5, vy: 0, g: 5 &#125;;
+setInterval(() =&gt; &#123;
+    ball.vy += ball.g; // 竖直方向速度增加
+    ball.y += ball.vy; // 竖直方向位移
+    ball.x += ball.vx; // 水平方向位移
+    cxt.clearRect(0, 0, 800, 300);
+    cxt.beginPath();
+    cxt.fillStyle = &#39;black&#39;;
+    cxt.arc(ball.x, ball.y, ball.r, 0, 2*Math.PI);
+    cxt.fill();
+&#125;, 50);
+</code></pre>
 <p>OK，结束了。</p>
 <p>这就是高级一点的动画。可能在学几个函数，这个动画会更炫一点。比如学完矩形填充再掌握一点rgba的知识，你可以做个“尾巴”出来，即长尾效应。具体只需要将上述代码中的<code>cxt.clearRect()</code>替换成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cxt.<span class="property">fillStyle</span> = <span class="string">&#x27;rgba(255, 255, 255, 0.2)&#x27;</span>;</span><br><span class="line">cxt.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">300</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">cxt.fillStyle = &#39;rgba(255, 255, 255, 0.2)&#39;;
+cxt.fillRect(0, 0, 800, 300);
+</code></pre>
 <p>这就能显得咱们编码能力很厉害的样子。</p>
 <p>做到这一步还是不满足：小球一个劲儿的向下掉，这动画没一会儿就没了。</p>
 <p>没关系，咱们可以做“<strong>碰撞检测</strong>”啊。好像又是一个高大上的词汇，但实际上也没什么高大上的，如果基于本节第一部分的分析，那咱还得考虑一下碰撞造成的动量损失的问题，挺复杂的。</p>
 <p>但是简化版就好说了啊。小球碰到上&#x2F;下边界，竖直方向速度反向，同时速率减半。左右边界可以有类似的处理。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ball.<span class="property">r</span> + ball.<span class="property">x</span> &gt; canvas_width) &#123;</span><br><span class="line">    ball.<span class="property">vx</span> *= -<span class="number">0.5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (ball.<span class="property">r</span> + ball.<span class="property">y</span> &gt; canvas_height) &#123;</span><br><span class="line">    ball.<span class="property">vy</span> *= -<span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">if (ball.r + ball.x &gt; canvas_width) &#123;
+    ball.vx *= -0.5
+&#125;
+if (ball.r + ball.y &gt; canvas_height) &#123;
+    ball.vy *= -0.5;
+&#125;
+</code></pre>
 <blockquote>
 <p>NOTE：碰撞检测在这里指的是“<strong>边界检测</strong>”，小球落到边界的时候再继续下落显然是没有意义的，因为后面的动画咱们是看不到的。所以要么碰到边界就停止，要么重新开始，或者进行其他处理，总之，不能出现无意义的动画。</p>
 <p>像以前玩的贪吃蛇，会有各种墙的存在，控制的小蛇在碰到墙的时候，游戏就失败了，或者说没有墙的时候，小蛇会从另一个方向出来。</p>
@@ -288,10 +339,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || 《你不知道的JavaScript》笔记（一）</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 《你不知道的JavaScript》笔记（一）</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -135,14 +135,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/JavaScript" style=color:#00bcd4>
+                <a href="/tags/JavaScript" style=color:#00a596>
                     JavaScript
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/前端" style=color:#ff7d73>
+                <a href="/tags/前端" style=color:#00a596>
                     前端
                 </a>
             </span>
@@ -170,8 +170,15 @@
 <p>说句心里话，编译原理是很有用的科目，但是真正学起来的时候还是挺痛苦的。</p>
 <blockquote>
 <p>考虑以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> b = a*<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params">c</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b, c);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">bar</span>(b*<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">function foo(a) &#123;
+  var b = a*2;
+  function bar(c) &#123;
+      console.log(a, b, c);
+  &#125;
+  bar(b*3);
+&#125;
+foo(2);
+</code></pre>
 <p>在这个例子中有三个逐级 <strong>嵌套的作用域</strong>……</p>
 </blockquote>
 <p>对于java程序员来说，一对花括号就可以限制变量的作用域，而且作用域之间的关系有 <strong>同级</strong> 和 <strong>父子级</strong> 两种，同时还有包(package)这种很方便的东西。</p>
@@ -186,8 +193,13 @@
 </blockquote>
 <p>这句话就是在回答上面我提出来的问题。</p>
 <blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">str, a</span>) &#123;</span><br><span class="line">  <span class="built_in">eval</span>(str);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="title function_">foo</span>(<span class="string">&quot;var b = 3&quot;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">function foo(str, a) &#123;
+  eval(str);
+  console.log(a, b);
+&#125;
+var b = 2;
+foo(&quot;var b = 3&quot;, 1);
+</code></pre>
 <p><code>eval(..)</code>调用中的”<code>var b = 3;</code>“这段diamante会被当做本来就在哪里一样处理……</p>
 </blockquote>
 <p>这话说的好拗口啊？</p>
@@ -198,8 +210,14 @@
 <p>with声明实际上是根据你传递给它的对象凭空创建了一个 <strong>全新的词法作用域</strong>。</p>
 </blockquote>
 <p>到这里又增加了一个能够创建作用域的关键字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">with</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    a = <span class="number">2</span>;</span><br><span class="line">    b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var obj = &#123;
+    a: 1
+&#125;;
+with(obj) &#123;
+    a = 2;
+    b = 3;
+&#125;;
+</code></pre>
 <p>对上述代码，我们可以这么理解，with将obj声明为一个作用域，with内部的语句都是在这个作用域中的，so……</p>
 <blockquote>
 <p>eval(..)和with会在运行时修改或创建新的作用域，以此来欺骗其他书写时定义的词法作用域。</p>
@@ -222,10 +240,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

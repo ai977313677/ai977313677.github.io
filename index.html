@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || </title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 我的技术博客</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -114,9 +114,9 @@
         <span class="loop"></span>
         <span class="info">
             <div class="wrap">
-                <h1>Hexo</h1>
-                <h3></h3>
-                <h5></h5>
+                <h1>贪婪的君子</h1>
+                <h3>我的技术博客</h3>
+                <h5>不忘初心，方得始终</h5>
             </div>
         </span>
     </div>
@@ -147,7 +147,7 @@
             <span class="icon">
                 <a-icon type="calendar" theme="filled" />
             </span>
-            2023/10/19
+            2023/10/20
         </span>
 
     </div>
@@ -157,17 +157,17 @@
             
             
             <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
             
@@ -224,8 +224,10 @@
 <p>现在的浏览器均已支持该标准。</p>
 <h2 id="Websocket-出现的背景"><a href="#Websocket-出现的背景" class="headerlink" title="Websocket 出现的背景"></a>Websocket 出现的背景</h2><p>思考一下我们经常遇到的一种需求场景，要求在某个网页下，网页的内容可以实时更新。</p>
 <p>这种情况下，最大众化的方式就是轮询接口了，即通过定时器，定时请求接口，获取到最新的信息后，将内容更新到页面中，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">  queryAPI().then(() =&gt; update());</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure>
-
+<pre><code>setInterval(() =&gt; &#123;
+  queryAPI().then(() =&gt; update());
+&#125;, 1000);
+</code></pre>
 <p>但是我们知道，这种定时器的延时并不是很精确，而且加上接口的请求时延，实际时间可能不止代码中所预先设定的时间长度，所以这种实时更新是伪实时更新。</p>
 <p>除此之外，还有一点可能会经常遇到，即，我们更新信息并总是要更新整个页面上所有可以看到的信息，我们更关注一些经常变化的信息，比如状态，状态的信息可能大小只有几个字节，但是我们轮询接口拿到的信息却是这个页面的所有信息，大小自然不只几个字节，但是除状态以外的信息都可以视作是冗余的。</p>
 <p><img src="https://iachieveall.com/upload/2022/03/image-20220314151620372-082384e5f02c4e61b18d8217cf4ef65b.png" alt="状态"></p>
@@ -258,14 +260,34 @@
 <blockquote>
 <p>在数据处理完成后，需要移除回调函数，不然可能会影响到其他地方的处理</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const ws = new WebSocket(&#x27;ws://sdf.com&#x27;);</span><br><span class="line">function handleData(evt) &#123;</span><br><span class="line">  // handle server data.</span><br><span class="line">&#125;</span><br><span class="line">ws.onmessage = handleData;</span><br><span class="line">ws.addEventListener(&#x27;message&#x27;, handleData);</span><br></pre></td></tr></table></figure>
-
+<pre><code>const ws = new WebSocket(&#39;ws://sdf.com&#39;);
+function handleData(evt) &#123;
+  // handle server data.
+&#125;
+ws.onmessage = handleData;
+ws.addEventListener(&#39;message&#39;, handleData);
+</code></pre>
 <ol start="4">
 <li><code>WebSocket.send</code></li>
 </ol>
 <p>主动向服务端发送消息，可以通过send和onmessage进行数据互动，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ws.send(&#x27;list&#x27;);</span><br><span class="line">​</span><br><span class="line">ws.onmessage = evt =&gt; &#123;</span><br><span class="line">  const data = evt.data;</span><br><span class="line">  if (data === &#x27;hello&#x27;) &#123;</span><br><span class="line">    console.log(&#x27;world&#x27;);</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  try &#123;</span><br><span class="line">    const obj = JSON.parse(data);</span><br><span class="line">    switch (obj.type) &#123;</span><br><span class="line">      case &#x27;list&#x27;:</span><br><span class="line">        // do something.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; catch (ex) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>ws.send(&#39;list&#39;);
+​
+ws.onmessage = evt =&gt; &#123;
+  const data = evt.data;
+  if (data === &#39;hello&#39;) &#123;
+    console.log(&#39;world&#39;);
+    return ;
+  &#125;
+  try &#123;
+    const obj = JSON.parse(data);
+    switch (obj.type) &#123;
+      case &#39;list&#39;:
+        // do something.
+    &#125;
+  &#125; catch (ex) &#123;&#125;
+&#125;
+</code></pre>
 <ol start="5">
 <li><code>WebSocket.close</code></li>
 </ol>
@@ -316,21 +338,21 @@
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#03a9f4>
+            <a href="/tags/前端开发" style=color:#ffa2c4>
                 前端开发
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#03a9f4>
+            <a href="/tags/前端" style=color:#ff7d73>
                 前端
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/思考" style=color:#ff7d73>
+            <a href="/tags/思考" style=color:#00bcd4>
                 思考
             </a>
         </span>
@@ -344,7 +366,7 @@
         
         <span class="tag">
             
-            <a href="/tags/websocket" style=color:#00bcd4>
+            <a href="/tags/websocket" style=color:#ff7d73>
                 websocket
             </a>
         </span>
@@ -395,10 +417,40 @@
 <p>一般情况下，我们说的水印是指图片角落上的平台用户名水印。类似于下方图片上的这种，通常只要将图片上传到平台上，平台就会在图片上嵌入水印，当然，有些平台也会提供设置是否需要显示这种水印的开关，或者设置保存的时候才会加上水印。</p>
 <p><img src="https://iachieveall.com/upload/2021/05/image-95d521dbc5ca4471a28e78173c15d99a.png" alt="image.png"></p>
 <h1 id="明水印"><a href="#明水印" class="headerlink" title="明水印"></a>明水印</h1><p>这种水印的实现其实是比较简单的，就是将两张图片合成一张，或者是直接在原图上绘制内容就行了：<br>html代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;pic&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3c3c98ebfce4ae28db981dfabedc1d8~tplv-k3u1fbpfcp-zoom-1.image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;原始图片&quot;</span> <span class="attr">height</span>=<span class="string">&quot;500&quot;</span> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Photo by Claudio Schwarz | @purzlbaum on Unsplash<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;img id=&quot;pic&quot; src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3c3c98ebfce4ae28db981dfabedc1d8~tplv-k3u1fbpfcp-zoom-1.image&quot; alt=&quot;原始图片&quot; height=&quot;500&quot; crossorigin=&quot;anonymous&quot;&gt;
+&lt;div&gt;Photo by Claudio Schwarz | @purzlbaum on Unsplash&lt;/div&gt;
+</code></pre>
 <p>JavaScript代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">window.onload = () =&gt; &#123;</span><br><span class="line">    const pic = document.querySelector(&#x27;#pic&#x27;);</span><br><span class="line">    const canvasNode = document.createElement(&#x27;canvas&#x27;);</span><br><span class="line">    const picWithWatermark = createImageWithWatermark(pic, canvasNode);</span><br><span class="line">    pic.src = picWithWatermark;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 创建带水印的图片</span><br><span class="line"> * create image with watermark.</span><br><span class="line"> * @param &#123;HTMLImageElement&#125; img 图片结点 - image element.</span><br><span class="line"> * @param &#123;HTMLCanvasElement&#125; canvas canvas结点 - canvas element.</span><br><span class="line"> * @returns 处理后的图片 base64 - pic with watermark.</span><br><span class="line"> */</span><br><span class="line">const createImageWithWatermark = (img, canvas) =&gt; &#123;</span><br><span class="line">    const imgWidth = img.width;</span><br><span class="line">    const imgHeight = img.height;</span><br><span class="line">    canvas.width = imgWidth;</span><br><span class="line">    canvas.height = imgHeight;</span><br><span class="line"></span><br><span class="line">    const ctx = canvas.getContext(&#x27;2d&#x27;);</span><br><span class="line">    ctx.drawImage(img, 0, 0, imgWidth, imgHeight);</span><br><span class="line">    ctx.font = &#x27;16px YaHei&#x27;;</span><br><span class="line">    ctx.fillStyle = &#x27;black&#x27;;</span><br><span class="line">    ctx.fillText(&#x27;Photo by Claudio Schwarz | @purzlbaum on Unsplash&#x27;, 20, 20);</span><br><span class="line"></span><br><span class="line">    return canvas.toDataURL(&#x27;image/jpg&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>window.onload = () =&gt; &#123;
+    const pic = document.querySelector(&#39;#pic&#39;);
+    const canvasNode = document.createElement(&#39;canvas&#39;);
+    const picWithWatermark = createImageWithWatermark(pic, canvasNode);
+    pic.src = picWithWatermark;
+&#125;
 
+
+/**
+ * 创建带水印的图片
+ * create image with watermark.
+ * @param &#123;HTMLImageElement&#125; img 图片结点 - image element.
+ * @param &#123;HTMLCanvasElement&#125; canvas canvas结点 - canvas element.
+ * @returns 处理后的图片 base64 - pic with watermark.
+ */
+const createImageWithWatermark = (img, canvas) =&gt; &#123;
+    const imgWidth = img.width;
+    const imgHeight = img.height;
+    canvas.width = imgWidth;
+    canvas.height = imgHeight;
+
+    const ctx = canvas.getContext(&#39;2d&#39;);
+    ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+    ctx.font = &#39;16px YaHei&#39;;
+    ctx.fillStyle = &#39;black&#39;;
+    ctx.fillText(&#39;Photo by Claudio Schwarz | @purzlbaum on Unsplash&#39;, 20, 20);
+
+    return canvas.toDataURL(&#39;image/jpg&#39;);
+&#125;
+</code></pre>
 <p>以上就是完整的代码了，更详细的代码可以访问<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/watermark.html">github链接查看</a>。</p>
 <p>普通用户所说的水印就是上面这种了，但是对于开发者来说，水印所包含的分类还是比较多的。</p>
 <p>如我们在公司内网的部分系统（也可能是所有）上就能看到这种水印。</p>
@@ -413,8 +465,29 @@
 <p>但光重新绘制水印我觉得还不够，这可能会让你跟我拼速度的，那不行啊，我必须给你点教训的，还不能让你得偿所愿，怎么办？只要你操作了我的dom，那么我直接让页面白屏，然后再重载页面。这也就达成了禁止用户操作dom结点的方式了。</p>
 <p>要实现这个，我们需要借助js提供的MutationObserver函数，这个函数可以监听容器的变化。</p>
 <p>代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 容器监听的回调</span></span><br><span class="line"><span class="keyword">const</span> cb = <span class="keyword">function</span> (<span class="params">mutationList, observer</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> mutation <span class="keyword">of</span> mutationList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.<span class="property">type</span> === <span class="string">&#x27;childList&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> &#123; removedNodes = [] &#125; = mutation;</span><br><span class="line">            <span class="comment">// 如果监听到水印容器变化，那么就清空页面并重载</span></span><br><span class="line">            <span class="keyword">const</span> node = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">find</span>.<span class="title function_">apply</span>(removedNodes, [(<span class="function"><span class="params">node</span> =&gt;</span> node.<span class="property">id</span> === <span class="string">&#x27;page-watermark&#x27;</span>)])</span><br><span class="line">            <span class="keyword">if</span> (node) &#123;</span><br><span class="line">                targetNode.<span class="property">innerHTML</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">                <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 目标DOM结点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#watermark-body&#x27;</span>);</span><br><span class="line"><span class="comment">// 创建监听</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(cb);</span><br><span class="line">observer.<span class="title function_">observe</span>(targetNode, &#123;</span><br><span class="line">    <span class="attr">attributes</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">childList</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">// 容器监听的回调
+const cb = function (mutationList, observer) &#123;
+    for (const mutation of mutationList) &#123;
+        if (mutation.type === &#39;childList&#39;) &#123;
+            const &#123; removedNodes = [] &#125; = mutation;
+            // 如果监听到水印容器变化，那么就清空页面并重载
+            const node = Array.prototype.find.apply(removedNodes, [(node =&gt; node.id === &#39;page-watermark&#39;)])
+            if (node) &#123;
+                targetNode.innerHTML = &#39;&#39;;
+                window.location.reload();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+// 目标DOM结点
+const targetNode = document.querySelector(&#39;#watermark-body&#39;);
+// 创建监听
+const observer = new MutationObserver(cb);
+observer.observe(targetNode, &#123;
+    attributes: true,
+    childList: true
+&#125;);
+</code></pre>
 <p><code>MutationObserver</code>是DOM3 Event规范的一部分，用于替代旧的Mutation Events，可以放心使用。</p>
 <blockquote>
 <p>虽然上面的是全局水印，但是你也可以只对一部分内容加水印，只不过全局水印实现成本更低，代价小，对于内网系统来说，牺牲这点用户体验，并不能算是什么非常严重的问题，是可以接受的。</p>
@@ -431,12 +504,14 @@
 <h2 id="追加文件内容"><a href="#追加文件内容" class="headerlink" title="追加文件内容"></a>追加文件内容</h2><p>我们可以通过各种方式将信息写到图片，最常见的应该是将需要隐写的内容以二进制的形式写入图片中，咱们在这里举个简单的例子，以下面的图片为例：</p>
 <p><img src="https://iachieveall.com/upload/2021/05/image-ec4af3a0863d41e891f4967ae4ae92d1.png" alt="image.png"></p>
 <p>这是我们开篇引用的图片，记为原始图像，将图片保存在本地后（original.png），执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> -c 50 1.png</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">tail -c 50 1.png
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2021/05/image-61eb558616c54cfa886fce5f72e283e1.png" alt="image.png"></p>
 <p>可以看到执行结果里面是一串乱码（用Hex查看器可以看到文件的二进制码流，这里时utf-8，乱码是正常的），对该文件执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> original.png &gt; result.png</span><br><span class="line"><span class="built_in">echo</span> testWrite &gt;&gt; result.png</span><br><span class="line"><span class="built_in">tail</span> -c 50 result.png</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">cat original.png &gt; result.png
+echo testWrite &gt;&gt; result.png
+tail -c 50 result.png
+</code></pre>
 <p>我们生成一张新的图片之后，将一串字符追加到图片末尾，可以看到图片依旧是正常显示的，同时查看图片的内容，可以看到刚才写入的testWrite字符串：</p>
 <p><img src="https://iachieveall.com/upload/2021/05/image-dc7f62b7caff4e3a8c8addb232a43bbd.png" alt="image.png"></p>
 <blockquote>
@@ -447,8 +522,20 @@
 <h2 id="修改RGB分量值"><a href="#修改RGB分量值" class="headerlink" title="修改RGB分量值"></a>修改RGB分量值</h2><p>来看另一个例子，<strong>RGB分量值的小量变动</strong>：在图片上覆盖一层肉眼看不见的图片，简单来说就是我可以在图片的某个单通道（如rgb中的b通道）内将水印信息写入，其实这么说也还是很难懂，举个例子：</p>
 <p><img src="https://iachieveall.com/upload/2021/05/image-2aee71e306104aad88c7200037825a7a.png" alt="image.png"></p>
 <p>现在要将左右两侧的图片组合，但是不能让右侧的图片内容在左侧的图片上观察到，这时候我们要做的就是按照一定规则将水印图片写进这张图片的rgb通道内。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">预处理，先生成右侧的水印图</span><br><span class="line"></span><br><span class="line">编码</span><br><span class="line"><span class="number">1.</span> 通过canvas获取到两张图片的rgba数据</span><br><span class="line"><span class="number">2.</span> 将左侧图片的b（蓝色）通道值-<span class="number">1</span>，即，b &amp; <span class="number">0xfffffffe</span></span><br><span class="line"><span class="number">3.</span> 读取右侧b通道数据，遇到大于<span class="number">0</span>的值，就将左侧对应位置处的b通道值 +<span class="number">1</span>，即，b | <span class="number">0x00000001</span></span><br><span class="line"></span><br><span class="line">解码</span><br><span class="line"><span class="number">1.</span> 获取图片的rgba数据</span><br><span class="line"><span class="number">2.</span> 读取b通道数据，遇到 b &amp; <span class="number">0x00000001</span> &gt; <span class="number">0</span> 的数据，说明有水印信息，将其置为<span class="number">255</span>，除a通道（alpha通道不是颜色通道）外，其余通道的数据全部置为<span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// +1,-1 是因为量级的变化极小，并不会影响到图片的显示</span></span><br></pre></td></tr></table></figure>
+<pre><code class="js">预处理，先生成右侧的水印图
 
+编码
+1. 通过canvas获取到两张图片的rgba数据
+2. 将左侧图片的b（蓝色）通道值-1，即，b &amp; 0xfffffffe
+3. 读取右侧b通道数据，遇到大于0的值，就将左侧对应位置处的b通道值 +1，即，b | 0x00000001
+
+解码
+1. 获取图片的rgba数据
+2. 读取b通道数据，遇到 b &amp; 0x00000001 &gt; 0 的数据，说明有水印信息，将其置为255，除a通道（alpha通道不是颜色通道）外，其余通道的数据全部置为0
+
+
+// +1,-1 是因为量级的变化极小，并不会影响到图片的显示
+</code></pre>
 <blockquote>
 <p>其实黑底蓝字的图片就是解码出来的水印数据，详细代码：<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/index.html">https://github.com/ai977313677/blog/blob/master/snippet/index.html</a></p>
 </blockquote>
@@ -459,8 +546,31 @@
 <p>也不是不行，首先确定我们水印要加在哪里（确定需求），因为图片来源无非是网页搜索结果，或者说我们截得图多数来自于网页，所以我们考虑的是在网页上覆盖一层水印，保证用户从网页上截取的图片可以被我们追踪到来源。</p>
 <p>这个通用的解决方案依旧是写css，只不过这时候我们将背景图置顶，同时将其透明度设置的很低。</p>
 <p>代码很简单，其实就是将一张背景图片铺满整屏就可以了，然后将opacity设置到肉眼无法观察到的程度就OK了：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> width = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span>;</span><br><span class="line">    <span class="keyword">const</span> height = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientHeight</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> maskDiv = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">    maskDiv.<span class="property">id</span> = <span class="string">&#x27;mask_watermark&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&#x27;absolute&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">backgroundImage</span> = <span class="string">&#x27;url(./1.jpg)&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">backgroundRepeat</span> = <span class="string">&#x27;repeat&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">visibility</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;0px&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">top</span> = <span class="string">&#x27;0px&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">overflow</span> = <span class="string">&quot;hidden&quot;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">zIndex</span> = <span class="string">&quot;9999&quot;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">pointerEvents</span> = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">opacity</span> = <span class="number">0.005</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">fontSize</span> = <span class="string">&#x27;20px&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">color</span> = <span class="string">&#x27;#000&#x27;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">textAlign</span> = <span class="string">&quot;center&quot;</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">width</span> = <span class="string">`<span class="subst">$&#123;width&#125;</span>px`</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">height</span> = <span class="string">`<span class="subst">$&#123;height&#125;</span>px`</span>;</span><br><span class="line">    maskDiv.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&quot;block&quot;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(maskDiv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">window.onload = () =&gt; &#123;
+    const width = document.body.clientWidth;
+    const height = document.body.clientHeight;
 
+    const maskDiv = document.createElement(&#39;div&#39;);
+    maskDiv.id = &#39;mask_watermark&#39;;
+    maskDiv.style.position = &#39;absolute&#39;;
+    maskDiv.style.backgroundImage = &#39;url(./1.jpg)&#39;;
+    maskDiv.style.backgroundRepeat = &#39;repeat&#39;;
+    maskDiv.style.visibility = &#39;&#39;;
+    maskDiv.style.left = &#39;0px&#39;;
+    maskDiv.style.top = &#39;0px&#39;;
+    maskDiv.style.overflow = &quot;hidden&quot;;
+    maskDiv.style.zIndex = &quot;9999&quot;;
+    maskDiv.style.pointerEvents = &quot;none&quot;;
+    maskDiv.style.opacity = 0.005;
+    maskDiv.style.fontSize = &#39;20px&#39;;
+    maskDiv.style.color = &#39;#000&#39;;
+    maskDiv.style.textAlign = &quot;center&quot;;
+    maskDiv.style.width = `$&#123;width&#125;px`;
+    maskDiv.style.height = `$&#123;height&#125;px`;
+    maskDiv.style.display = &quot;block&quot;;
+    document.body.appendChild(maskDiv);
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2021/05/image-25ea99a4970a473eac5c3f0f16b21a73.png" alt="image.png"></p>
 <p>左侧是从网页上接下来的图片，右侧是在PS工具中处理之后的图片[^2]，明显可以看到我们设置的水印。</p>
 <p>而生成图片的方式就有很多种了，可以是前端生成，也可以是将信息发给后端，后端生成一张图片，然后前端将图片作为背景图。</p>
@@ -486,14 +596,14 @@
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#ffa2c4>
+            <a href="/tags/前端" style=color:#00bcd4>
                 前端
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/总结" style=color:#00a596>
+            <a href="/tags/总结" style=color:#ff7d73>
                 总结
             </a>
         </span>
@@ -507,14 +617,14 @@
         
         <span class="tag">
             
-            <a href="/tags/安全" style=color:#ff7d73>
+            <a href="/tags/安全" style=color:#00a596>
                 安全
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/水印" style=color:#00a596>
+            <a href="/tags/水印" style=color:#00bcd4>
                 水印
             </a>
         </span>
@@ -586,8 +696,9 @@
 <p>使用外部脚本一定要保证脚本来源的可信性，脚本的安全性。如果脚本是恶意的，那么他所能做的可就不只是弹弹广告这么简单了，替换个按钮，诱导点击钓鱼页面，替换某一条搜索结果，这都是可能的。</p>
 </blockquote>
 <h4 id="XSS扫描及防范"><a href="#XSS扫描及防范" class="headerlink" title="XSS扫描及防范"></a>XSS扫描及防范</h4><p>XSS风险有些是可以通过code review发现的，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">result.<span class="property">innerHTML</span> = <span class="keyword">await</span> <span class="title function_">getInfo</span>();</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">let result = document.getElementById(&#39;test&#39;);
+result.innerHTML = await getInfo();
+</code></pre>
 <p>这段代码很容易看到风险位置——<code>innerHTML</code> ，如果后端返回的数据中包含恶意的代码片段，那么就能够被攻击。所以在使用Vue和React框架时，需要评估是否真的需要使用<code>v-html</code> 和<code>dangerouslySetInnerHTML</code> 功能，在前端的render（渲染）阶段就避免<code>innerHTML</code> 和 <code>outerHTML</code> <a href="%5B%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2xss%E6%94%BB%E5%87%BB%5D(https://tech.meituan.com/2018/09/27/fe-security.html)">^1</a>。</p>
 <blockquote>
 <p>如果不使用框架，那就避免直接使用<code>innerHTML</code> 就好了。</p>
@@ -614,14 +725,14 @@
         
         <span class="tag">
             
-            <a href="/tags/安全" style=color:#03a9f4>
+            <a href="/tags/安全" style=color:#ffa2c4>
                 安全
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/xss" style=color:#ffa2c4>
+            <a href="/tags/xss" style=color:#00bcd4>
                 xss
             </a>
         </span>
@@ -668,8 +779,9 @@
             
             <p><em><strong>问题</strong></em>：edge浏览器下，固定列的边框消失</p>
 <p><em><strong>原因</strong></em>：ng-zorro-antd表格组件使用nzLeft和nzRight指令固定的表格列，这两个指令的实现css3中的标签：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">position</span>: -webkit-sticky <span class="meta">!important</span>;</span><br><span class="line"><span class="attribute">position</span>: sticky <span class="meta">!important</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">position: -webkit-sticky !important;
+position: sticky !important;
+</code></pre>
 <p>谷歌、火狐及-webkit-内核的浏览器均支持该属性（css3），IE不支持该属性，所以在IE中，会自动降级，表格无固定列，可滑动的形式。<br>Edge浏览器在1703之后的版本使用了chromium内核，对css3的属性支持较好，也支持sticky属性，可以使用，可以固定表格列，但边框会消失。 </p>
 <p><em><strong>解决方案</strong></em>：<br>目前可行的解决方案有如下几种：</p>
 <ol>
@@ -681,15 +793,36 @@
 </ol>
 <p>第二个方案的详细过程如下：</p>
 <p>使用div包裹表格，当表格宽度超过div宽度时，开启滚动：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.scroll-table</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">.scroll-table &#123;
+  width: 100%;
+  overflow-x: scroll;
+&#125;
+</code></pre>
 <p>针对表格，我们可以指定宽度，让其超过外层div宽度（这样可以看到滚动效果）。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fixed-table</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1300px</span>; <span class="comment">/* 可由th，td动态扩充，也可指定宽度 */</span></span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">.fixed-table &#123;
+  width: 1300px; /* 可由th，td动态扩充，也可指定宽度 */
+  border-collapse: collapse;
+&#125;
+</code></pre>
 <p>最后一个最核心的问题，就是固定列的实现了，非常简单，将表格的一列设置成绝对定位,在设置了绝对定位后，该列会脱离原来的文档流，表格少了一列，所以需要加一个背景板来保证表格能够给这个固定列留出一个位置。</p>
 <p>HTML代码大致如下，这个fixed-col可以为固定列的样式，也可以设置成背景板的样式，demo中是用其指定了固定列的样式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;scroll-table&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;fixed-table&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>无效背景板<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;fixed-col&quot;</span>&gt;</span>固定列<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>无效背景板<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;fixed-col&quot;</span>&gt;</span>固定列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="HTML">&lt;div class=&quot;scroll-table&quot;&gt;
+    &lt;table class=&quot;fixed-table&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;无效背景板&lt;/th&gt;
+                &lt;th class=&quot;fixed-col&quot;&gt;固定列&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;无效背景板&lt;/td&gt;
+                &lt;td class=&quot;fixed-col&quot;&gt;固定列&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
 <p>参考代码：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/guyg/p/6896847.html">Ironape</a></p>
 <hr>
 <p><em><strong>问题</strong></em>：Edge浏览器的日历（nz-range-picker）确认按钮需要点两次</p>
@@ -699,14 +832,27 @@
 <li><strong>升级组件版本</strong>，目前ng-zorro-antd 8.5之上的版本未见这个问题。</li>
 <li><strong>自定义页脚</strong>，加入额外的页脚，来替代确定功能，此时有两种方式来实现：<br>只覆盖对应的按钮，如确定按钮，此时按钮的样式与默认的页脚按钮是不一致的，为保持一致，可以自定义样式，也可以直接使用默认页脚中按钮的样式，下例中选择直接使用组件库的样式：ant-calendar-ok-btn，第二步则是覆盖原来的按钮，可以使用绝对定位的方式来实现覆盖：</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nz-range-picker</span> [<span class="attr">nzRenderExtraFooter</span>]=<span class="string">&quot;renderExtraFooterTpl&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> #<span class="attr">renderExtraFooterTpl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">nz-button</span> <span class="attr">nzType</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ant-calendar-ok-btn abs-right&quot;</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;nz-range-picker [nzRenderExtraFooter]=&quot;renderExtraFooterTpl&quot;&gt;
+&lt;ng-template #renderExtraFooterTpl&gt;
+  &lt;div&gt;
+    &lt;button nz-button nzType=&quot;primary&quot; class=&quot;ant-calendar-ok-btn abs-right&quot;&gt;确 定&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
 <p>对应css：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.abs-right</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">7px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">.abs-right &#123;
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  z-index: 1;
+  box-shadow: none;
+&#125;
+</code></pre>
 <p>删除默认页脚，完全自定义实现页脚。此时需要删除原来的页脚，可通过：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::ng-deep .ant-calendar-footer-btn &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">::ng-deep .ant-calendar-footer-btn &#123;
+  display: none;
+&#125;
+</code></pre>
 <blockquote>
 <p>这种方式删除默认页脚，此时额外的页脚不可使用绝对定位。</p>
 </blockquote>
@@ -722,8 +868,14 @@
 <li>使用表单的reset()重置表单，但是重置的操作需要放在setTimeout中，或者通过其他手段将重置的操作作为表单初始化时的最后一个宏任务执行。这种方式经验证，最终的效果是，初始化表单后，表单输入元素的边框闪烁（红色）一下。</li>
 <li>使用自定义的服务商插件（较为推荐），这种方式对原有代码的破坏性小（遵循了OCP原则），该插件是由DerSizeS提供的。只需要在对应的module中增加一个服务商即可</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">NgModule</span>(&#123;</span><br><span class="line">    <span class="attr">providers</span>: [&#123;</span><br><span class="line">	    <span class="attr">provide</span>: <span class="variable constant_">EVENT_MANAGER_PLUGINS</span>, <span class="attr">multi</span>: <span class="literal">true</span>,</span><br><span class="line">	    <span class="attr">useClass</span>: <span class="title class_">UniqueInputEventPlugin</span>, <span class="attr">deps</span>: [<span class="variable constant_">UNIQUE_INPUT_EVENT_PLUGIN_CONFIG</span>],</span><br><span class="line">	&#125;]	</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="Javascript">@NgModule(&#123;
+    providers: [&#123;
+        provide: EVENT_MANAGER_PLUGINS, multi: true,
+        useClass: UniqueInputEventPlugin, deps: [UNIQUE_INPUT_EVENT_PLUGIN_CONFIG],
+    &#125;]	
+&#125;)
+class MyModule &#123;&#125;
+</code></pre>
 <blockquote>
 <p> 需要注意的是，插件需要自己添加到项目文件中（根据angular团队所说，这个插件修复了一个IE10或者IE11的bug，但是提交了太多的代码，这会给增加现有的应用的打包体积，虽然后面关于这个PR讨论了挺久，但是看样子是准备把这个放到FAQ里面，而不会把他并入框架），并在对应的模块中引用。</p>
 </blockquote>
@@ -744,7 +896,7 @@
         
         <span class="tag">
             
-            <a href="/tags/浏览器兼容" style=color:#ffa2c4>
+            <a href="/tags/浏览器兼容" style=color:#ff7d73>
                 浏览器兼容
             </a>
         </span>
@@ -815,13 +967,16 @@
 <p>canvas目前几乎被所有的浏览器支持，但是IE 9.0 之前的版本不支持 <code>canvas</code>元素</p>
 </blockquote>
 <h3 id="canvas基本使用"><a href="#canvas基本使用" class="headerlink" title="canvas基本使用"></a>canvas基本使用</h3><p>canvas是一个HTML元素，所以要使用canvas，首先需要：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;600&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span>&gt;</span></span><br><span class="line">	当前浏览器不支持canvas</span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;canvas id=&quot;canvas&quot; width=&quot;600&quot; height=&quot;300&quot;&gt;
+    当前浏览器不支持canvas
+&lt;/canvas&gt;
+</code></pre>
 <p>在第一行HTML代码中可以看到两个属性：<code>width</code> 和 <code>height</code> ，它指明了画布的宽高，在上文中提到过，不要使用CSS规定尺寸，因为当CSS规定的尺寸和画布尺寸比例不一致时，无法成比例缩放，导致绘制出来的图形变得扭曲。在没有设置画布大小时，canvas默认会初始化成300px * 150px的画布。</p>
 <p>“当前浏览器不支持canvas”是元素的内容，但他只是作为一个后备内容（即<a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/dom.html#fallback-content">fallback content</a>），只有当浏览器不支持canvas时，这个内容才会被显示出来。</p>
 <p>canvas元素本身没有绘制能力，只是作为一个容器，所以需要通过JavaScript这类脚本进行绘制：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> context = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">const canvas = document.getElementById(&#39;canvas&#39;);
+const context = canvas.getContext(&#39;2d&#39;);
+</code></pre>
 <p>上面的HTML+JS代码是使用canvas所必须的，无论要绘制什么内容，这几行代码不可缺少。</p>
 <p><code>getContext()</code> 是canvas元素提供的方法，用于获取绘制上下文（或者说渲染上下文，The rendering context），他只有一个参数：上下文格式。这里传入<code>2d</code> 表示获取2D图像绘制环境。由于<code>getContext</code>是canvas元素提供的方法，故我们可以通过检测<code>getContext</code>方法的存在性来检查浏览器的支持性。</p>
 <blockquote>
@@ -850,12 +1005,21 @@
 <p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif" alt="三次贝塞尔曲线"></p>
 <p>以上图片按顺序分别是一次贝塞尔曲线，二次贝塞尔曲线，三次贝塞尔曲线。从图中，可以很清楚的看到，一次贝塞尔曲线实际上是一条直线。当然，还有更高阶次的曲线，不过canvas只提供了二次和三次贝塞尔曲线。</p>
 <p>以二次贝塞尔曲线的API为例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">quadraticCurveTo</span>(cp1x, cp1y, x, y);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">quadraticCurveTo(cp1x, cp1y, x, y);
+</code></pre>
 <p>(cp1x,  cp1y)表示控制点坐标，(x, y)表示结束点坐标。这里还缺少一个起始点坐标，假设是(x0, y0)，那这个(x0, y0)是谁？</p>
 <p>就是在调用 <code>quadraticCurveTo</code> 函数时，context（绘制上下文）所处的坐标。举个例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cxt = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>); <span class="comment">// 认为canvas已经获取到</span></span><br><span class="line">cxt.<span class="title function_">beginPath</span>();</span><br><span class="line">cxt.<span class="title function_">moveTo</span>(<span class="number">120</span>, <span class="number">90</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">130</span>, <span class="number">80</span>, <span class="number">130</span>, <span class="number">70</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">115</span>, <span class="number">70</span>, <span class="number">115</span>, <span class="number">50</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">115</span>, <span class="number">30</span>, <span class="number">155</span>, <span class="number">30</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">195</span>, <span class="number">30</span>, <span class="number">195</span>, <span class="number">50</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">195</span>, <span class="number">70</span>, <span class="number">155</span>, <span class="number">70</span>);</span><br><span class="line">cxt.<span class="title function_">quadraticCurveTo</span>(<span class="number">135</span>, <span class="number">90</span>, <span class="number">120</span>, <span class="number">90</span>);</span><br><span class="line">cxt.<span class="title function_">stroke</span>();</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var cxt = canvas.getContext(&#39;2d&#39;); // 认为canvas已经获取到
+cxt.beginPath();
+cxt.moveTo(120, 90);
+cxt.quadraticCurveTo(130, 80, 130, 70);
+cxt.quadraticCurveTo(115, 70, 115, 50);
+cxt.quadraticCurveTo(115, 30, 155, 30);
+cxt.quadraticCurveTo(195, 30, 195, 50);
+cxt.quadraticCurveTo(195, 70, 155, 70);
+cxt.quadraticCurveTo(135, 90, 120, 90);
+cxt.stroke();
+</code></pre>
 <p>这段代码运行结果就是一个对话框（在第一张图片中体现），可以看到，在调用二次贝塞尔曲线之前，我们设置了起点，即，将笔刷移动到坐标(120, 90)，在之后调用中，都是以前一次贝塞尔曲线的终点作为本次曲线的起点。</p>
 <p>这时候可能会有人问：我去掉这个<code>moveTo</code>的调用是不是就画不出来了？如果后续是调用<code>lineTo</code>函数，那还真就画不出来了。但是别忘了，还有一次贝塞尔曲线，这就是条直线，他是以(cp1x, cp1y)为起点，(x,y)为终点的一条直线。所以说，去掉<code>moveTo</code>后，只会影响到第一条曲线的绘制。但是如果删除最后一行代码<code>stroke()</code>，那么程序运行结束时，在浏览器上啥都看不到。</p>
 <p>由此，我们应该思考另一个问题：为什么<code>stroke()</code>函数是必须的呢？</p>
@@ -879,8 +1043,13 @@
 <p><img src="https://iachieveall.com/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png" alt="平抛运动"></p>
 <p>从图中，我们可以看到一些很有意思的现象，如：小球的水平方向刚好和canvas画布的横轴一致，竖直方向也和纵轴方向保持一致。</p>
 <p>然后由平抛运动对应的物理公式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 竖直方向无初速度，水平方向没有外力</span></span><br><span class="line">x = v0 * t; <span class="comment">// 水平方向位移</span></span><br><span class="line">h = <span class="number">1</span>/<span class="number">2</span> * g * t * t; <span class="comment">// 竖直方向位移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 竖直方向有初速度</span></span><br><span class="line">h = vh * t - <span class="number">1</span>/<span class="number">2</span> * g * t * t; <span class="comment">// 竖直方向位移</span></span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">// 竖直方向无初速度，水平方向没有外力
+x = v0 * t; // 水平方向位移
+h = 1/2 * g * t * t; // 竖直方向位移
 
+// 竖直方向有初速度
+h = vh * t - 1/2 * g * t * t; // 竖直方向位移
+</code></pre>
 <p>发现(x, h)和canvas上的坐标(x, y)是一致的，而且我们也不是在做物理题，也就是说，v0, t, g, vh这些参数都是已知的，我们唯一需要做的就是，计算出任意时刻的(x, h)，也即小球在canvas上的坐标(x, y)。</p>
 <p>分析结束，我们现在可以得到小球在任意时刻的位置坐标，那么我们也就可以在画布上画出来任意时刻的小球。</p>
 <p>针对上面的分析，可能会有人说：你这不对，你这个应该是具有特殊性的吧，小球未必是从左边抛出去的，从右边也可以啊，向上抛也可以。</p>
@@ -888,23 +1057,57 @@
 <p>分析这么多，说点儿咱最关心的实现。</p>
 <p>在之前的分析中，我们知道想求小球任意时刻所在位置坐标，需要的参数有：v0, t, g, vh。这些参数应该存放在哪里呢？怎么设计这个数据结构？</p>
 <p>我们当然可以直接将这些参数设为全局变量，但这显然是不合适的，这些参数里，唯一适合设为全局变量的是重力加速度g。而v0, t, vh这些都应该是小球自身的“属性”，所以我们应该将其抽象成一个类。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Ball</span>(<span class="params">r, v0, vh, t</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">r</span> = r;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">v0</span> = v0;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">vh</span> = vh;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">t</span> = t;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">x</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">h</span> = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">calcX</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">/* 计算水平位移 */</span> &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">calcH</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">/* 计算竖直位移 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ball = &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">h</span>: <span class="number">0</span>, <span class="attr">r</span>: <span class="number">10</span>, <span class="attr">v0</span>: <span class="number">0</span>, <span class="attr">vh</span>: <span class="number">0</span>, <span class="attr">g</span>: <span class="number">10</span>&#125;;</span><br><span class="line"><span class="comment">// 重力加速度无论是作为全局变量还是小球属性，均可</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// es6之后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Ball</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">function Ball(r, v0, vh, t) &#123;
+    this.r = r;
+    this.v0 = v0;
+    this.vh = vh;
+    this.t = t;
+    this.x = 0;
+    this.h = 0;
+    
+    this.calcX = function() &#123; /* 计算水平位移 */ &#125;
+    this.calcH = function() &#123; /* 计算竖直位移 */ &#125;
+&#125;
 
+var ball = &#123; x: 0, h: 0, r: 10, v0: 0, vh: 0, g: 10&#125;;
+// 重力加速度无论是作为全局变量还是小球属性，均可
+
+// es6之后
+class Ball &#123;
+    constructor();
+&#125;
+</code></pre>
 <p>以上三种方式，各有各的好处，选择一个合适的方式即可。</p>
 <p>“你这说物理我就头大，有没有更简单的？”</p>
 <p>更简单也有啊，反正并没有要求100%还原物理学场景：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ball = &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>, <span class="attr">r</span>: <span class="number">10</span>, <span class="attr">vx</span>: <span class="number">5</span>, <span class="attr">vy</span>: <span class="number">0</span>, <span class="attr">g</span>: <span class="number">5</span> &#125;;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ball.<span class="property">vy</span> += ball.<span class="property">g</span>; <span class="comment">// 竖直方向速度增加</span></span><br><span class="line">    ball.<span class="property">y</span> += ball.<span class="property">vy</span>; <span class="comment">// 竖直方向位移</span></span><br><span class="line">    ball.<span class="property">x</span> += ball.<span class="property">vx</span>; <span class="comment">// 水平方向位移</span></span><br><span class="line">    cxt.<span class="title function_">clearRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">300</span>);</span><br><span class="line">    cxt.<span class="title function_">beginPath</span>();</span><br><span class="line">    cxt.<span class="property">fillStyle</span> = <span class="string">&#x27;black&#x27;</span>;</span><br><span class="line">    cxt.<span class="title function_">arc</span>(ball.<span class="property">x</span>, ball.<span class="property">y</span>, ball.<span class="property">r</span>, <span class="number">0</span>, <span class="number">2</span>*<span class="title class_">Math</span>.<span class="property">PI</span>);</span><br><span class="line">    cxt.<span class="title function_">fill</span>();</span><br><span class="line">&#125;, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var ball = &#123; x: 0, y: 0, r: 10, vx: 5, vy: 0, g: 5 &#125;;
+setInterval(() =&gt; &#123;
+    ball.vy += ball.g; // 竖直方向速度增加
+    ball.y += ball.vy; // 竖直方向位移
+    ball.x += ball.vx; // 水平方向位移
+    cxt.clearRect(0, 0, 800, 300);
+    cxt.beginPath();
+    cxt.fillStyle = &#39;black&#39;;
+    cxt.arc(ball.x, ball.y, ball.r, 0, 2*Math.PI);
+    cxt.fill();
+&#125;, 50);
+</code></pre>
 <p>OK，结束了。</p>
 <p>这就是高级一点的动画。可能在学几个函数，这个动画会更炫一点。比如学完矩形填充再掌握一点rgba的知识，你可以做个“尾巴”出来，即长尾效应。具体只需要将上述代码中的<code>cxt.clearRect()</code>替换成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cxt.<span class="property">fillStyle</span> = <span class="string">&#x27;rgba(255, 255, 255, 0.2)&#x27;</span>;</span><br><span class="line">cxt.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">800</span>, <span class="number">300</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">cxt.fillStyle = &#39;rgba(255, 255, 255, 0.2)&#39;;
+cxt.fillRect(0, 0, 800, 300);
+</code></pre>
 <p>这就能显得咱们编码能力很厉害的样子。</p>
 <p>做到这一步还是不满足：小球一个劲儿的向下掉，这动画没一会儿就没了。</p>
 <p>没关系，咱们可以做“<strong>碰撞检测</strong>”啊。好像又是一个高大上的词汇，但实际上也没什么高大上的，如果基于本节第一部分的分析，那咱还得考虑一下碰撞造成的动量损失的问题，挺复杂的。</p>
 <p>但是简化版就好说了啊。小球碰到上&#x2F;下边界，竖直方向速度反向，同时速率减半。左右边界可以有类似的处理。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ball.<span class="property">r</span> + ball.<span class="property">x</span> &gt; canvas_width) &#123;</span><br><span class="line">    ball.<span class="property">vx</span> *= -<span class="number">0.5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (ball.<span class="property">r</span> + ball.<span class="property">y</span> &gt; canvas_height) &#123;</span><br><span class="line">    ball.<span class="property">vy</span> *= -<span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">if (ball.r + ball.x &gt; canvas_width) &#123;
+    ball.vx *= -0.5
+&#125;
+if (ball.r + ball.y &gt; canvas_height) &#123;
+    ball.vy *= -0.5;
+&#125;
+</code></pre>
 <blockquote>
 <p>NOTE：碰撞检测在这里指的是“<strong>边界检测</strong>”，小球落到边界的时候再继续下落显然是没有意义的，因为后面的动画咱们是看不到的。所以要么碰到边界就停止，要么重新开始，或者进行其他处理，总之，不能出现无意义的动画。</p>
 <p>像以前玩的贪吃蛇，会有各种墙的存在，控制的小蛇在碰到墙的时候，游戏就失败了，或者说没有墙的时候，小蛇会从另一个方向出来。</p>
@@ -931,7 +1134,7 @@
         
         <span class="tag">
             
-            <a href="/tags/canvas" style=color:#ffa2c4>
+            <a href="/tags/canvas" style=color:#03a9f4>
                 canvas
             </a>
         </span>
@@ -1057,8 +1260,12 @@
 <p><strong>CDN系统</strong> 在功能上可划分为三大模块：分发服务，负载均衡，运营管理。本节所提到的CDN缓存其实只是从属于分发服务的一个小块。本节内容所说的内容只是一个小的范围-CDN分发服务系统中的边缘cache，并不是指代整个CDN系统。  </p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实还有一种缓存没有提到，这种缓存是用来做离线页面的，而且是直接在HTML中主动使用的——Manifest，使用起来十分简单，只需要一行代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!—- 写在html标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!—- 或者写在meta标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;!—- 写在html标签中 —-&gt;
+&lt;html manifest=“/app.appcache”&gt;
 
+&lt;!—- 或者写在meta标签中 —-&gt;
+&lt;meta manifest=“/app.appcache”&gt;
+</code></pre>
 <p>但是很多网站并没有使用这种技术，原因在于这个配置的文件上：</p>
 <ol>
 <li>如果我们想要缓存页面的所有资源，只能手动将资源写入Manifest声明的配置文件中进行缓存，而不能使用通配符缓存，这太麻烦了。</li>
@@ -1081,42 +1288,42 @@
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#ffa2c4>
+            <a href="/tags/前端开发" style=color:#00bcd4>
                 前端开发
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#03a9f4>
+            <a href="/tags/前端" style=color:#00a596>
                 前端
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/HTTP缓存" style=color:#ffa2c4>
+            <a href="/tags/HTTP缓存" style=color:#00a596>
                 HTTP缓存
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/总结" style=color:#03a9f4>
+            <a href="/tags/总结" style=color:#00a596>
                 总结
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/DNS缓存" style=color:#ffa2c4>
+            <a href="/tags/DNS缓存" style=color:#00a596>
                 DNS缓存
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/CDN缓存" style=color:#ffa2c4>
+            <a href="/tags/CDN缓存" style=color:#ff7d73>
                 CDN缓存
             </a>
         </span>
@@ -1190,7 +1397,7 @@
         
         <span class="tag">
             
-            <a href="/tags/年终总结" style=color:#00bcd4>
+            <a href="/tags/年终总结" style=color:#00a596>
                 年终总结
             </a>
         </span>
@@ -1253,8 +1460,15 @@
 <p>说句心里话，编译原理是很有用的科目，但是真正学起来的时候还是挺痛苦的。</p>
 <blockquote>
 <p>考虑以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> b = a*<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params">c</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b, c);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">bar</span>(b*<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">function foo(a) &#123;
+  var b = a*2;
+  function bar(c) &#123;
+      console.log(a, b, c);
+  &#125;
+  bar(b*3);
+&#125;
+foo(2);
+</code></pre>
 <p>在这个例子中有三个逐级 <strong>嵌套的作用域</strong>……</p>
 </blockquote>
 <p>对于java程序员来说，一对花括号就可以限制变量的作用域，而且作用域之间的关系有 <strong>同级</strong> 和 <strong>父子级</strong> 两种，同时还有包(package)这种很方便的东西。</p>
@@ -1269,8 +1483,13 @@
 </blockquote>
 <p>这句话就是在回答上面我提出来的问题。</p>
 <blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">str, a</span>) &#123;</span><br><span class="line">  <span class="built_in">eval</span>(str);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="title function_">foo</span>(<span class="string">&quot;var b = 3&quot;</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">function foo(str, a) &#123;
+  eval(str);
+  console.log(a, b);
+&#125;
+var b = 2;
+foo(&quot;var b = 3&quot;, 1);
+</code></pre>
 <p><code>eval(..)</code>调用中的”<code>var b = 3;</code>“这段diamante会被当做本来就在哪里一样处理……</p>
 </blockquote>
 <p>这话说的好拗口啊？</p>
@@ -1281,8 +1500,14 @@
 <p>with声明实际上是根据你传递给它的对象凭空创建了一个 <strong>全新的词法作用域</strong>。</p>
 </blockquote>
 <p>到这里又增加了一个能够创建作用域的关键字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">with</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    a = <span class="number">2</span>;</span><br><span class="line">    b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="javascript">var obj = &#123;
+    a: 1
+&#125;;
+with(obj) &#123;
+    a = 2;
+    b = 3;
+&#125;;
+</code></pre>
 <p>对上述代码，我们可以这么理解，with将obj声明为一个作用域，with内部的语句都是在这个作用域中的，so……</p>
 <blockquote>
 <p>eval(..)和with会在运行时修改或创建新的作用域，以此来欺骗其他书写时定义的词法作用域。</p>
@@ -1304,14 +1529,14 @@
         
         <span class="tag">
             
-            <a href="/tags/JavaScript" style=color:#00bcd4>
+            <a href="/tags/JavaScript" style=color:#ffa2c4>
                 JavaScript
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#ff7d73>
+            <a href="/tags/前端" style=color:#00a596>
                 前端
             </a>
         </span>
@@ -1325,7 +1550,7 @@
 
 <div class="post">
 
-    <a href="/2019/09/23/数据结构碎碎念（二）-数据结构碎碎念（二）/">
+    <a href="/2019/09/22/数据结构碎碎念（二）-数据结构碎碎念（二）/">
         <h2>
             数据结构碎碎念（二）
         </h2>
@@ -1391,8 +1616,26 @@
 <p>这种类型的栈我们首先就会想到自下而上增长的栈：</p>
 <p><img src="https://iachieveall.com/upload/2019/9/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E5%A2%9E%E9%95%BF%E7%9A%84%E6%A0%88-ef615738be2d467b8d150c58e89dc33c.png" alt="自下而上增长的栈"></p>
 <p>其实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXSIZE = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 1. 声明一个栈</span></span><br><span class="line"><span class="type">int</span> stack[MAXSIZE];</span><br><span class="line"><span class="type">int</span> top = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 栈空</span></span><br><span class="line">top == <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 栈满</span></span><br><span class="line">top == MAXSIZE;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 压栈push(x)</span></span><br><span class="line">stack[top++] = x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 弹栈pop()</span></span><br><span class="line"><span class="type">int</span> x = stack[top--];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 读取栈顶元素</span></span><br><span class="line"><span class="type">int</span> x = stack[top];</span><br></pre></td></tr></table></figure>
+<pre><code class="c++">const int MAXSIZE = 10;
+// 1. 声明一个栈
+int stack[MAXSIZE];
+int top = -1;
 
+// 2. 栈空
+top == -1;
+
+// 3. 栈满
+top == MAXSIZE;
+
+// 4. 压栈push(x)
+stack[top++] = x;
+
+// 5. 弹栈pop()
+int x = stack[top--];
+
+// 6. 读取栈顶元素
+int x = stack[top];
+</code></pre>
 <p>这个实现方法可以说是通用的，只要是支持数组的语言，基本上都可以用该方法实现一个简单的固定大小的栈。</p>
 <p>在这个实现中，我们默认将栈底设置在了-1索引位置处，栈的增长方向是 <strong>-1-&gt;10</strong> ，反过来设置也是可以的，因为栈底和栈顶的位置是相对的。</p>
 <blockquote>
@@ -1404,8 +1647,13 @@
 <p>当然可以，共享栈就是两个栈顶，分别对应位置-1和MAXSIZE，两边同时向中间增长。</p>
 <p><img src="https://iachieveall.com/upload/2019/9/%E6%95%B0%E7%BB%84-1%E5%92%8C10%E7%B4%A2%E5%BC%95-a5a3853030b64a69acc5348e8dbd41ec.png" alt="数组1和10索引"></p>
 <p><img src="https://iachieveall.com/upload/2019/9/%E5%85%B1%E4%BA%AB%E6%A0%88-c43e2752378b4acf8e893c0beff525a4.png" alt="共享栈"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">top1 = <span class="number">-1</span>;</span><br><span class="line">top2 = MAXSIZE;</span><br><span class="line"></span><br><span class="line"><span class="comment">// top1压栈做自增操作，弹栈做自减操作</span></span><br><span class="line"><span class="comment">// top2压栈做自减操作，弹栈做自增操作</span></span><br><span class="line"><span class="comment">// 栈满是top1+1 == top2;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="c++">top1 = -1;
+top2 = MAXSIZE;
 
+// top1压栈做自增操作，弹栈做自减操作
+// top2压栈做自减操作，弹栈做自增操作
+// 栈满是top1+1 == top2;
+</code></pre>
 <blockquote>
 <p>在内存中，栈和堆是共享自由空间的，有点像共享栈，所以我们直呼“堆栈堆栈”，还是有原因的。</p>
 </blockquote>
@@ -1416,8 +1664,15 @@
 <p>等等，如果强行对共享栈进行扩展，咱还真能找到栈顶数量大于2的情况，但这时候，我们应该就会发现本文的一个逻辑漏洞，这个漏洞对于本节的讨论是致命的。</p>
 <h1 id="致命的漏洞"><a href="#致命的漏洞" class="headerlink" title="致命的漏洞"></a>致命的漏洞</h1><p>本文在讨论栈的时候是以栈顶的数量为标准进行划分的，但看到这里，我们应该能发现一个逻辑漏洞，即当栈顶数量大于等于2的时候，他就是多个栈，而不是一个栈了。</p>
 <p>所以，栈顶数量是不能作为栈类型的划分依据的，那本文在讨论什么？栈的复合吗？有点像诶。但是对于我们来说，好像下面这种使用才像是复合：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span>&lt;T&gt; &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  stack&lt;T&gt; st;</span><br><span class="line">  stack&lt;T&gt; min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最小栈的算法，还是挺经典的，可以自己查一查。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="c++">template &lt;class T&gt;
+class MinStack&lt;T&gt; &#123;
+private:
+  stack&lt;T&gt; st;
+  stack&lt;T&gt; min;
+&#125;
 
+// 最小栈的算法，还是挺经典的，可以自己查一查。
+</code></pre>
 <p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/min-stack/description/">最小栈</a></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文的内容，上一节算是总结，关于栈，还能聊两句基本的概念。</p>
 <p>根据物理结构的不同，栈被划分成两个大类：</p>
@@ -1450,28 +1705,28 @@
         
         <span class="tag">
             
-            <a href="/tags/栈" style=color:#00bcd4>
+            <a href="/tags/栈" style=color:#03a9f4>
                 栈
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/数据结构" style=color:#ffa2c4>
+            <a href="/tags/数据结构" style=color:#00a596>
                 数据结构
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/思考" style=color:#ffa2c4>
+            <a href="/tags/思考" style=color:#03a9f4>
                 思考
             </a>
         </span>
         
     </div>
 
-    <a href="/2019/09/23/数据结构碎碎念（二）-数据结构碎碎念（二）/ " class="go-post">
+    <a href="/2019/09/22/数据结构碎碎念（二）-数据结构碎碎念（二）/ " class="go-post">
         阅读全文
     </a>
 </div>
@@ -1530,7 +1785,7 @@
             <img src="image/profile.webp " alt="头像">
         </div>
         <div class="name">
-            John Doe
+            z
         </div>
         <div class="descriptions">
             
@@ -1580,10 +1835,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

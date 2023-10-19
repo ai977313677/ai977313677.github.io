@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || 前端缓存技术概述</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 前端缓存技术概述</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -135,14 +135,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/前端开发" style=color:#ff7d73>
+                <a href="/tags/前端开发" style=color:#ffa2c4>
                     前端开发
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/前端" style=color:#00bcd4>
+                <a href="/tags/前端" style=color:#ffa2c4>
                     前端
                 </a>
             </span>
@@ -156,21 +156,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/总结" style=color:#00bcd4>
+                <a href="/tags/总结" style=color:#03a9f4>
                     总结
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/DNS缓存" style=color:#03a9f4>
+                <a href="/tags/DNS缓存" style=color:#00a596>
                     DNS缓存
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/CDN缓存" style=color:#00a596>
+                <a href="/tags/CDN缓存" style=color:#03a9f4>
                     CDN缓存
                 </a>
             </span>
@@ -261,8 +261,12 @@
 <p><strong>CDN系统</strong> 在功能上可划分为三大模块：分发服务，负载均衡，运营管理。本节所提到的CDN缓存其实只是从属于分发服务的一个小块。本节内容所说的内容只是一个小的范围-CDN分发服务系统中的边缘cache，并不是指代整个CDN系统。  </p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实还有一种缓存没有提到，这种缓存是用来做离线页面的，而且是直接在HTML中主动使用的——Manifest，使用起来十分简单，只需要一行代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!—- 写在html标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!—- 或者写在meta标签中 —-&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">manifest</span>=<span class="string">“/app.appcache”</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;!—- 写在html标签中 —-&gt;
+&lt;html manifest=“/app.appcache”&gt;
 
+&lt;!—- 或者写在meta标签中 —-&gt;
+&lt;meta manifest=“/app.appcache”&gt;
+</code></pre>
 <p>但是很多网站并没有使用这种技术，原因在于这个配置的文件上：</p>
 <ol>
 <li>如果我们想要缓存页面的所有资源，只能手动将资源写入Manifest声明的配置文件中进行缓存，而不能使用通配符缓存，这太麻烦了。</li>
@@ -286,10 +290,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

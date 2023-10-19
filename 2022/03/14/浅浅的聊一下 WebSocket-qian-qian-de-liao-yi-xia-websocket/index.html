@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || 浅浅的聊一下 WebSocket</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 浅浅的聊一下 WebSocket</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -135,35 +135,35 @@
             
             <span class="tag">
                 
-                <a href="/tags/前端开发" style=color:#03a9f4>
+                <a href="/tags/前端开发" style=color:#ffa2c4>
                     前端开发
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/前端" style=color:#00a596>
+                <a href="/tags/前端" style=color:#03a9f4>
                     前端
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/思考" style=color:#00a596>
+                <a href="/tags/思考" style=color:#03a9f4>
                     思考
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/前端基础" style=color:#ffa2c4>
+                <a href="/tags/前端基础" style=color:#ff7d73>
                     前端基础
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/websocket" style=color:#00a596>
+                <a href="/tags/websocket" style=color:#ff7d73>
                     websocket
                 </a>
             </span>
@@ -180,8 +180,10 @@
 <p>现在的浏览器均已支持该标准。</p>
 <h2 id="Websocket-出现的背景"><a href="#Websocket-出现的背景" class="headerlink" title="Websocket 出现的背景"></a>Websocket 出现的背景</h2><p>思考一下我们经常遇到的一种需求场景，要求在某个网页下，网页的内容可以实时更新。</p>
 <p>这种情况下，最大众化的方式就是轮询接口了，即通过定时器，定时请求接口，获取到最新的信息后，将内容更新到页面中，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">  queryAPI().then(() =&gt; update());</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure>
-
+<pre><code>setInterval(() =&gt; &#123;
+  queryAPI().then(() =&gt; update());
+&#125;, 1000);
+</code></pre>
 <p>但是我们知道，这种定时器的延时并不是很精确，而且加上接口的请求时延，实际时间可能不止代码中所预先设定的时间长度，所以这种实时更新是伪实时更新。</p>
 <p>除此之外，还有一点可能会经常遇到，即，我们更新信息并总是要更新整个页面上所有可以看到的信息，我们更关注一些经常变化的信息，比如状态，状态的信息可能大小只有几个字节，但是我们轮询接口拿到的信息却是这个页面的所有信息，大小自然不只几个字节，但是除状态以外的信息都可以视作是冗余的。</p>
 <p><img src="https://iachieveall.com/upload/2022/03/image-20220314151620372-082384e5f02c4e61b18d8217cf4ef65b.png" alt="状态"></p>
@@ -214,14 +216,34 @@
 <blockquote>
 <p>在数据处理完成后，需要移除回调函数，不然可能会影响到其他地方的处理</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const ws = new WebSocket(&#x27;ws://sdf.com&#x27;);</span><br><span class="line">function handleData(evt) &#123;</span><br><span class="line">  // handle server data.</span><br><span class="line">&#125;</span><br><span class="line">ws.onmessage = handleData;</span><br><span class="line">ws.addEventListener(&#x27;message&#x27;, handleData);</span><br></pre></td></tr></table></figure>
-
+<pre><code>const ws = new WebSocket(&#39;ws://sdf.com&#39;);
+function handleData(evt) &#123;
+  // handle server data.
+&#125;
+ws.onmessage = handleData;
+ws.addEventListener(&#39;message&#39;, handleData);
+</code></pre>
 <ol start="4">
 <li><code>WebSocket.send</code></li>
 </ol>
 <p>主动向服务端发送消息，可以通过send和onmessage进行数据互动，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ws.send(&#x27;list&#x27;);</span><br><span class="line">​</span><br><span class="line">ws.onmessage = evt =&gt; &#123;</span><br><span class="line">  const data = evt.data;</span><br><span class="line">  if (data === &#x27;hello&#x27;) &#123;</span><br><span class="line">    console.log(&#x27;world&#x27;);</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  try &#123;</span><br><span class="line">    const obj = JSON.parse(data);</span><br><span class="line">    switch (obj.type) &#123;</span><br><span class="line">      case &#x27;list&#x27;:</span><br><span class="line">        // do something.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; catch (ex) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>ws.send(&#39;list&#39;);
+​
+ws.onmessage = evt =&gt; &#123;
+  const data = evt.data;
+  if (data === &#39;hello&#39;) &#123;
+    console.log(&#39;world&#39;);
+    return ;
+  &#125;
+  try &#123;
+    const obj = JSON.parse(data);
+    switch (obj.type) &#123;
+      case &#39;list&#39;:
+        // do something.
+    &#125;
+  &#125; catch (ex) &#123;&#125;
+&#125;
+</code></pre>
 <ol start="5">
 <li><code>WebSocket.close</code></li>
 </ol>
@@ -273,10 +295,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

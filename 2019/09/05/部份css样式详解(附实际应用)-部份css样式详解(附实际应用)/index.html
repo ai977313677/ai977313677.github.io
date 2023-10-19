@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || 部份css样式详解(附实际应用)</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 部份css样式详解(附实际应用)</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -135,7 +135,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/前端开发" style=color:#00a596>
+                <a href="/tags/前端开发" style=color:#ffa2c4>
                     前端开发
                 </a>
             </span>
@@ -149,7 +149,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/前端基础" style=color:#03a9f4>
+                <a href="/tags/前端基础" style=color:#ffa2c4>
                     前端基础
                 </a>
             </span>
@@ -173,8 +173,10 @@
 <p>实际就是选择图片做背景还是选择颜色做背景。</p>
 </blockquote>
 <p>那么现在设置一下博客的背景：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line"> <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">body &#123;
+ background: #FFE4C4;
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
 <p>我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合</p>
 <p><img src="https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
@@ -183,8 +185,12 @@
 <p>上面换上了背景图像之后，我们使用手机打开，发现图像平铺了（未设置repeat），但是关闭了这条属性，手机浏览器只是居中显示一张图像(在手机上只能看到图像的一部分)，不好看，这显然是违背了我们更改样式的初衷（我们肯定是要美化博客不是）。</p>
 <p>那怎么解决呢？这属于多终端兼容问题，并不是可以通过css就能解决的。可以通过响应式设计来解决。</p>
 <p>负责任的说一句，css其实是可以解决这个问题的，但也只是简单的做一些适应性调整，个人认为这并非是一个很好的解决方案（有些场合可能就足够了，比如这里），解决方法用到的是@media查询。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span> : <span class="number">480px</span>) &#123;</span><br><span class="line"> <span class="selector-tag">body</span> &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line"> &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">@media only screen and (max-width : 480px) &#123;
+ body &#123;
+   background: #FFE4C4;
+ &#125;  
+&#125;  
+</code></pre>
 <p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
 <p>附background的详细属性：</p>
 <table>
@@ -248,20 +254,32 @@
 <p>注意，是伪元素，而不是伪类。<br>伪元素针对元素的特定内容进行操作，伪类则是选择元素当前的状态。<br>关于伪元素和伪类的区别，可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ihardcoder/p/5294927.html">寒月十八的文章</a></p>
 </blockquote>
 <p>现在我想在公告栏加一段文字，应该怎么做，如果有js权限，那么可以通过：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boardcast = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;#blog-news&#x27;</span>);</span><br><span class="line">boardcast.<span class="property">before</span> = <span class="string">&quot;something&quot;</span>;</span><br><span class="line">boardcast.<span class="property">after</span> = <span class="string">&#x27;something&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">var boardcast = document.getElementById(&#39;#blog-news&#39;);
+boardcast.before = &quot;something&quot;;
+boardcast.after = &#39;something&#39;;
+</code></pre>
 <p>但是为了加个固定的内容去申请js权限，显然是大材小用了，我们完全可以通过伪元素<code>:before</code>和<code>:after</code>来实现。</p>
 <blockquote>
 <p>css3的标准规定伪元素是以双冒号开头的，但是部分浏览器（如IE8）并不兼容，所以也依然支持单冒号的写法，为了向后兼容，咱也得写成单冒号开头的形式。在浏览器的控制台中，可以看到对应的标签后有一个<code>::before</code>。</p>
 </blockquote>
 <p>具体为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;粉丝好少，我好伤心&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="css">div#blog-news:before &#123;
+    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
+&#125;
 
+div#blog-news:after &#123;
+    content: &quot;粉丝好少，我好伤心&quot;;
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
 <p>这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。</p>
 <p>比js操作更方便的是，通过css，我们可以直接对这个content设定样式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">div#blog-news:before &#123;
+    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
+    font-size: 16px;
+    color: rebeccapurple;
+&#125;
+</code></pre>
 <blockquote>
 <p>这个还是有局限的，content中的内容只会被解析成字符串，即使有HTML标签，也会被当成字符串显示。<br>原因是，<em><strong>css并不能改变DOM树</strong></em></p>
 </blockquote>
@@ -291,8 +309,13 @@
 <h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p>我发现SimpleMemory模板的标题动画不太合我的口味，我鼠标放上去不能向右移，我想让他放大，这得改改。</p>
 <p>鼠标放上去，这是一个状态，在上一节提到，<strong>伪类是选择元素当前的状态</strong>。</p>
 <p>那么，我就可以根据当前元素的状态来应用不同的样式了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.postTitle</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">color</span>: <span class="number">#0f3647</span>;</span><br><span class="line">	<span class="attribute">text-decoration</span>: underline;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">.postTitle a:hover &#123;
+    margin-left: 0px;
+    color: #0f3647;
+    text-decoration: underline;
+    font-size: 25px;
+&#125;
+</code></pre>
 <p>但是这么做完之后，放大的速度有点慢，原因是什么？因为模板中设置了<code>transition: all 0.1s linear 0s;</code>，这是设置过渡效果的。</p>
 <p>如果不设置这个属性，那么就不会有过渡效果。</p>
 <blockquote>
@@ -340,8 +363,12 @@
 <p>申请js权限之前，让我先想想css能不能做，毕竟js建个目录也挺复杂的。</p>
 <p>这时候就顺势想到博文中已存在的目录，能不能对它操作呢？</p>
 <p>找到这个目录结点，设置如下样式：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-attr">[class=<span class="string">&#x27;toc&#x27;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">div[class=&#39;toc&#39;] &#123;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+&#125;
+</code></pre>
 <p>发现目录出现在了右下角，而且是固定在这里，不乱跑的。</p>
 <blockquote>
 <p>不过有点小问题，就是在手机之类的小屏幕上，这个目录可能就有点……但也可以通过上面提到过的@media来取消这里设定的样式。</p>
@@ -426,10 +453,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

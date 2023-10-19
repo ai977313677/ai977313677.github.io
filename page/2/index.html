@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || </title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || 我的技术博客</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -114,9 +114,9 @@
         <span class="loop"></span>
         <span class="info">
             <div class="wrap">
-                <h1>Hexo</h1>
-                <h3></h3>
-                <h5></h5>
+                <h1>贪婪的君子</h1>
+                <h3>我的技术博客</h3>
+                <h5>不忘初心，方得始终</h5>
             </div>
         </span>
     </div>
@@ -169,7 +169,11 @@
 <p>为什么说是最基本？<br>我们知道，中缀表达式对于人来说是比较友好的，学过四则运算就可以对其求值，然而对于计算机来说，虽然也可以想办法计算，但是却算不上友好了；相反，后缀表达式虽然对人不友好，但是却是计算机所喜欢的。</p>
 <p>（话说，后缀表达式在编译原理中的重要性也是能栖身前列的。）</p>
 <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>在C语言入门的时候，我们就会通过 <strong>递归</strong> 来求 <strong>斐波那契数列</strong> ，很简单：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fibonacci</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n==<span class="number">0</span> || n==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">fibonacci</span>(n<span class="number">-1</span>) + <span class="built_in">fibonacci</span>(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="c++">int fibonacci(int n) &#123;
+    if (n==0 || n==1) return 1;
+    return fibonacci(n-1) + fibonacci(n-2);
+&#125;
+</code></pre>
 <blockquote>
 <p>这段代码不是一般求斐波那契数列的方式，他一般只存在于教科书中，是一个经典的反例。绘制其调用过程，可以得到一棵树，还是二叉树。实际求解斐波那契数列的方式是使用一个循环。</p>
 </blockquote>
@@ -177,8 +181,11 @@
 <blockquote>
 <p> 什么是递归？递归就是<strong>函数调用其本身</strong>。</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">reverse</span>(know) &#123;	<span class="comment">// 1. go on</span></span><br><span class="line">	<span class="keyword">if</span> (you know) <span class="keyword">return</span> you know; <span class="comment">// 2. look 4</span></span><br><span class="line">	<span class="keyword">else</span> back to see the <span class="number">1</span>; <span class="comment">// 3. go back to 1.</span></span><br><span class="line">&#125; <span class="comment">// 4. you know what is recurision now.</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="c++">reverse(know) &#123;	// 1. go on
+    if (you know) return you know; // 2. look 4
+    else back to see the 1; // 3. go back to 1.
+&#125; // 4. you know what is recurision now.
+</code></pre>
 <p>这时候，我们不仅知道递归真正的用法，同时也知道了一个事实，即<strong>递归程序的开销通常很大</strong>，但与之相反的，其代码量又是非常少的。</p>
 <p>通常情况下，我们会选择将递归程序改写成非递归程序，即所谓<strong>消除递归</strong>，但是当改写后和改写前的程序并不会有太大的性能提升，我们也没有必要去改写，比如：<code>cout &lt;&lt; fibonacci(5);</code>，为了这样的调用去消除递归，有必要吗？</p>
 <blockquote>
@@ -201,8 +208,16 @@
 <p>java中，异常<font color="red">java.lang.StackOverflowError</font>就是一种堆栈溢出错误，不过，可以通过修改JVM参数来增大虚拟机栈空间，如<font color="black">-vm args-Xss128k</font>；但这也只是权宜之计，治标不治本呐。</p>
 </blockquote>
 <p>但是呢，一个递归程序并不一定非要用栈辅助改写成非递归程序（即消除递归），有时候，一个循环就够了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n, i=j=<span class="number">1</span>, tmp=<span class="number">0</span>;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n--) &#123;</span><br><span class="line">		tmp = i+j;</span><br><span class="line">		i = j;</span><br><span class="line">		j = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="c++">int main() &#123;
+    int n, i=j=1, tmp=0;
+    cin &gt;&gt; n;
+    while (n--) &#123;
+        tmp = i+j;
+        i = j;
+        j = tmp;
+    &#125;
+&#125;
+</code></pre>
 <blockquote>
 <p>暂时就说这么多，至于后面的，那就后面再说吧，毕竟这也只是（一）嘛。</p>
 </blockquote>
@@ -220,21 +235,21 @@
         
         <span class="tag">
             
-            <a href="/tags/栈" style=color:#ffa2c4>
+            <a href="/tags/栈" style=color:#03a9f4>
                 栈
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/斐波那契" style=color:#00bcd4>
+            <a href="/tags/斐波那契" style=color:#ff7d73>
                 斐波那契
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/递归" style=color:#03a9f4>
+            <a href="/tags/递归" style=color:#00a596>
                 递归
             </a>
         </span>
@@ -293,8 +308,10 @@
 <p>实际就是选择图片做背景还是选择颜色做背景。</p>
 </blockquote>
 <p>那么现在设置一下博客的背景：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line"> <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">body &#123;
+ background: #FFE4C4;
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
 <p>我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合</p>
 <p><img src="https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
@@ -303,8 +320,12 @@
 <p>上面换上了背景图像之后，我们使用手机打开，发现图像平铺了（未设置repeat），但是关闭了这条属性，手机浏览器只是居中显示一张图像(在手机上只能看到图像的一部分)，不好看，这显然是违背了我们更改样式的初衷（我们肯定是要美化博客不是）。</p>
 <p>那怎么解决呢？这属于多终端兼容问题，并不是可以通过css就能解决的。可以通过响应式设计来解决。</p>
 <p>负责任的说一句，css其实是可以解决这个问题的，但也只是简单的做一些适应性调整，个人认为这并非是一个很好的解决方案（有些场合可能就足够了，比如这里），解决方法用到的是@media查询。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span> : <span class="number">480px</span>) &#123;</span><br><span class="line"> <span class="selector-tag">body</span> &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#FFE4C4</span>;</span><br><span class="line"> &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">@media only screen and (max-width : 480px) &#123;
+ body &#123;
+   background: #FFE4C4;
+ &#125;  
+&#125;  
+</code></pre>
 <p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
 <p>附background的详细属性：</p>
 <table>
@@ -368,20 +389,32 @@
 <p>注意，是伪元素，而不是伪类。<br>伪元素针对元素的特定内容进行操作，伪类则是选择元素当前的状态。<br>关于伪元素和伪类的区别，可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ihardcoder/p/5294927.html">寒月十八的文章</a></p>
 </blockquote>
 <p>现在我想在公告栏加一段文字，应该怎么做，如果有js权限，那么可以通过：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boardcast = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;#blog-news&#x27;</span>);</span><br><span class="line">boardcast.<span class="property">before</span> = <span class="string">&quot;something&quot;</span>;</span><br><span class="line">boardcast.<span class="property">after</span> = <span class="string">&#x27;something&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">var boardcast = document.getElementById(&#39;#blog-news&#39;);
+boardcast.before = &quot;something&quot;;
+boardcast.after = &#39;something&#39;;
+</code></pre>
 <p>但是为了加个固定的内容去申请js权限，显然是大材小用了，我们完全可以通过伪元素<code>:before</code>和<code>:after</code>来实现。</p>
 <blockquote>
 <p>css3的标准规定伪元素是以双冒号开头的，但是部分浏览器（如IE8）并不兼容，所以也依然支持单冒号的写法，为了向后兼容，咱也得写成单冒号开头的形式。在浏览器的控制台中，可以看到对应的标签后有一个<code>::before</code>。</p>
 </blockquote>
 <p>具体为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;粉丝好少，我好伤心&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="css">div#blog-news:before &#123;
+    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
+&#125;
 
+div#blog-news:after &#123;
+    content: &quot;粉丝好少，我好伤心&quot;;
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
 <p>这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。</p>
 <p>比js操作更方便的是，通过css，我们可以直接对这个content设定样式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#blog-news</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">div#blog-news:before &#123;
+    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
+    font-size: 16px;
+    color: rebeccapurple;
+&#125;
+</code></pre>
 <blockquote>
 <p>这个还是有局限的，content中的内容只会被解析成字符串，即使有HTML标签，也会被当成字符串显示。<br>原因是，<em><strong>css并不能改变DOM树</strong></em></p>
 </blockquote>
@@ -411,8 +444,13 @@
 <h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p>我发现SimpleMemory模板的标题动画不太合我的口味，我鼠标放上去不能向右移，我想让他放大，这得改改。</p>
 <p>鼠标放上去，这是一个状态，在上一节提到，<strong>伪类是选择元素当前的状态</strong>。</p>
 <p>那么，我就可以根据当前元素的状态来应用不同的样式了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.postTitle</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">color</span>: <span class="number">#0f3647</span>;</span><br><span class="line">	<span class="attribute">text-decoration</span>: underline;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">.postTitle a:hover &#123;
+    margin-left: 0px;
+    color: #0f3647;
+    text-decoration: underline;
+    font-size: 25px;
+&#125;
+</code></pre>
 <p>但是这么做完之后，放大的速度有点慢，原因是什么？因为模板中设置了<code>transition: all 0.1s linear 0s;</code>，这是设置过渡效果的。</p>
 <p>如果不设置这个属性，那么就不会有过渡效果。</p>
 <blockquote>
@@ -460,8 +498,12 @@
 <p>申请js权限之前，让我先想想css能不能做，毕竟js建个目录也挺复杂的。</p>
 <p>这时候就顺势想到博文中已存在的目录，能不能对它操作呢？</p>
 <p>找到这个目录结点，设置如下样式：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-attr">[class=<span class="string">&#x27;toc&#x27;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">div[class=&#39;toc&#39;] &#123;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+&#125;
+</code></pre>
 <p>发现目录出现在了右下角，而且是固定在这里，不乱跑的。</p>
 <blockquote>
 <p>不过有点小问题，就是在手机之类的小屏幕上，这个目录可能就有点……但也可以通过上面提到过的@media来取消这里设定的样式。</p>
@@ -545,21 +587,21 @@
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00a596>
+            <a href="/tags/前端开发" style=color:#ff7d73>
                 前端开发
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/css" style=color:#ff7d73>
+            <a href="/tags/css" style=color:#ffa2c4>
                 css
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端基础" style=color:#ff7d73>
+            <a href="/tags/前端基础" style=color:#00bcd4>
                 前端基础
             </a>
         </span>
@@ -613,14 +655,36 @@
 </blockquote>
 <p>在这里提一下Angular的历史，是因为本文是在使用这个框架的时候遇到的，所以啰嗦两句。</p>
 <h1 id="问题来了"><a href="#问题来了" class="headerlink" title="问题来了"></a>问题来了</h1><p>现在有如下html文件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这俩随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;infoInput&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoInput&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;8&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这俩也随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;some&quot;</span>&gt;</span>something happen!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;any&quot;</span>&gt;</span>anything ok!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;!-- 这俩随便挑一个用就行 --&gt;
+&lt;input type=&quot;text&quot; id=&quot;infoInput&quot; name=&quot;infoInput&quot;&gt;
+&lt;textarea id=&quot;infoArea&quot; name=&quot;infoArea&quot; rows=&quot;8&quot; cols=&quot;80&quot;&gt;&lt;/textarea&gt;
 
+&lt;!-- 这俩也随便挑一个用就行 --&gt;
+&lt;span id=&quot;some&quot;&gt;something happen!&lt;/span&gt;
+&lt;p id=&quot;any&quot;&gt;anything ok!&lt;/p&gt;
+</code></pre>
 <p>我现在要通过TypeScript获取上面任意一个DOM元素，怎么做？有JS基础都知道，操作DOM可以通过<code>document</code>完成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由于DOM元素的ID是惟一的，所以这种方式获取的是唯一的DOM元素</span></span><br><span class="line">dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// name属性是不唯一的，所以这种方式获取的是所有 name=infoInput 的DOM元素，即一个数组</span></span><br><span class="line">dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<pre><code class="JavaScript">// 由于DOM元素的ID是惟一的，所以这种方式获取的是唯一的DOM元素
+dom = document.getElementById(&#39;infoInput&#39;);
 
+// name属性是不唯一的，所以这种方式获取的是所有 name=infoInput 的DOM元素，即一个数组
+dom1 = document.getElementsByName(&#39;infoInput&#39;);
+</code></pre>
 <p>而在TypeScript中当然也可以这么做，但是在具体使用的时候除了需要声明变量保存获取到的DOM元素之外，还有一点小小的问题。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Angular框架中</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="TypeScript">// Angular框架中
+export class Some implements OnInit &#123;
+  ngOnInit() &#123;
+    let dom = document.getElementById(&#39;infoArea&#39;);
+    // 1. 获取输入框中的内容
+    let html = dom.innerHTML;
+    let val = dom.value;
 
+    // 2. 打印输出
+    console.log(html);
+    console.log(val);
+  &#125;
+&#125;
+</code></pre>
 <p>这段代码写完会报一个错:</p>
 <blockquote>
 <p>Property ‘value’ does not exist on type ‘HTMLElement’<br>不要紧，即使有错误提示，我们依旧可以运行并得到正确的结果。如果想在ts文件编译失败时不生成js文件，可以通过配置实现。</p>
@@ -639,8 +703,22 @@
 </blockquote>
 <p>到这里，其实应该已经明白了现在这种情况该怎么解决以及以后该怎么使用getElementXXX函数了。</p>
 <p>修改后的代码：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// *. 做一次类型转换，或者做类型断言</span></span><br><span class="line">    <span class="keyword">let</span> dom = &lt;<span class="title class_">HTMLInputElement</span>&gt;<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="ts">export class Some implements OnInit &#123;
+  ngOnInit() &#123;
+    // *. 做一次类型转换，或者做类型断言
+    let dom = &lt;HTMLInputElement&gt;document.getElementById(&#39;infoArea&#39;);
+    let dom1 = document.getElementById(&#39;infoArea&#39;) as HTMLElement;
 
+    // 1. 获取输入框中的内容
+    let html = dom.innerHTML;
+    let val = dom.value;
+
+    // 2. 打印输出
+    console.log(html);
+    console.log(val);
+  &#125;
+&#125;
+</code></pre>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>HTMLElement是DOM结点共有的属性，TypeScript库中抽取该属性作为一个公共接口，类似于其他面向对象语言如Java和c++中所说的基类。这样做可以保证在操作DOM结点的时候不会出现访问不存在属性的问题。</p>
 <p>HTMLInputElement是HTMLElement的一个子接口（或说子类，但TypeScript是支持class的，所以说接口更好一些），其内部封装了如input，textarea这类dom结点的属性。</p>
 
@@ -657,21 +735,21 @@
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00bcd4>
+            <a href="/tags/前端开发" style=color:#03a9f4>
                 前端开发
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/TypeScript" style=color:#ff7d73>
+            <a href="/tags/TypeScript" style=color:#00a596>
                 TypeScript
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/angular" style=color:#ffa2c4>
+            <a href="/tags/angular" style=color:#03a9f4>
                 angular
             </a>
         </span>
@@ -721,8 +799,15 @@
 <p>这需求看上去不怎么复杂，看起来可以用css做（写css写魔怔了，啥都想往这上面靠拢），那先搜一下，字还没打完，就有提示“css限制显示字数，文字长度超出部分用省略号表示”，哎哟我c，这下不就简单了吗？</p>
 <p><img src="https://iachieveall.com/upload/2019/9/%E5%A6%99%E5%95%8A-84ff164c816c49dfb6ff359b65a56440.jpg" alt="妙啊"></p>
 <h1 id="接受挑战"><a href="#接受挑战" class="headerlink" title="接受挑战"></a>接受挑战</h1><p>于是按照其他人的解决方案，对单元格样式增加了如下内容：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* td的上级和同级标签都用element表示 */</span></span><br><span class="line">element element&gt;<span class="selector-tag">td</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  -webkit-line-clamp: <span class="number">2</span>;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="css">/* td的上级和同级标签都用element表示 */
+element element&gt;td &#123;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+&#125;
+</code></pre>
 <p><img src="https://iachieveall.com/upload/2019/9/%E5%AE%8C%E7%BE%8E-17094e9241c2479f9038a7236bb1785e.jpg" alt="完美"></p>
 <table>
 <thead>
@@ -767,10 +852,23 @@
 <blockquote>
 <p>响应式嘛，那肯定是有绑定数据的。你说直接写在标签中的文本你怎么改？拿头改……不对，这种情况不就是DOM操作嘛，可以用原生js或者jQuery来完成，但在一个框架中使用原生js有时候就是在舍近求远（不是舍本逐末，js才是本）</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let label of labelList&quot;</span>&gt;</span>&#123;&#123; label &#125;&#125;<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of list&quot;</span>&gt;</span>&#123;&#123; item | clip &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Pipe</span>(&#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;clip&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">clipPipe</span> implements <span class="title class_">PipeTransform</span> &#123;</span><br><span class="line">  <span class="title function_">transform</span>(<span class="params">val: string</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val &gt; <span class="number">20</span>) <span class="keyword">return</span> val.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">20</span>) + <span class="string">&#x27;...&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;table&gt;
+  &lt;thead&gt;
+    &lt;th *ngFor=&quot;let label of labelList&quot;&gt;&#123;&#123; label &#125;&#125;&lt;/th&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;td *ngFor=&quot;let item of list&quot;&gt;&#123;&#123; item | clip &#125;&#125;&lt;/td&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<pre><code class="js">@Pipe(&#123; &#39;name&#39;: &#39;clip&#39;&#125;)
+export class clipPipe implements PipeTransform &#123;
+  transform(val: string) &#123;
+    if (val &gt; 20) return val.slice(0, 20) + &#39;...&#39;;
+    return val;
+  &#125;
+&#125;
+</code></pre>
 <p>通过管道的方式，我们可以直接输出截断后的数据，当然也有其他方式，但是我也没有想到其他比较好的方法。</p>
 <blockquote>
 <p>如果你有好的方法，可以留言评论，我尝试一下，嘿嘿</p>
@@ -793,28 +891,28 @@
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#03a9f4>
+            <a href="/tags/前端开发" style=color:#ff7d73>
                 前端开发
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/angular" style=color:#03a9f4>
+            <a href="/tags/angular" style=color:#ffa2c4>
                 angular
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/css" style=color:#ffa2c4>
+            <a href="/tags/css" style=color:#00bcd4>
                 css
             </a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/JavaScript" style=color:#00bcd4>
+            <a href="/tags/JavaScript" style=color:#ffa2c4>
                 JavaScript
             </a>
         </span>
@@ -880,7 +978,7 @@
             <img src="image/profile.webp " alt="头像">
         </div>
         <div class="name">
-            John Doe
+            z
         </div>
         <div class="descriptions">
             
@@ -930,10 +1028,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a

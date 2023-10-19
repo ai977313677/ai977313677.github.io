@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en ">
+<html lang="zh ">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexo || TypeScript中使用getElementXXX()</title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content=" ">
+    <title>贪婪的君子 || TypeScript中使用getElementXXX()</title>
+    <meta name="author" content="z">
+    <meta name="description" content="不忘初心，方得始终 ">
     <meta name="keywords" content=" ">
     <link rel="icon" href="/image/profile.webp">
     <link rel="stylesheet" href="/css/antd.min.css">
@@ -47,7 +47,7 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">Hexo</span>
+            <span class="title">贪婪的君子</span>
         </a>
         
         <a href="/">
@@ -71,7 +71,7 @@
             <span style="margin-right: 10px;">
                 <a-icon type="appstore" theme="filled" />
             </span>
-            <span>Hexo</span>
+            <span>贪婪的君子</span>
         </div>
         <div class="items" v-show="menu_show">
             
@@ -142,14 +142,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/TypeScript" style=color:#ff7d73>
+                <a href="/tags/TypeScript" style=color:#00a596>
                     TypeScript
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/angular" style=color:#00bcd4>
+                <a href="/tags/angular" style=color:#03a9f4>
                     angular
                 </a>
             </span>
@@ -168,14 +168,36 @@
 </blockquote>
 <p>在这里提一下Angular的历史，是因为本文是在使用这个框架的时候遇到的，所以啰嗦两句。</p>
 <h1 id="问题来了"><a href="#问题来了" class="headerlink" title="问题来了"></a>问题来了</h1><p>现在有如下html文件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这俩随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;infoInput&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoInput&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">name</span>=<span class="string">&quot;infoArea&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;8&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这俩也随便挑一个用就行 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;some&quot;</span>&gt;</span>something happen!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;any&quot;</span>&gt;</span>anything ok!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;!-- 这俩随便挑一个用就行 --&gt;
+&lt;input type=&quot;text&quot; id=&quot;infoInput&quot; name=&quot;infoInput&quot;&gt;
+&lt;textarea id=&quot;infoArea&quot; name=&quot;infoArea&quot; rows=&quot;8&quot; cols=&quot;80&quot;&gt;&lt;/textarea&gt;
 
+&lt;!-- 这俩也随便挑一个用就行 --&gt;
+&lt;span id=&quot;some&quot;&gt;something happen!&lt;/span&gt;
+&lt;p id=&quot;any&quot;&gt;anything ok!&lt;/p&gt;
+</code></pre>
 <p>我现在要通过TypeScript获取上面任意一个DOM元素，怎么做？有JS基础都知道，操作DOM可以通过<code>document</code>完成：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由于DOM元素的ID是惟一的，所以这种方式获取的是唯一的DOM元素</span></span><br><span class="line">dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// name属性是不唯一的，所以这种方式获取的是所有 name=infoInput 的DOM元素，即一个数组</span></span><br><span class="line">dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;infoInput&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<pre><code class="JavaScript">// 由于DOM元素的ID是惟一的，所以这种方式获取的是唯一的DOM元素
+dom = document.getElementById(&#39;infoInput&#39;);
 
+// name属性是不唯一的，所以这种方式获取的是所有 name=infoInput 的DOM元素，即一个数组
+dom1 = document.getElementsByName(&#39;infoInput&#39;);
+</code></pre>
 <p>而在TypeScript中当然也可以这么做，但是在具体使用的时候除了需要声明变量保存获取到的DOM元素之外，还有一点小小的问题。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Angular框架中</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> dom = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="TypeScript">// Angular框架中
+export class Some implements OnInit &#123;
+  ngOnInit() &#123;
+    let dom = document.getElementById(&#39;infoArea&#39;);
+    // 1. 获取输入框中的内容
+    let html = dom.innerHTML;
+    let val = dom.value;
 
+    // 2. 打印输出
+    console.log(html);
+    console.log(val);
+  &#125;
+&#125;
+</code></pre>
 <p>这段代码写完会报一个错:</p>
 <blockquote>
 <p>Property ‘value’ does not exist on type ‘HTMLElement’<br>不要紧，即使有错误提示，我们依旧可以运行并得到正确的结果。如果想在ts文件编译失败时不生成js文件，可以通过配置实现。</p>
@@ -194,8 +216,22 @@
 </blockquote>
 <p>到这里，其实应该已经明白了现在这种情况该怎么解决以及以后该怎么使用getElementXXX函数了。</p>
 <p>修改后的代码：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Some</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;</span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// *. 做一次类型转换，或者做类型断言</span></span><br><span class="line">    <span class="keyword">let</span> dom = &lt;<span class="title class_">HTMLInputElement</span>&gt;<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> dom1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;infoArea&#x27;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 获取输入框中的内容</span></span><br><span class="line">    <span class="keyword">let</span> html = dom.<span class="property">innerHTML</span>;</span><br><span class="line">    <span class="keyword">let</span> val = dom.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 打印输出</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(html);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="ts">export class Some implements OnInit &#123;
+  ngOnInit() &#123;
+    // *. 做一次类型转换，或者做类型断言
+    let dom = &lt;HTMLInputElement&gt;document.getElementById(&#39;infoArea&#39;);
+    let dom1 = document.getElementById(&#39;infoArea&#39;) as HTMLElement;
 
+    // 1. 获取输入框中的内容
+    let html = dom.innerHTML;
+    let val = dom.value;
+
+    // 2. 打印输出
+    console.log(html);
+    console.log(val);
+  &#125;
+&#125;
+</code></pre>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>HTMLElement是DOM结点共有的属性，TypeScript库中抽取该属性作为一个公共接口，类似于其他面向对象语言如Java和c++中所说的基类。这样做可以保证在操作DOM结点的时候不会出现访问不存在属性的问题。</p>
 <p>HTMLInputElement是HTMLElement的一个子接口（或说子类，但TypeScript是支持class的，所以说接口更好一些），其内部封装了如input，textarea这类dom结点的属性。</p>
 
@@ -213,10 +249,10 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2023 Hexo
+            © 2018 - 2023 贪婪的君子
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
-            @John Doe
+            @z
         </div>
         <div></div>
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
