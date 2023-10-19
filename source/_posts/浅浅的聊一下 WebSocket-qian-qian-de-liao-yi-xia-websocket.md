@@ -141,7 +141,7 @@ http协议至今，主要经历了三个版本。
 
 -   http2.0 支持多路复用，全双工通信
 
-![Compares the performance of the three HTTP/1.x connection models: short-lived connections, persistent connections, and HTTP pipelining.](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4da28c677c604614918658a00305ca6f~tplv-k3u1fbpfcp-watermark.image?)
+![Compares the performance of the three HTTP/1.x connection models: short-lived connections, persistent connections, and HTTP pipelining.](../upload/2022/03/image-20220314180647955-7f70842cbce141d8869a3d8167fedb38.png)
 ## 参考文献
 
 [1]  [[whatwg] TCPConnection feedback](https://lists.w3.org/Archives/Public/public-whatwg-archive/2008Jun/0165.html)
