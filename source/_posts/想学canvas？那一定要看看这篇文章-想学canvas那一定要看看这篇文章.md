@@ -90,15 +90,15 @@ const context = canvas.getContext('2d');
 9. 合成
 10. 其他
 
-![canvas组合示例](https://iachieveall.com/upload/2020/3/canvas%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B-9fad467b7d9e4deab5767ecb18af4c8b.png)
+![canvas组合示例](/upload/2020/3/canvas%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B-9fad467b7d9e4deab5767ecb18af4c8b.png)
 
 在上面这个例子中，包含了矩形，圆形，线，文字及“文字”几大块内容，细讲下去，会涉及到不少API，会使得本文变得很长，而且没有必要，值得一提的是贝塞尔曲线，这是二维图形应用程序的数学曲线，一般的矢量图形软件就是通过它来精确画出曲线的，贝塞尔曲线是计算机图形学中相当重要的参数曲线[^3]。
 
-![一次贝塞尔曲线](https://iachieveall.com/upload/2020/3/%E4%B8%80%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-f3dc4156502b47fcb7997c0519b07bb7.gif)
+![一次贝塞尔曲线](/upload/2020/3/%E4%B8%80%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-f3dc4156502b47fcb7997c0519b07bb7.gif)
 
-![二次贝塞尔曲线](https://iachieveall.com/upload/2020/3/%E4%BA%8C%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-579634ef264e4a5785e0aac4ecbda2a8.gif)
+![二次贝塞尔曲线](/upload/2020/3/%E4%BA%8C%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-579634ef264e4a5785e0aac4ecbda2a8.gif)
 
-![三次贝塞尔曲线](https://iachieveall.com/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif)
+![三次贝塞尔曲线](/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif)
 
 以上图片按顺序分别是一次贝塞尔曲线，二次贝塞尔曲线，三次贝塞尔曲线。从图中，可以很清楚的看到，一次贝塞尔曲线实际上是一条直线。当然，还有更高阶次的曲线，不过canvas只提供了二次和三次贝塞尔曲线。
 
@@ -147,7 +147,7 @@ cxt.stroke();
 
 实际操作时，可能并不是点亮这么简单，你可能会想要制作出更酷的内容，用圆形去填充，用矩形去填充，甚至说想要制作出动态爆炸的效果，这时候就牵扯到一些其他的计算了。
 
-![矩形填充](https://iachieveall.com/upload/2020/3/%E6%97%B6%E9%97%B4-eca9599bb1fc4d0d8556be0e0590886b.jpg)
+![矩形填充](/upload/2020/3/%E6%97%B6%E9%97%B4-eca9599bb1fc4d0d8556be0e0590886b.jpg)
 
 上图是一个用矩形填充的示例，数字对应8x8的点阵。
 
@@ -163,7 +163,7 @@ cxt.stroke();
 
 经此，我们继续往下思考，在平抛运动中的小球，假设水平方向设有初始速度v0，除了重力外，不受到其他外力影响，也即存在一个重力加速度g（为了计算简单，我们可以简单的设为`g = 10m/s^2`），同时竖直方向没有初速度vh（或称`vh = 0;`），如下图：
 
-![平抛运动](https://iachieveall.com/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png)
+![平抛运动](/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png)
 
 从图中，我们可以看到一些很有意思的现象，如：小球的水平方向刚好和canvas画布的横轴一致，竖直方向也和纵轴方向保持一致。
 

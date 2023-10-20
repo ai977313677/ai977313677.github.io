@@ -35,12 +35,12 @@ body {
 }
 ```
 
-![设置背景颜色](https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png)
+![设置背景颜色](/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png)
 颜色确实改变了哈，同理可以设置图像背景。
 
 我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合
 
-![background全家福](https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png)
+![background全家福](/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png)
 
 对于单纯的背景颜色来说，这一系列的属性通常可以无视，对于图像背景，则按需设置这些内容（一般是```postion, size, repeat, attachment```这几条）。
 
@@ -61,7 +61,7 @@ body {
 ```
 
 再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。
-![调整浏览器宽度](https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png)
+![调整浏览器宽度](/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png)
 
 附background的详细属性：
 
@@ -110,7 +110,7 @@ div#blog-news:after {
 }
 ```
 
-![伪元素before](https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png)
+![伪元素before](/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png)
 
 这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。
 

@@ -75,7 +75,7 @@ export class Some implements OnInit {
 
 来看一张图：
 
-![js类间的继承](https://iachieveall.com/upload/2019/9/js%E7%B1%BB%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF-d130b3ce73cb47bdb13958b755730211.png)
+![js类间的继承](/upload/2019/9/js%E7%B1%BB%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF-d130b3ce73cb47bdb13958b755730211.png)
 
 图源自nanaistaken的[博客](https://segmentfault.com/a/1190000009863666)。
 
