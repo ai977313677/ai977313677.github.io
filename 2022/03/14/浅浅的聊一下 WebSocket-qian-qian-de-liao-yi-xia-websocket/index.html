@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -141,27 +146,27 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00a596">前端开发</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #03a9f4">前端</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #00a596">前端</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #00bcd4">思考</a>
+                <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #03a9f4">思考</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">前端基础</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #00bcd4">前端基础</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/websocket/" style="color: #03a9f4">websocket</a>
+                <a href="/tags/websocket/" style="color: #ff7d73">websocket</a>
             </span>
             
         </span>
@@ -176,13 +181,13 @@
 <p>现在的浏览器均已支持该标准。</p>
 <h2 id="Websocket-出现的背景"><a href="#Websocket-出现的背景" class="headerlink" title="Websocket 出现的背景"></a>Websocket 出现的背景</h2><p>思考一下我们经常遇到的一种需求场景，要求在某个网页下，网页的内容可以实时更新。</p>
 <p>这种情况下，最大众化的方式就是轮询接口了，即通过定时器，定时请求接口，获取到最新的信息后，将内容更新到页面中，如下：</p>
-<pre><code>setInterval(() =&gt; &#123;
+<pre><code class="ts">setInterval(() =&gt; &#123;
   queryAPI().then(() =&gt; update());
 &#125;, 1000);
 </code></pre>
 <p>但是我们知道，这种定时器的延时并不是很精确，而且加上接口的请求时延，实际时间可能不止代码中所预先设定的时间长度，所以这种实时更新是伪实时更新。</p>
 <p>除此之外，还有一点可能会经常遇到，即，我们更新信息并总是要更新整个页面上所有可以看到的信息，我们更关注一些经常变化的信息，比如状态，状态的信息可能大小只有几个字节，但是我们轮询接口拿到的信息却是这个页面的所有信息，大小自然不只几个字节，但是除状态以外的信息都可以视作是冗余的。</p>
-<p><img src="https://iachieveall.com/upload/2022/03/image-20220314151620372-082384e5f02c4e61b18d8217cf4ef65b.png" alt="状态"></p>
+<p><img src="/upload/2022/03/image-20220314151620372-082384e5f02c4e61b18d8217cf4ef65b.png" alt="状态"></p>
 <p>我们实际只需要一个字段，而且即使后端提供只返回状态的接口，但实际在一个请求中还要计算ip报文头的大小，依旧是很占用带宽的。</p>
 <p>轮询这种解决方案目前依旧是非常流行，最新的轮询技术是Comet，这种技术虽然可以实现双向通信，但仍然需要反复发出请求。而且在Comet中普遍采用的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E9%93%BE%E6%8E%A5">HTTP长连接</a>也会消耗服务器资源2。</p>
 <h2 id="Websocket通信模式"><a href="#Websocket通信模式" class="headerlink" title="Websocket通信模式"></a>Websocket通信模式</h2><p>了解网络的都知道，数据传输分为单工、半双工、全双工三种工作模式。</p>
@@ -200,7 +205,7 @@
 <li><code>WebSocket(url[, protocol])</code> 构造函数</li>
 </ol>
 <p>使用 <code>new WebSocket(xxx)</code> 创建对象时，会同时建立与服务器的连接</p>
-<p><img src="https://iachieveall.com/upload/2022/03/image-20220314180647955-7f70842cbce141d8869a3d8167fedb38.png" alt="ws"></p>
+<p><img src="/upload/2022/03/image-20220314180647955-7f70842cbce141d8869a3d8167fedb38.png" alt="ws"></p>
 <ol start="2">
 <li><code>WebSocket.onopen</code> , <code>WebSocket.onclose</code></li>
 </ol>
@@ -212,7 +217,7 @@
 <blockquote>
 <p>在数据处理完成后，需要移除回调函数，不然可能会影响到其他地方的处理</p>
 </blockquote>
-<pre><code>const ws = new WebSocket(&#39;ws://sdf.com&#39;);
+<pre><code class="ts">const ws = new WebSocket(&#39;ws://sdf.com&#39;);
 function handleData(evt) &#123;
   // handle server data.
 &#125;
@@ -223,7 +228,7 @@ ws.addEventListener(&#39;message&#39;, handleData);
 <li><code>WebSocket.send</code></li>
 </ol>
 <p>主动向服务端发送消息，可以通过send和onmessage进行数据互动，如：</p>
-<pre><code>ws.send(&#39;list&#39;);
+<pre><code class="ts">ws.send(&#39;list&#39;);
 ​
 ws.onmessage = evt =&gt; &#123;
   const data = evt.data;

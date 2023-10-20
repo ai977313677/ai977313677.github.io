@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -146,12 +151,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/css/" style="color: #00bcd4">css</a>
+                <a href="/tags/css/" style="color: #ff7d73">css</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">前端基础</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">前端基础</a>
             </span>
             
         </span>
@@ -177,9 +182,9 @@
  background: #FFE4C4;
 &#125;
 </code></pre>
-<p><img src="https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
+<p><img src="/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
 <p>我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合</p>
-<p><img src="https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
+<p><img src="/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
 <p>对于单纯的背景颜色来说，这一系列的属性通常可以无视，对于图像背景，则按需设置这些内容（一般是<code>postion, size, repeat, attachment</code>这几条）。</p>
 <p>这些属性的具体使用方式可以通过手册查找到，这里不再叙述。</p>
 <p>上面换上了背景图像之后，我们使用手机打开，发现图像平铺了（未设置repeat），但是关闭了这条属性，手机浏览器只是居中显示一张图像(在手机上只能看到图像的一部分)，不好看，这显然是违背了我们更改样式的初衷（我们肯定是要美化博客不是）。</p>
@@ -191,7 +196,7 @@
  &#125;  
 &#125;  
 </code></pre>
-<p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
+<p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
 <p>附background的详细属性：</p>
 <table>
 <thead>
@@ -271,7 +276,7 @@ div#blog-news:after &#123;
     content: &quot;粉丝好少，我好伤心&quot;;
 &#125;
 </code></pre>
-<p><img src="https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
+<p><img src="/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
 <p>这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。</p>
 <p>比js操作更方便的是，通过css，我们可以直接对这个content设定样式。</p>
 <pre><code class="css">div#blog-news:before &#123;

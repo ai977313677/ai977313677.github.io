@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -141,17 +146,17 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00a596">前端开发</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/TypeScript/" style="color: #03a9f4">TypeScript</a>
+                <a href="/tags/TypeScript/" style="color: #ffa2c4">TypeScript</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/angular/" style="color: #00bcd4">angular</a>
+                <a href="/tags/angular/" style="color: #00a596">angular</a>
             </span>
             
         </span>
@@ -205,7 +210,7 @@ export class Some implements OnInit &#123;
 <p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/xmldom/dom_htmlelement.asp">HTMLElement</a>是什么？这是一个对象，它包含了所有HTML元素公有的属性。</p>
 <p>关于HTMLElement的详细内容以及浏览器的兼容，可以查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement">MDN的这篇文章</a></p>
 <p>来看一张图：</p>
-<p><img src="https://iachieveall.com/upload/2019/9/js%E7%B1%BB%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF-d130b3ce73cb47bdb13958b755730211.png" alt="js类间的继承"></p>
+<p><img src="/upload/2019/9/js%E7%B1%BB%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF-d130b3ce73cb47bdb13958b755730211.png" alt="js类间的继承"></p>
 <p>图源自nanaistaken的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009863666">博客</a>。</p>
 <blockquote>
 <p>如果你恰好有一点面向对象编程的知识，那么这张图就很容易理解，没有也没关系，毕竟无论是js还是ts，现在都增加了class关键字，引入了类的思想。</p>

@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -146,12 +151,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #ff7d73">数据结构</a>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00a596">数据结构</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #03a9f4">思考</a>
+                <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #ffa2c4">思考</a>
             </span>
             
         </span>
@@ -192,7 +197,7 @@
 <li>栈顶数量为1，标准栈</li>
 </ol>
 <p>这种类型的栈我们首先就会想到自下而上增长的栈：</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E5%A2%9E%E9%95%BF%E7%9A%84%E6%A0%88-ef615738be2d467b8d150c58e89dc33c.png" alt="自下而上增长的栈"></p>
+<p><img src="/upload/2019/9/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E5%A2%9E%E9%95%BF%E7%9A%84%E6%A0%88-ef615738be2d467b8d150c58e89dc33c.png" alt="自下而上增长的栈"></p>
 <p>其实现如下：</p>
 <pre><code class="c++">const int MAXSIZE = 10;
 // 1. 声明一个栈
@@ -223,8 +228,8 @@ int x = stack[top];
 <li>栈顶数量为2，可以吗？</li>
 </ol>
 <p>当然可以，共享栈就是两个栈顶，分别对应位置-1和MAXSIZE，两边同时向中间增长。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E6%95%B0%E7%BB%84-1%E5%92%8C10%E7%B4%A2%E5%BC%95-a5a3853030b64a69acc5348e8dbd41ec.png" alt="数组1和10索引"></p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E5%85%B1%E4%BA%AB%E6%A0%88-c43e2752378b4acf8e893c0beff525a4.png" alt="共享栈"></p>
+<p><img src="/upload/2019/9/%E6%95%B0%E7%BB%84-1%E5%92%8C10%E7%B4%A2%E5%BC%95-a5a3853030b64a69acc5348e8dbd41ec.png" alt="数组1和10索引"></p>
+<p><img src="/upload/2019/9/%E5%85%B1%E4%BA%AB%E6%A0%88-c43e2752378b4acf8e893c0beff525a4.png" alt="共享栈"></p>
 <pre><code class="c++">top1 = -1;
 top2 = MAXSIZE;
 
@@ -262,7 +267,7 @@ private:
 <li>链式栈</li>
 </ol>
 <p>采用链式存储的栈称为链式栈：栈中的元素在内存中 <strong>不连续</strong> ，同时每个存储单元中预留一小块位置存放下一个元素的地址，可以认为就是单链表实现。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/image-e5726701d73d445b9e877f565761f47d.png" alt="顺序栈和链式栈"></p>
+<p><img src="/upload/2019/9/image-e5726701d73d445b9e877f565761f47d.png" alt="顺序栈和链式栈"></p>
 <blockquote>
 <p>想了想，实现一个栈并不是很难，在这里放一个实现，文章就有点长了，所以就不放代码了。</p>
 </blockquote>

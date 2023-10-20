@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -141,12 +146,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/JavaScript/" style="color: #00bcd4">JavaScript</a>
+                <a href="/tags/JavaScript/" style="color: #00a596">JavaScript</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ff7d73">前端</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
             </span>
             
         </span>
@@ -167,7 +172,7 @@
 <p>虽然多数人没有接触过编译原理，但有一个东西必定知道，就是markdown语法。实际上，从markdown文件到HTML的过程就包含了词法化的过程。</p>
 <p>那什么是有状态？粗略来讲，就是一个模式匹配的问题，或者可以认为是字符串的匹配：</p>
 <p><em><strong>源串：<code>&quot;str782yui&quot;</code>，待匹配的串：<code>&quot;sj1&quot;</code></strong></em> ，思考一下朴素匹配的算法，我们是要从头开始比较的，那么在每一次比较的时候，就两种状态，字符相同&#x2F;不相同，每接受一个字符，就会走向其中一个状态。</p>
-<p><img src="https://iachieveall.com/upload/2019/10/%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-50b59613131e4c7f873727e96fe66c83.png" alt="朴素模式匹配"></p>
+<p><img src="/upload/2019/10/%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-50b59613131e4c7f873727e96fe66c83.png" alt="朴素模式匹配"></p>
 <p>这就是所谓的状态。当然了，这也只是一种粗浅的比喻，可能会有更好的。</p>
 <p>说句心里话，编译原理是很有用的科目，但是真正学起来的时候还是挺痛苦的。</p>
 <blockquote>

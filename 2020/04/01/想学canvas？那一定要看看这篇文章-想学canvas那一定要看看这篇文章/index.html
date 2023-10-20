@@ -13,19 +13,24 @@
 <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="preconnect" href="https://fonts.loli.net" />
+<link ref="dns-prefetch" href="https://fonts.loli.net" />
 <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<!-- <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" /> -->
+<link rel="stylesheet" href="/css/third-party/css2.css" />
 <script> const mixins = {}; </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default" async></script>
 
 
-<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
+<!-- <script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script> -->
+<script src="/js/third-party/highlight.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<script src="/js/third-party/highlightjs-line-numbers.min.js"></script>
+<!-- <link
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
-/>
+/> -->
+<link rel="stylesheet" href="/css/third-party/github.min.css" />
 <script src="/js/lib/highlight.js"></script>
 
 
@@ -141,7 +146,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/canvas/" style="color: #03a9f4">canvas</a>
+                <a href="/tags/canvas/" style="color: #ffa2c4">canvas</a>
             </span>
             
         </span>
@@ -206,11 +211,11 @@ const context = canvas.getContext(&#39;2d&#39;);
 <li>合成</li>
 <li>其他</li>
 </ol>
-<p><img src="https://iachieveall.com/upload/2020/3/canvas%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B-9fad467b7d9e4deab5767ecb18af4c8b.png" alt="canvas组合示例"></p>
+<p><img src="/upload/2020/3/canvas%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B-9fad467b7d9e4deab5767ecb18af4c8b.png" alt="canvas组合示例"></p>
 <p>在上面这个例子中，包含了矩形，圆形，线，文字及“文字”几大块内容，细讲下去，会涉及到不少API，会使得本文变得很长，而且没有必要，值得一提的是贝塞尔曲线，这是二维图形应用程序的数学曲线，一般的矢量图形软件就是通过它来精确画出曲线的，贝塞尔曲线是计算机图形学中相当重要的参数曲线[^3]。</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%80%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-f3dc4156502b47fcb7997c0519b07bb7.gif" alt="一次贝塞尔曲线"></p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%BA%8C%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-579634ef264e4a5785e0aac4ecbda2a8.gif" alt="二次贝塞尔曲线"></p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif" alt="三次贝塞尔曲线"></p>
+<p><img src="/upload/2020/3/%E4%B8%80%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-f3dc4156502b47fcb7997c0519b07bb7.gif" alt="一次贝塞尔曲线"></p>
+<p><img src="/upload/2020/3/%E4%BA%8C%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-579634ef264e4a5785e0aac4ecbda2a8.gif" alt="二次贝塞尔曲线"></p>
+<p><img src="/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif" alt="三次贝塞尔曲线"></p>
 <p>以上图片按顺序分别是一次贝塞尔曲线，二次贝塞尔曲线，三次贝塞尔曲线。从图中，可以很清楚的看到，一次贝塞尔曲线实际上是一条直线。当然，还有更高阶次的曲线，不过canvas只提供了二次和三次贝塞尔曲线。</p>
 <p>以二次贝塞尔曲线的API为例：</p>
 <pre><code class="javascript">quadraticCurveTo(cp1x, cp1y, x, y);
@@ -241,14 +246,14 @@ cxt.stroke();
 </blockquote>
 <p>“文字”的绘制，注意，这个文字是打了引号的，普通文字，我们绘制只需要调用<code>fillText()</code>即可，而这里所指的文字是<strong>点阵字体</strong>，在单片机或者LCD这类程序中，通过点亮一系列的点，显示出文字或图案，点亮的过程较为复杂，可以简单的理解为LCD上的像素点置为1时点亮该点，为0时不点亮（实际可能相反）。那么canvas这里的“文字”绘制也是一样的道理，通过建立文字对应的字体库，当需要绘制某个文字的时候，在字体库中找到对应的文字点阵，然后将点阵中标志为1的位置点亮（填充）即可。</p>
 <p>实际操作时，可能并不是点亮这么简单，你可能会想要制作出更酷的内容，用圆形去填充，用矩形去填充，甚至说想要制作出动态爆炸的效果，这时候就牵扯到一些其他的计算了。</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E6%97%B6%E9%97%B4-eca9599bb1fc4d0d8556be0e0590886b.jpg" alt="矩形填充"></p>
+<p><img src="/upload/2020/3/%E6%97%B6%E9%97%B4-eca9599bb1fc4d0d8556be0e0590886b.jpg" alt="矩形填充"></p>
 <p>上图是一个用矩形填充的示例，数字对应8x8的点阵。</p>
 <h3 id="canvas的高级动画"><a href="#canvas的高级动画" class="headerlink" title="canvas的高级动画"></a>canvas的高级动画</h3><p>先思考一个问题，假设现在我们已经学会了绘制一个圆形的方法，现在要求做出一个和物理学相关的动画：平抛运动。</p>
 <p>现在该如何去实现呢？</p>
 <p>可能看到这个问题的时候，有些人瞬间懵圈了：我就学了个绘制圆的函数，你就让我模拟这么高难度的动画，你这分明是想谋害郑！</p>
 <p>可能也有人会想到，平抛运动，在高中物理学中学到过，基本都只是研究一个小球的问题，在2维平面中，这小球完全可以视作一个圆，可不就只需要学会画圆就行了？</p>
 <p>经此，我们继续往下思考，在平抛运动中的小球，假设水平方向设有初始速度v0，除了重力外，不受到其他外力影响，也即存在一个重力加速度g（为了计算简单，我们可以简单的设为<code>g = 10m/s^2</code>），同时竖直方向没有初速度vh（或称<code>vh = 0;</code>），如下图：</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png" alt="平抛运动"></p>
+<p><img src="/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png" alt="平抛运动"></p>
 <p>从图中，我们可以看到一些很有意思的现象，如：小球的水平方向刚好和canvas画布的横轴一致，竖直方向也和纵轴方向保持一致。</p>
 <p>然后由平抛运动对应的物理公式：</p>
 <pre><code class="javascript">// 竖直方向无初速度，水平方向没有外力
