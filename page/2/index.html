@@ -1,113 +1,117 @@
 
 <!DOCTYPE html>
-<html lang="zh ">
-
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贪婪的君子 || 我的技术博客</title>
-    <meta name="author" content="z">
-    <meta name="description" content="不忘初心，方得始终 ">
-    <meta name="keywords" content=" ">
-    <link rel="icon" href="/image/profile.webp">
-    <link rel="stylesheet" href="/css/antd.min.css">
-    
-    <link rel="stylesheet" href="/css/full-theme.css">
-    
-    <script src="/js/vue.js"></script>
-    <script src="/js/antd.min.js"></script>
+    <meta charset="utf-8" />
+    <title>贪婪的君子</title>
+    <meta name="author" content="z" />
+    <meta name="description" content="不忘初心，方得始终" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/profile.webp" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
 <meta name="generator" content="Hexo 6.3.0"></head>
-
 <body>
-
-    <div id="loading"
-        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
-        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div
-            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
-            <div id="loadcontent"
-                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
-                <div>
-                    <h2>LOADING...</h2>
-                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
-                    <div>
-                        <img src="/dancingkitty.gif" alt="loading">
-                    </div>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="layout">
-        <transition name="into">
-            <div v-show="show_page" style="display: none;">
-                <div id="menu_show">
-                     
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">贪婪的君子</span>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>贪婪的君子</span>
         </a>
         
         <a href="/">
-            <span>
-                <a-icon type="home" theme="filled" />
-            </span>
-            <span>home</span>
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/archives">
-            <span>
-                <a-icon type="folder" theme="filled" />
-            </span>
-            <span>archives</span>
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
         </a>
         
-    </div>
-
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div :class="'title'" @click="menu_show=!menu_show">
-            <span style="margin-right: 10px;">
-                <a-icon type="appstore" theme="filled" />
-            </span>
-            <span>贪婪的君子</span>
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;贪婪的君子</span>
         </div>
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="home" theme="filled" />
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="folder" theme="filled" />
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
-                </div>
-            </a>
-            
-        </div>
-        <div class="curtain" v-show="menu_show"></div>
-    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
 
-</nav>
-                </div>
-
-                <div id="main">
-                    <div id="home-head" style=background-image:url('bg-girl.webp')>
-    <script>
-        var menu = document.getElementById("menu")
-        menu.className += " menu-color"
-    </script>
-     
-    <div id="home-info" class="home-info" @click="home_click">
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/bg-girl.webp"></div>
+    <div id="home-info" @click="homeClick">
         <span class="loop"></span>
         <span class="loop"></span>
         <span class="loop"></span>
@@ -120,401 +124,96 @@
             </div>
         </span>
     </div>
-     
 </div>
-
-
-
-<div id="home-posts-wrap" class=>
+<div id="home-posts-wrap" true ref="homePostsWrap">
     <div id="home-posts">
-
-        <div id="posts">
-            
+        
 
 <div class="post">
-
-    <a href="/2019/09/05/部份css样式详解(附实际应用)-部份css样式详解(附实际应用)/">
-        <h2>
-            部份css样式详解(附实际应用)
-        </h2>
+    <a href="/2019/09/05/%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)-%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)/">
+        <h2 class="post-title">部份css样式详解(附实际应用)</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端基础">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端基础
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/9/5
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <blockquote>
-<p>本文的所有实例均基于博客园的页面定制。<br>所有表格内容来自W3CSchool。</p>
-</blockquote>
-<h1 id="页面背景（background）"><a href="#页面背景（background）" class="headerlink" title="页面背景（background）"></a>页面背景（background）</h1><p>博客开通之后，很多人最先做的事情一定是改页面的背景，换成一张图片或者换上一个自己喜欢的颜色，这时候用到的就是background属性。</p>
-<p>但是，在什么地方用呢？</p>
-<blockquote>
-<p>所有的html标签都支持这个属性。所以，随便用。</p>
-</blockquote>
-<p>我们经常能看到类似<code>background: #fff;</code>这种使用方式，如果背景是张图片，那可能会看到<code>background: url(&#39;xxx.jpg&#39;);</code>这种使用方式。</p>
-<p>即使没有系统的学过css，仅看这两条代码也能知道前者是在设置背景色，后者则是在设置背景图片。</p>
-<blockquote>
-<p>实际就是选择图片做背景还是选择颜色做背景。</p>
-</blockquote>
-<p>那么现在设置一下博客的背景：</p>
-<pre><code class="css">body &#123;
- background: #FFE4C4;
-&#125;
-</code></pre>
-<p><img src="https://iachieveall.com/upload/2019/9/%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2-f91848167bc844189f0e924fca115840.png" alt="设置背景颜色"><br>颜色确实改变了哈，同理可以设置图像背景。</p>
-<p>我们在浏览器中检查元素（F12），可以看到background实际上是一系列属性的集合</p>
-<p><img src="https://iachieveall.com/upload/2019/9/background%E5%85%A8%E5%AE%B6%E7%A6%8F-2ff9ea362b5049ad801c129df3f6dbce.png" alt="background全家福"></p>
-<p>对于单纯的背景颜色来说，这一系列的属性通常可以无视，对于图像背景，则按需设置这些内容（一般是<code>postion, size, repeat, attachment</code>这几条）。</p>
-<p>这些属性的具体使用方式可以通过手册查找到，这里不再叙述。</p>
-<p>上面换上了背景图像之后，我们使用手机打开，发现图像平铺了（未设置repeat），但是关闭了这条属性，手机浏览器只是居中显示一张图像(在手机上只能看到图像的一部分)，不好看，这显然是违背了我们更改样式的初衷（我们肯定是要美化博客不是）。</p>
-<p>那怎么解决呢？这属于多终端兼容问题，并不是可以通过css就能解决的。可以通过响应式设计来解决。</p>
-<p>负责任的说一句，css其实是可以解决这个问题的，但也只是简单的做一些适应性调整，个人认为这并非是一个很好的解决方案（有些场合可能就足够了，比如这里），解决方法用到的是@media查询。</p>
-<pre><code class="css">@media only screen and (max-width : 480px) &#123;
- body &#123;
-   background: #FFE4C4;
- &#125;  
-&#125;  
-</code></pre>
-<p>再打开手机浏览器就会发现背景不再是图像，而是纯色。这同样可以在电脑上预览。<br><img src="https://iachieveall.com/upload/2019/9/%E8%B0%83%E6%95%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%BD%E5%BA%A6-653656f4011a462892612207196f2399.png" alt="调整浏览器宽度"></p>
-<p>附background的详细属性：</p>
-<table>
-<thead>
-<tr>
-<th align="left">值</th>
-<th align="left">描述</th>
-<th align="left">CSS标准支持</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">background-color</td>
-<td align="left">规定要使用的背景颜色。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">background-position</td>
-<td align="left">规定背景图像的位置。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">background-size</td>
-<td align="left">规定背景图片的尺寸。</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">background-repeat</td>
-<td align="left">规定如何重复背景图像。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">background-origin</td>
-<td align="left">规定背景图片的定位区域。</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">background-clip</td>
-<td align="left">规定背景的绘制区域。</td>
-<td align="left">3</td>
-</tr>
-<tr>
-<td align="left">background-attachment</td>
-<td align="left">规定背景图像是否固定或者随着页面的其余部分滚动。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">background-image</td>
-<td align="left">规定要使用的背景图像。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">inherit</td>
-<td align="left">规定应该从父元素继承 background 属性的设置。</td>
-<td align="left">1</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>建议使用background属性，而不是使用表中的单条属性。</p>
-</blockquote>
-<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><blockquote>
-<p>注意，是伪元素，而不是伪类。<br>伪元素针对元素的特定内容进行操作，伪类则是选择元素当前的状态。<br>关于伪元素和伪类的区别，可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ihardcoder/p/5294927.html">寒月十八的文章</a></p>
-</blockquote>
-<p>现在我想在公告栏加一段文字，应该怎么做，如果有js权限，那么可以通过：</p>
-<pre><code class="js">var boardcast = document.getElementById(&#39;#blog-news&#39;);
-boardcast.before = &quot;something&quot;;
-boardcast.after = &#39;something&#39;;
-</code></pre>
-<p>但是为了加个固定的内容去申请js权限，显然是大材小用了，我们完全可以通过伪元素<code>:before</code>和<code>:after</code>来实现。</p>
-<blockquote>
-<p>css3的标准规定伪元素是以双冒号开头的，但是部分浏览器（如IE8）并不兼容，所以也依然支持单冒号的写法，为了向后兼容，咱也得写成单冒号开头的形式。在浏览器的控制台中，可以看到对应的标签后有一个<code>::before</code>。</p>
-</blockquote>
-<p>具体为：</p>
-<pre><code class="css">div#blog-news:before &#123;
-    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
-&#125;
-
-div#blog-news:after &#123;
-    content: &quot;粉丝好少，我好伤心&quot;;
-&#125;
-</code></pre>
-<p><img src="https://iachieveall.com/upload/2019/9/%E4%BC%AA%E5%85%83%E7%B4%A0before-e117d1b99b68444bb183c569798cc380.png" alt="伪元素before"></p>
-<p>这样一波操作，显然更简单，而且你会发现一个附加功用（是好是坏得自己判断），这个内容在网页内是不可选中的，但依旧可以通过浏览器的控制台找到该内容。</p>
-<p>比js操作更方便的是，通过css，我们可以直接对这个content设定样式。</p>
-<pre><code class="css">div#blog-news:before &#123;
-    content: &quot;我是一名君子，但这并不影响我贪婪的本性;我对技术着迷，我喜欢数学，我贪婪的汲取着所有知识&quot;;
-    font-size: 16px;
-    color: rebeccapurple;
-&#125;
-</code></pre>
-<blockquote>
-<p>这个还是有局限的，content中的内容只会被解析成字符串，即使有HTML标签，也会被当成字符串显示。<br>原因是，<em><strong>css并不能改变DOM树</strong></em></p>
-</blockquote>
-<p>这里列出几个比较常用的伪元素：</p>
-<table>
-<thead>
-<tr>
-<th align="left">伪元素</th>
-<th align="left">描述</th>
-<th align="left">CSS标准支持</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">:before</td>
-<td align="left">在某个元素之前插入内容。</td>
-<td align="left">2</td>
-</tr>
-<tr>
-<td align="left">:after</td>
-<td align="left">在某个元素之后插入内容。</td>
-<td align="left">2</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>知道这个之后，可能就会有人有些想法了，这个粉丝数啥的是不是也能改呢？嘿嘿。确实能改，有了js权限更好改，但是这完全就是欺骗自己，没啥必要的&#x3D;。&#x3D;</p>
-</blockquote>
-<h1 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h1><p>我发现SimpleMemory模板的标题动画不太合我的口味，我鼠标放上去不能向右移，我想让他放大，这得改改。</p>
-<p>鼠标放上去，这是一个状态，在上一节提到，<strong>伪类是选择元素当前的状态</strong>。</p>
-<p>那么，我就可以根据当前元素的状态来应用不同的样式了。</p>
-<pre><code class="css">.postTitle a:hover &#123;
-    margin-left: 0px;
-    color: #0f3647;
-    text-decoration: underline;
-    font-size: 25px;
-&#125;
-</code></pre>
-<p>但是这么做完之后，放大的速度有点慢，原因是什么？因为模板中设置了<code>transition: all 0.1s linear 0s;</code>，这是设置过渡效果的。</p>
-<p>如果不设置这个属性，那么就不会有过渡效果。</p>
-<blockquote>
-<p>transition属性属于css3标准，所以低版本浏览器（IE8）是不兼容的。</p>
-</blockquote>
-<p>这里列出部分出现次数最多的伪类：</p>
-<table>
-<thead>
-<tr>
-<th align="left">伪类</th>
-<th align="left">描述</th>
-<th align="left">CSS标准支持</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">:active</td>
-<td align="left">向被激活的元素添加样式。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">:focus</td>
-<td align="left">向拥有键盘输入焦点的元素添加样式。</td>
-<td align="left">2</td>
-</tr>
-<tr>
-<td align="left">:hover</td>
-<td align="left">当鼠标悬浮在元素上方时，向元素添加样式。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">:link</td>
-<td align="left">向未被访问的链接添加样式。</td>
-<td align="left">1</td>
-</tr>
-<tr>
-<td align="left">:visited</td>
-<td align="left">向已被访问的链接添加样式。</td>
-<td align="left">1</td>
-</tr>
-</tbody></table>
-<h1 id="锚点、定位"><a href="#锚点、定位" class="headerlink" title="锚点、定位"></a>锚点、定位</h1><p>博客主页看上去基本没啥要改的了，那点进博文看看。</p>
-<p>不错不错，也挺好，不过貌似缺点儿啥？</p>
-<p>是目录！</p>
-<p>虽然内置的有目录，但是这并不酷，而且用处好少，往下翻翻，这个目录就没了。怎么才能像别的网站那样右下角一直有个目录呢？</p>
-<p>申请js权限之前，让我先想想css能不能做，毕竟js建个目录也挺复杂的。</p>
-<p>这时候就顺势想到博文中已存在的目录，能不能对它操作呢？</p>
-<p>找到这个目录结点，设置如下样式：</p>
-<pre><code class="css">div[class=&#39;toc&#39;] &#123;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-&#125;
-</code></pre>
-<p>发现目录出现在了右下角，而且是固定在这里，不乱跑的。</p>
-<blockquote>
-<p>不过有点小问题，就是在手机之类的小屏幕上，这个目录可能就有点……但也可以通过上面提到过的@media来取消这里设定的样式。</p>
-</blockquote>
-<p>这段css代码里面出现了一些以前没见过的东西，咱先看看position。</p>
-<p>position有五种可能值，详细如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">值</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">absolute</td>
-<td align="left">生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
-</tr>
-<tr>
-<td align="left">fixed</td>
-<td align="left">生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
-</tr>
-<tr>
-<td align="left">relative</td>
-<td align="left">生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</td>
-</tr>
-<tr>
-<td align="left">static</td>
-<td align="left">默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</td>
-</tr>
-<tr>
-<td align="left">inherit</td>
-<td align="left">规定应该从父元素继承 position 属性的值。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p> CSS3标准中新增了一个sticky:粘性定位<br><br>一般说定位的时候，都是在说前面三种<br><br>position: 绝对定位<br><br>relative: 相对定位<br><br>fixed: 固定定位</p>
-</blockquote>
-<p>看完这张表可能也不能完全理解absolute和relative。</p>
-<p>没有理解，其实主要是没懂文档流，上面表格的内容主要就是说文档流的问题，设置为absolute的元素会脱离文档流，设置为relative的元素不会脱离文档流，设置为fixed的元素会脱离文档流。</p>
-<blockquote>
-<p>在float属性也有脱离文档流的说法。</p>
-</blockquote>
-<p>接下来我们要回答下面的问题：</p>
-<ol>
-<li>文档流是什么？</li>
-</ol>
-<blockquote>
-<p>标准的说法是，将网页划分成多行，每行从左到右排列html元素。</p>
-</blockquote>
-<ol start="2">
-<li>脱离文档流去了哪里？</li>
-</ol>
-<blockquote>
-<p>标准的说法是，在离开当前层次，放置在另一层上。</p>
-</blockquote>
-<p>其实简单说来，我们可以以地面-天空两层模型来理解，当前网页的文档流是地面（脚踏实地），脱离文档流那就是上天了（飘了）。</p>
-<blockquote>
-<p>这个例子不好，但是理解起来非常容易，当了解了层布局模型的时候，会对文档流有一个更深入的认识，而这时候可以选择 <strong>横条笔记本-便利贴</strong> 模型，以笔记本的某一页作为当前文档流（你现在在这一页做笔记），当你觉得要做的某条笔记不应该放在当前页，也不应该放在下一页上，往往这时候你会撕下一页便利贴，粘在当前页的某处，这就是脱离了当前文档流，其内部有自己的布局。若在这张便利贴上再贴一张便利贴，那么这张便利贴就相对其父元素（上一张便利贴）定位。<br><br>带着这条内容去看层模型，一定会有所获。</p>
-</blockquote>
-<p>回到本节开头所附的代码，我们设定了文章目录所在的元素为固定定位，所以它脱离了当前的文档流，飘了。但被固定在了右下角（相对浏览器窗口定位）。</p>
-<blockquote>
-<p>就像放风筝，风筝虽然飘在天上，但放风筝的人是抓着线不让风筝乱飞的。</p>
-</blockquote>
-<p>以上是定位的内容。</p>
-<p>另外出现的<code>div[class=&#39;toc&#39;]</code>是选择器的内容，匹配时，它要先匹配div标签，其次匹配class为toc的标签，可以做到精确匹配。</p>
-<p>关于选择器，这里不展开说，因为关于选择器的内容，已经有很多很好的文章了，再讲，也很难跳出这个圈。</p>
-<blockquote>
-<p>提醒一点，选择器的内容，一定要和优先级的内容一起看。</p>
-</blockquote>
+            <p>本文的所有实例均基于博客园的页面定制。所有表格内容来自W3CSchool。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00bcd4>
-                前端开发
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ffa2c4">前端开发</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/css" style=color:#ffa2c4>
-                css
-            </a>
+            <a href="/tags/css/" style="color: #00bcd4">css</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端基础" style=color:#ff7d73>
-                前端基础
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #ffa2c4">前端基础</a>
         </span>
         
     </div>
-
-    <a href="/2019/09/05/部份css样式详解(附实际应用)-部份css样式详解(附实际应用)/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2019/09/05/%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)-%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2019/09/05/TypeScript中使用getElementXXX()-TypeScript中使用getElementXXX()/">
-        <h2>
-            TypeScript中使用getElementXXX()
-        </h2>
+    <a href="/2019/09/05/TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()-TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()/">
+        <h2 class="post-title">TypeScript中使用getElementXXX()</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端框架">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端框架
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/9/5
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
-            
             
             <blockquote>
 <p>如果只是看解决方法，可以直接跳到第二小节</p>
@@ -595,369 +294,198 @@ export class Some implements OnInit &#123;
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00a596>
-                前端开发
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/TypeScript" style=color:#00bcd4>
-                TypeScript
-            </a>
+            <a href="/tags/TypeScript/" style="color: #ffa2c4">TypeScript</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/angular" style=color:#03a9f4>
-                angular
-            </a>
+            <a href="/tags/angular/" style="color: #03a9f4">angular</a>
         </span>
         
     </div>
-
-    <a href="/2019/09/05/TypeScript中使用getElementXXX()-TypeScript中使用getElementXXX()/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2019/09/05/TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()-TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2019/09/05/css或Angular框架限制文本字数-css或Angular框架限制文本字数/">
-        <h2>
-            css或Angular框架限制文本字数
-        </h2>
+    <a href="/2019/09/05/css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0-css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0/">
+        <h2 class="post-title">css或Angular框架限制文本字数</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端框架">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端框架
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/9/5
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h1 id="提需求的来了"><a href="#提需求的来了" class="headerlink" title="提需求的来了"></a>提需求的来了</h1><p><img src="https://iachieveall.com/upload/2019/9/%E6%8F%90%E9%9C%80%E6%B1%82%E7%9A%84%E6%9D%A5%E4%BA%86-47fe072a503e4975bef75005a1abee02.jpg" alt="提需求的来了"></p>
-<p>某一期产品迭代时，新增了一个小功能，即：在单元格中的文本内容，字符超过20个字的时候，需要截断，并显示20个字符+一个省略号，未超过，无视。</p>
-<p>这需求看上去不怎么复杂，看起来可以用css做（写css写魔怔了，啥都想往这上面靠拢），那先搜一下，字还没打完，就有提示“css限制显示字数，文字长度超出部分用省略号表示”，哎哟我c，这下不就简单了吗？</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E5%A6%99%E5%95%8A-84ff164c816c49dfb6ff359b65a56440.jpg" alt="妙啊"></p>
-<h1 id="接受挑战"><a href="#接受挑战" class="headerlink" title="接受挑战"></a>接受挑战</h1><p>于是按照其他人的解决方案，对单元格样式增加了如下内容：</p>
-<pre><code class="css">/* td的上级和同级标签都用element表示 */
-element element&gt;td &#123;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-&#125;
-</code></pre>
-<p><img src="https://iachieveall.com/upload/2019/9/%E5%AE%8C%E7%BE%8E-17094e9241c2479f9038a7236bb1785e.jpg" alt="完美"></p>
-<table>
-<thead>
-<tr>
-<th align="left">姓名</th>
-<th align="left">爱好</th>
-<th align="left">个人介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">君子</td>
-<td align="left">音乐</td>
-<td align="left">我是一个君子，所谓窈窕淑女，我所欲也，怎样，姑娘加个微信可好？</td>
-</tr>
-<tr>
-<td align="left">贪婪</td>
-<td align="left">数钱</td>
-<td align="left">我是七宗罪中的贪婪，但好像我有点不太对劲，因为贪婪不应该只是对钱吧？</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>可以在这个表格上尝试，但是由于这个是markdown生成的表格，所以有些样式需要自己去改一下，下面的图片是我在w3cSchool中随便找了个表格改的样式。</p>
-</blockquote>
-<p>搞定收工，看下结果准备收拾东西回家……</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E6%93%8D%E4%BD%9C%E8%A1%A8%E6%A0%BC-aee79415270b4e8b97b5cc8c80938578.png" alt="操作表格"></p>
-<p>但是，这单元格怎么高度不对啊，而且显示的内容也不对。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E4%BB%80%E4%B9%88%E7%8E%A9%E6%84%8F%E5%84%BF-33f1de7c561d475b8c6face81e31889a.jpg" alt="什么玩意儿"></p>
-<p>我陷入了沉思……</p>
-<p>于是在浏览器中的控制台增增减减以下几项内容：text-overflow，overflow，width，height，max-xxx，padding，margin……<br>但是发现木啥用，再度陷入沉思。</p>
-<p>这时候我又回头看那些博客记录的内容，发现清一色都是用的p标签，没有用到其他的标签，想了想，也许是这个问题？于是换成了p标签，然后加上上述代码（以及一个margin:0），发现显示的确实成功截断并显示内容了。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E6%B7%BB%E5%8A%A0p%E6%A0%87%E7%AD%BE%E5%90%8E-48a7a67bf4e3493fa779aa7822afc631.png" alt="操作表格"></p>
-<blockquote>
-<p>这里注意，如果td中增加的是一个div标签，那么也不能够显示预期结果，如果对其增加一个属性<code>white-space: nowrap;</code>消去换行，以单行形式显示，那么也可以实现字符截断。</p>
-</blockquote>
-<p>但是这时候又发现了一个问题，截断的长度貌似不好控制，如果仅仅只是汉字，那么可以用<code>width: 20em</code>或者<code>width: 10em</code>（两行显示），但显然，在使用英文的时候，这个属性就不可用了。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E5%B9%B6%E4%B8%8D%E7%AE%80%E5%8D%95-df05f1de25ad416bbca3441803edb471.jpg" alt="并不简单"></p>
-<p>于是换一种思路。</p>
-<blockquote>
-<p>后文以angular框架为例来讨论这个问题</p>
-</blockquote>
-<p>文本字符数&gt;&#x3D;20的时候截断并显示对吧？那这个文本是哪里来的？</p>
-<blockquote>
-<p>响应式嘛，那肯定是有绑定数据的。你说直接写在标签中的文本你怎么改？拿头改……不对，这种情况不就是DOM操作嘛，可以用原生js或者jQuery来完成，但在一个框架中使用原生js有时候就是在舍近求远（不是舍本逐末，js才是本）</p>
-</blockquote>
-<pre><code class="html">&lt;table&gt;
-  &lt;thead&gt;
-    &lt;th *ngFor=&quot;let label of labelList&quot;&gt;&#123;&#123; label &#125;&#125;&lt;/th&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;td *ngFor=&quot;let item of list&quot;&gt;&#123;&#123; item | clip &#125;&#125;&lt;/td&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-</code></pre>
-<pre><code class="js">@Pipe(&#123; &#39;name&#39;: &#39;clip&#39;&#125;)
-export class clipPipe implements PipeTransform &#123;
-  transform(val: string) &#123;
-    if (val &gt; 20) return val.slice(0, 20) + &#39;...&#39;;
-    return val;
-  &#125;
-&#125;
-</code></pre>
-<p>通过管道的方式，我们可以直接输出截断后的数据，当然也有其他方式，但是我也没有想到其他比较好的方法。</p>
-<blockquote>
-<p>如果你有好的方法，可以留言评论，我尝试一下，嘿嘿</p>
-</blockquote>
-<p><img src="https://iachieveall.com/upload/2019/9/%E9%9A%BE%E8%BF%87-005c678c51044e45b1f65353bc801233.png" alt="难过"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>有时候我们考虑问题的时候会陷入牛角尖，觉得只能从某个方向解决。</p>
-<p>这时候可以先把问题放一下，看看窗外的风景，或者发会呆，平复一下心情，然后再去思考有没有其他的方式去解决我手上的这个问题。</p>
-<p>发散思维嘛。</p>
+            <p>如题</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00a596>
-                前端开发
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/angular" style=color:#ffa2c4>
-                angular
-            </a>
+            <a href="/tags/angular/" style="color: #00a596">angular</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/css" style=color:#00bcd4>
-                css
-            </a>
+            <a href="/tags/css/" style="color: #00bcd4">css</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/JavaScript" style=color:#00bcd4>
-                JavaScript
-            </a>
+            <a href="/tags/JavaScript/" style="color: #ff7d73">JavaScript</a>
         </span>
         
     </div>
+    <a href="/2019/09/05/css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0-css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0/" class="go-post">阅读全文</a>
+</div>
 
-    <a href="/2019/09/05/css或Angular框架限制文本字数-css或Angular框架限制文本字数/ " class="go-post">
-        阅读全文
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
     </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    
+    
+    
 </div>
 
-
-             
-<div class="page-current">
-
-    <div class="prev">
-        
-        <a href="/">
-            <span class="page-num">
-                <a-icon type="caret-left" theme="filled" />
-            </span>
-        </a>
-        
-    </div>
-
-    <div class="page-index">
-
-        
-        <span>
-
-            
-
-            
-            <a href="/">
-                <span class="page-num">
-                    1
-                </span>
-            </a>
-        </span>
-        
-
-        <span class="current">
-            2
-        </span>
-
-        
-
-    </div>
-
-    <div class="next">
-        
-    </div>
-
-</div>
-
-        </div>
     </div>
     
     <div id="home-card">
-        <a-affix :offset-top="card_top">
-    <a-card class="card-style" style="width: 300px">
+        <div id="card-style">
+    <div id="card-div">
         <div class="avatar">
-            <img src="image/profile.webp " alt="头像">
+            <img src="/images/profile.webp" alt="avatar" />
         </div>
-        <div class="name">
-            z
+        <div class="name">z</div>
+        <div class="description">
+            <p>不积跬步，无以至千里</p>
+
         </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                光芒万丈
-            </div>
-            
-        </div>
+        
         <div class="icon-links">
             
             <span class="icon-link">
                 <a target="_blank" rel="noopener" href="https://github.com/ai977313677">
-
-                    
-                    <a-icon type="github"
-                        theme="filled" />
-                    
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
                 </a>
             </span>
             
             <span class="icon-link">
                 <a target="_blank" rel="noopener" href="https://space.bilibili.com/20090830">
-
-                    
-                    <a-icon type="youtube"
-                        theme="" />
-                    
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
                 </a>
             </span>
             
         </div>
+        
+        
         <div class="friend-links">
             
             <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/keepsmart/">
-                    博客园
-                </a>
+                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/keepsmart/">博客园</a>
             </div>
             
         </div>
-    </a-card>
-</a-affix>
+        
+    </div>
+</div>
+
     </div>
     
 </div>
-                     
-<footer id="footer">
-    <div class="footer-wrap">
+
+            <footer id="footer">
+    <div id="footer-wrap">
         <div>
-            © 2018 - 2023 贪婪的君子
-            <span class="footer-icon">
-                <a-icon type="flag" theme="filled" /></span>
-            @z
+            &copy;
+            2015 - 2023 贪婪的君子
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;z
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+        <div>
+            备案号：
+            
+            <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/recordQuery">京ICP备19039964号-1</a>
+            
+        </div>
         
     </div>
-
 </footer>
 
-<script src="/js/highlight.min.js"></script>
-<script src="/js/particle.js"></script>
-                </div>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
             </div>
         </transition>
+        
     </div>
-
-    <script>
-    new Vue({
-        el: "#layout",
-        data: {
-            show_page: false,
-            onload_menu: false,
-            menu_show: false,
-            card_top: 100
-        },
-        created: function () {
-            var that = this
-            window.onload = function () {
-                that.show_page = true
-                document.getElementById("loadcontent").style.opacity = 0
-                setTimeout(function () {
-                    document.getElementById("loadleft").style.width = 0
-                    document.getElementById("loadright").style.width = 0
-                }, 300)
-                setTimeout(function () {
-                    document.getElementById("loading").style = "display:none"
-                }, 600)
-            }
-        },
-        mounted: function () {
-            var that = this
-            window.addEventListener('scroll', function (e) {
-                that.menu_show = false
-            })
-        },
-        methods: {
-            home_click: function () {
-                window.scrollTo({
-                    top: window.innerHeight - 80,
-                    behavior: "smooth",
-                });
-            }
-        }
-    })
-</script>
-
+    <script src="/js/main.js"></script>
+    
 </body>
-
 </html>

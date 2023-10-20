@@ -1,113 +1,117 @@
 
 <!DOCTYPE html>
-<html lang="zh ">
-
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贪婪的君子 || 我的技术博客</title>
-    <meta name="author" content="z">
-    <meta name="description" content="不忘初心，方得始终 ">
-    <meta name="keywords" content=" ">
-    <link rel="icon" href="/image/profile.webp">
-    <link rel="stylesheet" href="/css/antd.min.css">
-    
-    <link rel="stylesheet" href="/css/full-theme.css">
-    
-    <script src="/js/vue.js"></script>
-    <script src="/js/antd.min.js"></script>
+    <meta charset="utf-8" />
+    <title>贪婪的君子</title>
+    <meta name="author" content="z" />
+    <meta name="description" content="不忘初心，方得始终" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/profile.webp" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
 <meta name="generator" content="Hexo 6.3.0"></head>
-
 <body>
-
-    <div id="loading"
-        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
-        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div
-            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
-            <div id="loadcontent"
-                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
-                <div>
-                    <h2>LOADING...</h2>
-                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
-                    <div>
-                        <img src="/dancingkitty.gif" alt="loading">
-                    </div>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="layout">
-        <transition name="into">
-            <div v-show="show_page" style="display: none;">
-                <div id="menu_show">
-                     
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">贪婪的君子</span>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>贪婪的君子</span>
         </a>
         
         <a href="/">
-            <span>
-                <a-icon type="home" theme="filled" />
-            </span>
-            <span>home</span>
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/archives">
-            <span>
-                <a-icon type="folder" theme="filled" />
-            </span>
-            <span>archives</span>
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
         </a>
         
-    </div>
-
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div :class="'title'" @click="menu_show=!menu_show">
-            <span style="margin-right: 10px;">
-                <a-icon type="appstore" theme="filled" />
-            </span>
-            <span>贪婪的君子</span>
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;贪婪的君子</span>
         </div>
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="home" theme="filled" />
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="folder" theme="filled" />
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
-                </div>
-            </a>
-            
-        </div>
-        <div class="curtain" v-show="menu_show"></div>
-    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
 
-</nav>
-                </div>
-
-                <div id="main">
-                    <div id="home-head" style=background-image:url('bg-girl.webp')>
-    <script>
-        var menu = document.getElementById("menu")
-        menu.className += " menu-color"
-    </script>
-     
-    <div id="home-info" class="home-info" @click="home_click">
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/bg-girl.webp"></div>
+    <div id="home-info" @click="homeClick">
         <span class="loop"></span>
         <span class="loop"></span>
         <span class="loop"></span>
@@ -120,1858 +124,697 @@
             </div>
         </span>
     </div>
-     
 </div>
-
-
-
-<div id="home-posts-wrap" class=>
+<div id="home-posts-wrap" true ref="homePostsWrap">
     <div id="home-posts">
-
-        <div id="posts">
-            
+        
 
 <div class="post">
-
-    <a href="/2022/03/14/浅浅的聊一下 WebSocket-qian-qian-de-liao-yi-xia-websocket/">
-        <h2>
-            浅浅的聊一下 WebSocket
-        </h2>
+    <a href="/2022/03/14/%E6%B5%85%E6%B5%85%E7%9A%84%E8%81%8A%E4%B8%80%E4%B8%8B%20WebSocket-qian-qian-de-liao-yi-xia-websocket/">
+        <h2 class="post-title">浅浅的聊一下 WebSocket</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端基础">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端基础
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2022/3/14
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h1 id="浅浅的聊一下-WebSocket"><a href="#浅浅的聊一下-WebSocket" class="headerlink" title="浅浅的聊一下 WebSocket"></a>浅浅的聊一下 WebSocket</h1><blockquote>
-<p>第一次看到 <code>ws://</code> 和 <code>wss://</code> 时候，感觉好高级啊，还有这种协议。</p>
-</blockquote>
-<h2 id="Websocket-历史"><a href="#Websocket-历史" class="headerlink" title="Websocket 历史"></a>Websocket 历史</h2><p>WebSocket是在2008年6月诞生的1。经由IEFT标准化后，2009年chrome 4第一个提供了该标准支持，并默认启用。于2011年由IEFT标准化为<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a>。</p>
-<p>现在的浏览器均已支持该标准。</p>
-<h2 id="Websocket-出现的背景"><a href="#Websocket-出现的背景" class="headerlink" title="Websocket 出现的背景"></a>Websocket 出现的背景</h2><p>思考一下我们经常遇到的一种需求场景，要求在某个网页下，网页的内容可以实时更新。</p>
-<p>这种情况下，最大众化的方式就是轮询接口了，即通过定时器，定时请求接口，获取到最新的信息后，将内容更新到页面中，如下：</p>
-<pre><code>setInterval(() =&gt; &#123;
-  queryAPI().then(() =&gt; update());
-&#125;, 1000);
-</code></pre>
-<p>但是我们知道，这种定时器的延时并不是很精确，而且加上接口的请求时延，实际时间可能不止代码中所预先设定的时间长度，所以这种实时更新是伪实时更新。</p>
-<p>除此之外，还有一点可能会经常遇到，即，我们更新信息并总是要更新整个页面上所有可以看到的信息，我们更关注一些经常变化的信息，比如状态，状态的信息可能大小只有几个字节，但是我们轮询接口拿到的信息却是这个页面的所有信息，大小自然不只几个字节，但是除状态以外的信息都可以视作是冗余的。</p>
-<p><img src="https://iachieveall.com/upload/2022/03/image-20220314151620372-082384e5f02c4e61b18d8217cf4ef65b.png" alt="状态"></p>
-<p>我们实际只需要一个字段，而且即使后端提供只返回状态的接口，但实际在一个请求中还要计算ip报文头的大小，依旧是很占用带宽的。</p>
-<p>轮询这种解决方案目前依旧是非常流行，最新的轮询技术是Comet，这种技术虽然可以实现双向通信，但仍然需要反复发出请求。而且在Comet中普遍采用的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E9%93%BE%E6%8E%A5">HTTP长连接</a>也会消耗服务器资源2。</p>
-<h2 id="Websocket通信模式"><a href="#Websocket通信模式" class="headerlink" title="Websocket通信模式"></a>Websocket通信模式</h2><p>了解网络的都知道，数据传输分为单工、半双工、全双工三种工作模式。</p>
-<p>Websocket是基于TCP的，使用全双工通信模式的协议，他使得客户端和服务端之间的数据交换变得更简单。而且，作为一个工作在全双工模式下的协议，服务端可以在建立连接后随时向客户端推送消息。</p>
-<p>由于协议是基于TCP的，所以websocket也是需要建连和关闭连接的，但要注意的是，一般在websocket的握手通常指的是：客户端发送一个http请求到服务端，服务端响应后标志这个链接建立起来。而不是指tcp的三次握手。</p>
-<p>另外在<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a> 1.1节「Background」中介绍：WebSocket通过HTTP端口的80和443进行工作，并支持HTTP代理和中介。</p>
-<blockquote>
-<p>原文：<em><strong>it is designed to work over HTTP ports 80 and 443 as well as to support HTTP proxies and intermediaries</strong></em></p>
-</blockquote>
-<p>为了实现和HTTP的兼容性，WebSocket握手使用HTTP的Upgrade头将HTTP协议转换成Websocket协议。</p>
-<p>作为一种协议，websocket自然也是有其用于<strong>协议控制</strong>的头部信息的，但是相对于HTTP请求每次都要带上完整的头部信息，传输数据时，websocket数据包的头部信息就相对较小，从而降低了控制开销。</p>
-<p>相对于前文所提到的轮询接口，websocket可以做到服务端直接向客户端传输数据，省去了客户端发起请求的步骤，同时没有间隔时间，只要服务端内容变化，就可以告知客户端，实时性上有了很大的提高。</p>
-<h2 id="Websocket-使用"><a href="#Websocket-使用" class="headerlink" title="Websocket 使用"></a>Websocket 使用</h2><p>WebSocket使用十分简单，只需要关注以下API：</p>
-<ol>
-<li><code>WebSocket(url[, protocol])</code> 构造函数</li>
-</ol>
-<p>使用 <code>new WebSocket(xxx)</code> 创建对象时，会同时建立与服务器的连接</p>
-<p><img src="https://iachieveall.com/upload/2022/03/image-20220314180647955-7f70842cbce141d8869a3d8167fedb38.png" alt="ws"></p>
-<ol start="2">
-<li><code>WebSocket.onopen</code> , <code>WebSocket.onclose</code></li>
-</ol>
-<p>分别对应连接成功、失败时的回调，这里可以做一些初始化、销毁的工作</p>
-<ol start="3">
-<li><code>WebSocket.onmessage</code></li>
-</ol>
-<p>实际处理数据是用的该函数</p>
-<blockquote>
-<p>在数据处理完成后，需要移除回调函数，不然可能会影响到其他地方的处理</p>
-</blockquote>
-<pre><code>const ws = new WebSocket(&#39;ws://sdf.com&#39;);
-function handleData(evt) &#123;
-  // handle server data.
-&#125;
-ws.onmessage = handleData;
-ws.addEventListener(&#39;message&#39;, handleData);
-</code></pre>
-<ol start="4">
-<li><code>WebSocket.send</code></li>
-</ol>
-<p>主动向服务端发送消息，可以通过send和onmessage进行数据互动，如：</p>
-<pre><code>ws.send(&#39;list&#39;);
-​
-ws.onmessage = evt =&gt; &#123;
-  const data = evt.data;
-  if (data === &#39;hello&#39;) &#123;
-    console.log(&#39;world&#39;);
-    return ;
-  &#125;
-  try &#123;
-    const obj = JSON.parse(data);
-    switch (obj.type) &#123;
-      case &#39;list&#39;:
-        // do something.
-    &#125;
-  &#125; catch (ex) &#123;&#125;
-&#125;
-</code></pre>
-<ol start="5">
-<li><code>WebSocket.close</code></li>
-</ol>
-<p>关闭连接</p>
-<blockquote>
-<p>Node服务端的实现，这个就参考相关的库吧，比较复杂。</p>
-</blockquote>
-<h2 id="衍生知识"><a href="#衍生知识" class="headerlink" title="衍生知识"></a>衍生知识</h2><p>http协议至今，主要经历了三个版本。</p>
-<ul>
-<li><p>http1.0 短连接，单工通信</p>
-<ul>
-<li>http&#x2F;1.0默认的模型是短连接，每个HTTP请求都由他自己独立完成，下图左1，可以看到每一个http请求都对应了一个建立连接关闭连接的阶段，每一个请求都有TCP握手和挥手的阶段。</li>
-<li>在这个模型下，想要做到实时更新页面数据，只能考虑轮询。</li>
-</ul>
-</li>
-</ul>
-<!---->
-
-<ul>
-<li><p>http1.1 支持长链接，半双工通信</p>
-<ul>
-<li>1.0之后的版本，1.1会让某个连接保持一定的时间，在这段时间里重复发送一系列请求（下图左2），就是保活。</li>
-</ul>
-</li>
-</ul>
-<!---->
-
-<ul>
-<li>http2.0 支持多路复用，全双工通信</li>
-</ul>
-<p><img src="/../upload/2022/03/http%E9%80%9A%E4%BF%A1.png" alt="Compares the performance of the three HTTP/1.x connection models: short-lived connections, persistent connections, and HTTP pipelining."></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]  <a target="_blank" rel="noopener" href="https://lists.w3.org/Archives/Public/public-whatwg-archive/2008Jun/0165.html">[whatwg] TCPConnection feedback</a></p>
-<p>[2]  <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/WebSocket">wiki</a></p>
-<p>[3]  <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a></p>
-<p>[4]  <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/05/websocket.html">Websocket教程</a></p>
-<p>[5]  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Connection_management_in_HTTP_1.x">HTTP1.x连接管理</a></p>
+            <p>WebSocket是在2008年6月诞生的1。经由IEFT标准化后，2009年chrome 4第一个提供了该标准支持，并默认启用。于2011年由IEFT标准化为<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6455">RFC 6455</a>。第一次看到 <code>ws://</code> 和 <code>wss://</code> 时候，感觉好高级啊，还有这种协议。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#00bcd4>
-                前端开发
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00a596">前端开发</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#00a596>
-                前端
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/思考" style=color:#00a596>
-                思考
-            </a>
+            <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #03a9f4">思考</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端基础" style=color:#00a596>
-                前端基础
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #00bcd4">前端基础</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/websocket" style=color:#ffa2c4>
-                websocket
-            </a>
+            <a href="/tags/websocket/" style="color: #00a596">websocket</a>
         </span>
         
     </div>
-
-    <a href="/2022/03/14/浅浅的聊一下 WebSocket-qian-qian-de-liao-yi-xia-websocket/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2022/03/14/%E6%B5%85%E6%B5%85%E7%9A%84%E8%81%8A%E4%B8%80%E4%B8%8B%20WebSocket-qian-qian-de-liao-yi-xia-websocket/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2021/05/30/浅谈前端水印-浅谈前端水印/">
-        <h2>
-            浅谈前端水印
-        </h2>
+    <a href="/2021/05/30/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0-%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0/">
+        <h2 class="post-title">浅谈前端水印</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/学习笔记">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 学习笔记
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2021/5/30
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <blockquote>
-<p>又是一个有关安全的问题。</p>
-</blockquote>
-<p>一般情况下，我们说的水印是指图片角落上的平台用户名水印。类似于下方图片上的这种，通常只要将图片上传到平台上，平台就会在图片上嵌入水印，当然，有些平台也会提供设置是否需要显示这种水印的开关，或者设置保存的时候才会加上水印。</p>
-<p><img src="https://iachieveall.com/upload/2021/05/image-95d521dbc5ca4471a28e78173c15d99a.png" alt="image.png"></p>
-<h1 id="明水印"><a href="#明水印" class="headerlink" title="明水印"></a>明水印</h1><p>这种水印的实现其实是比较简单的，就是将两张图片合成一张，或者是直接在原图上绘制内容就行了：<br>html代码</p>
-<pre><code class="html">&lt;img id=&quot;pic&quot; src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3c3c98ebfce4ae28db981dfabedc1d8~tplv-k3u1fbpfcp-zoom-1.image&quot; alt=&quot;原始图片&quot; height=&quot;500&quot; crossorigin=&quot;anonymous&quot;&gt;
-&lt;div&gt;Photo by Claudio Schwarz | @purzlbaum on Unsplash&lt;/div&gt;
-</code></pre>
-<p>JavaScript代码</p>
-<pre><code>window.onload = () =&gt; &#123;
-    const pic = document.querySelector(&#39;#pic&#39;);
-    const canvasNode = document.createElement(&#39;canvas&#39;);
-    const picWithWatermark = createImageWithWatermark(pic, canvasNode);
-    pic.src = picWithWatermark;
-&#125;
-
-
-/**
- * 创建带水印的图片
- * create image with watermark.
- * @param &#123;HTMLImageElement&#125; img 图片结点 - image element.
- * @param &#123;HTMLCanvasElement&#125; canvas canvas结点 - canvas element.
- * @returns 处理后的图片 base64 - pic with watermark.
- */
-const createImageWithWatermark = (img, canvas) =&gt; &#123;
-    const imgWidth = img.width;
-    const imgHeight = img.height;
-    canvas.width = imgWidth;
-    canvas.height = imgHeight;
-
-    const ctx = canvas.getContext(&#39;2d&#39;);
-    ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
-    ctx.font = &#39;16px YaHei&#39;;
-    ctx.fillStyle = &#39;black&#39;;
-    ctx.fillText(&#39;Photo by Claudio Schwarz | @purzlbaum on Unsplash&#39;, 20, 20);
-
-    return canvas.toDataURL(&#39;image/jpg&#39;);
-&#125;
-</code></pre>
-<p>以上就是完整的代码了，更详细的代码可以访问<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/watermark.html">github链接查看</a>。</p>
-<p>普通用户所说的水印就是上面这种了，但是对于开发者来说，水印所包含的分类还是比较多的。</p>
-<p>如我们在公司内网的部分系统（也可能是所有）上就能看到这种水印。</p>
-<p><img src="https://iachieveall.com/upload/2021/05/image-bb7ec1faaeda454282efc5c488acfd01.png" alt="image.png"></p>
-<blockquote>
-<p>这里水印颜色选择黑色只是为了能更直观的看到效果，真实使用这种水印的时候，都会选用白色透明的。</p>
-</blockquote>
-<p>这种水印就有点类似之前所说的，将两张图片合成一个的那种方式，只不过，在前端页面上，我们是使用一个透明的canvas容器覆盖整个页面，然后在canvas中绘制这个“标识”，用来标识访问当前页面的用户身份，这样一来，无论是你截图还是拍照，只要图片上能看到水印，我们就能根据这个水印去追踪到泄露这部分信息的人。</p>
-<p>那可能会有人问，那我知道这个水印是一个dom结点了，打开控制台找到他，删了不就好了？</p>
-<h2 id="明水印的防御"><a href="#明水印的防御" class="headerlink" title="明水印的防御"></a>明水印的防御</h2><p>这确实是好问题，不过也不是什么大的问题，你想删，这是完全可以的。</p>
-<p>我控制不了你的行为，但是我可以检测到你操作了这个dom结点，那不好意思，我不管你怎么操作的这个结点，为了安全，我肯定都要重新绘制这个水印的。</p>
-<p>但光重新绘制水印我觉得还不够，这可能会让你跟我拼速度的，那不行啊，我必须给你点教训的，还不能让你得偿所愿，怎么办？只要你操作了我的dom，那么我直接让页面白屏，然后再重载页面。这也就达成了禁止用户操作dom结点的方式了。</p>
-<p>要实现这个，我们需要借助js提供的MutationObserver函数，这个函数可以监听容器的变化。</p>
-<p>代码如下：</p>
-<pre><code class="js">// 容器监听的回调
-const cb = function (mutationList, observer) &#123;
-    for (const mutation of mutationList) &#123;
-        if (mutation.type === &#39;childList&#39;) &#123;
-            const &#123; removedNodes = [] &#125; = mutation;
-            // 如果监听到水印容器变化，那么就清空页面并重载
-            const node = Array.prototype.find.apply(removedNodes, [(node =&gt; node.id === &#39;page-watermark&#39;)])
-            if (node) &#123;
-                targetNode.innerHTML = &#39;&#39;;
-                window.location.reload();
-            &#125;
-        &#125;
-    &#125;
-&#125;
-// 目标DOM结点
-const targetNode = document.querySelector(&#39;#watermark-body&#39;);
-// 创建监听
-const observer = new MutationObserver(cb);
-observer.observe(targetNode, &#123;
-    attributes: true,
-    childList: true
-&#125;);
-</code></pre>
-<p><code>MutationObserver</code>是DOM3 Event规范的一部分，用于替代旧的Mutation Events，可以放心使用。</p>
-<blockquote>
-<p>虽然上面的是全局水印，但是你也可以只对一部分内容加水印，只不过全局水印实现成本更低，代价小，对于内网系统来说，牺牲这点用户体验，并不能算是什么非常严重的问题，是可以接受的。</p>
-</blockquote>
-<p>可能有人又要说了，我都打开dom，那我研究一下这个dom结构，写个爬虫去爬数据，或者直接复制dom里面的内容不就好了，你这水印还有啥存在的意义吗？</p>
-<p>无法反驳，但是要说明一点的是，爬数据这个是违法的，要负法律责任，而且你爬虫肯定是要运行在某个电脑上的，这就不需要水印了，我们可以直接查ip，追踪到对应的人就行了，而我们加的水印不过就是一个方便追踪的工具而已。</p>
-<p>其次，前端和爬虫斗智斗勇，你从网页爬数据，那我就想办法不直接生成文字，而是把一些关键词给替换成图片，这样一来，你爬虫爬到的结果，就是一串没有用的文字。</p>
-<p>这就扯到反爬虫的事情上了。言归正传，到目前为止，我们一直都在讨论明水印，对于内网来说，使用这种水印肯定是没什么问题的，但是对外的网站怎么办呢？如果也加上这种明水印，显然不太合适，想要在这里牺牲用户体验就是不能接受的。</p>
-<p>所以我们就开始考虑，能不能加上一个肉眼看不见的水印呢？</p>
-<h1 id="暗水印"><a href="#暗水印" class="headerlink" title="暗水印"></a>暗水印</h1><p>当然是没问题的，这就是我们下面要说的暗水印。</p>
-<p>听名字就知道，暗水印和明水印是刚好相反的，我们看不见这种水印，而且这种水印无论是原理还是实现，和明水印的差别都是比较大的。</p>
-<p>先看看原理。</p>
-<p>不知道你有没有听说过，隐写术[^1]。对于这个比较玄幻的名词，wiki是这么描述的“隐写术是一门关于信息隐藏的技巧与科学，所谓信息隐藏指的是不让除预期的接收者之外的任何人知晓信息的传递事件或者信息的内容。”，究其本质，还是密码学那一套。</p>
-<h2 id="追加文件内容"><a href="#追加文件内容" class="headerlink" title="追加文件内容"></a>追加文件内容</h2><p>我们可以通过各种方式将信息写到图片，最常见的应该是将需要隐写的内容以二进制的形式写入图片中，咱们在这里举个简单的例子，以下面的图片为例：</p>
-<p><img src="https://iachieveall.com/upload/2021/05/image-ec4af3a0863d41e891f4967ae4ae92d1.png" alt="image.png"></p>
-<p>这是我们开篇引用的图片，记为原始图像，将图片保存在本地后（original.png），执行命令：</p>
-<pre><code class="bash">tail -c 50 1.png
-</code></pre>
-<p><img src="https://iachieveall.com/upload/2021/05/image-61eb558616c54cfa886fce5f72e283e1.png" alt="image.png"></p>
-<p>可以看到执行结果里面是一串乱码（用Hex查看器可以看到文件的二进制码流，这里时utf-8，乱码是正常的），对该文件执行命令：</p>
-<pre><code class="bash">cat original.png &gt; result.png
-echo testWrite &gt;&gt; result.png
-tail -c 50 result.png
-</code></pre>
-<p>我们生成一张新的图片之后，将一串字符追加到图片末尾，可以看到图片依旧是正常显示的，同时查看图片的内容，可以看到刚才写入的testWrite字符串：</p>
-<p><img src="https://iachieveall.com/upload/2021/05/image-dc7f62b7caff4e3a8c8addb232a43bbd.png" alt="image.png"></p>
-<blockquote>
-<p>另外，将字符串加到文件头部是不行的，因为文件头部包含了文件格式等信息。如果你把信息插入到文件头部，市面上的软件就无法正确的识别文件的类型。</p>
-</blockquote>
-<p>这只是一种方式，而且手段十分暴力，处理之后的图片文件较原来的文件是有一定的大小变化的（不过比较小，可以按字节计算）。更聪明的做法是将加密的信息按照某种模式写入图片的二进制流中，这样一来，就只有加密方才能拿到对应的信息了。</p>
-<p>但即使有复杂的加密方式，也还是不够的，因为这只能保证别人在使用原始图片的时候，我们可以鉴别图片的来源、流传路线，但要是通过屏幕截图或者拍照的方式，我们就无法拿到这个数据，因为此时相对于我们做过处理的图片，他已经是一张全新的图片了。</p>
-<h2 id="修改RGB分量值"><a href="#修改RGB分量值" class="headerlink" title="修改RGB分量值"></a>修改RGB分量值</h2><p>来看另一个例子，<strong>RGB分量值的小量变动</strong>：在图片上覆盖一层肉眼看不见的图片，简单来说就是我可以在图片的某个单通道（如rgb中的b通道）内将水印信息写入，其实这么说也还是很难懂，举个例子：</p>
-<p><img src="https://iachieveall.com/upload/2021/05/image-2aee71e306104aad88c7200037825a7a.png" alt="image.png"></p>
-<p>现在要将左右两侧的图片组合，但是不能让右侧的图片内容在左侧的图片上观察到，这时候我们要做的就是按照一定规则将水印图片写进这张图片的rgb通道内。</p>
-<pre><code class="js">预处理，先生成右侧的水印图
-
-编码
-1. 通过canvas获取到两张图片的rgba数据
-2. 将左侧图片的b（蓝色）通道值-1，即，b &amp; 0xfffffffe
-3. 读取右侧b通道数据，遇到大于0的值，就将左侧对应位置处的b通道值 +1，即，b | 0x00000001
-
-解码
-1. 获取图片的rgba数据
-2. 读取b通道数据，遇到 b &amp; 0x00000001 &gt; 0 的数据，说明有水印信息，将其置为255，除a通道（alpha通道不是颜色通道）外，其余通道的数据全部置为0
-
-
-// +1,-1 是因为量级的变化极小，并不会影响到图片的显示
-</code></pre>
-<blockquote>
-<p>其实黑底蓝字的图片就是解码出来的水印数据，详细代码：<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/index.html">https://github.com/ai977313677/blog/blob/master/snippet/index.html</a></p>
-</blockquote>
-<p>好像这种方式可以在用户截图时也能够保留我们的水印？其实并没有。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43b1be13fefd46508223f37fb3137d64~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
-<p>这是解码截图的结果，可以明显的看到，QQ截图之后的图片并没有能够解码出来我们所需要的水印内容，甚至于将图片压缩之后，可能就会失去我们的水印，所以说这其实也并不是一个可靠的水印方式。</p>
-<p>那如何才能保证我们的水印至少在截图的时候也能发挥作用呢？</p>
-<p>也不是不行，首先确定我们水印要加在哪里（确定需求），因为图片来源无非是网页搜索结果，或者说我们截得图多数来自于网页，所以我们考虑的是在网页上覆盖一层水印，保证用户从网页上截取的图片可以被我们追踪到来源。</p>
-<p>这个通用的解决方案依旧是写css，只不过这时候我们将背景图置顶，同时将其透明度设置的很低。</p>
-<p>代码很简单，其实就是将一张背景图片铺满整屏就可以了，然后将opacity设置到肉眼无法观察到的程度就OK了：</p>
-<pre><code class="js">window.onload = () =&gt; &#123;
-    const width = document.body.clientWidth;
-    const height = document.body.clientHeight;
-
-    const maskDiv = document.createElement(&#39;div&#39;);
-    maskDiv.id = &#39;mask_watermark&#39;;
-    maskDiv.style.position = &#39;absolute&#39;;
-    maskDiv.style.backgroundImage = &#39;url(./1.jpg)&#39;;
-    maskDiv.style.backgroundRepeat = &#39;repeat&#39;;
-    maskDiv.style.visibility = &#39;&#39;;
-    maskDiv.style.left = &#39;0px&#39;;
-    maskDiv.style.top = &#39;0px&#39;;
-    maskDiv.style.overflow = &quot;hidden&quot;;
-    maskDiv.style.zIndex = &quot;9999&quot;;
-    maskDiv.style.pointerEvents = &quot;none&quot;;
-    maskDiv.style.opacity = 0.005;
-    maskDiv.style.fontSize = &#39;20px&#39;;
-    maskDiv.style.color = &#39;#000&#39;;
-    maskDiv.style.textAlign = &quot;center&quot;;
-    maskDiv.style.width = `$&#123;width&#125;px`;
-    maskDiv.style.height = `$&#123;height&#125;px`;
-    maskDiv.style.display = &quot;block&quot;;
-    document.body.appendChild(maskDiv);
-&#125;
-</code></pre>
-<p><img src="https://iachieveall.com/upload/2021/05/image-25ea99a4970a473eac5c3f0f16b21a73.png" alt="image.png"></p>
-<p>左侧是从网页上接下来的图片，右侧是在PS工具中处理之后的图片[^2]，明显可以看到我们设置的水印。</p>
-<p>而生成图片的方式就有很多种了，可以是前端生成，也可以是将信息发给后端，后端生成一张图片，然后前端将图片作为背景图。</p>
-<p>想要得到右侧的结果，未必需要PS进行处理，可以通过其他的方式进行处理。</p>
-<p>到这里，前端部分就结束了，但可能有人还觉得这不太行，我截网页的图现在是加上了水印，但是我要是保存原图呢？那可以用之前说的RGB分量那个方式。</p>
-<p>那我下载图片之后在原图上截取呢，不就失效了？确实，到这里前端能做的工作已经很少了。我们已经处理不到了，但是在图像暗水印，或者说盲水印这个领域，还有更加有效的抵抗攻击（去水印）的方式，比如频域、空域的变换。这个变换可以说是老生常谈的了，我就不过多解释了。</p>
-<h1 id="补充两句"><a href="#补充两句" class="headerlink" title="补充两句"></a>补充两句</h1><p>水印的概念是泛化的，并不是说只有显示在图片某个角落的信息才能被称为水印。</p>
-<p>上面选择将信息追加到文件末尾是有原因的，不是瞎选的。任何一种文件都包含文件结束符，就如文件头部约定存放文件的格式信息一样，即使你改了后缀，我也能通过读取这个文件头部的内容来识别文件真实的格式。</p>
-<p>另外我们知道，文件后缀名是可以随意更改的，如果只通过文件后缀名进行检测，那么绝对是可以绕过的，进而出现任意文件上传的安全问题。</p>
-<p>如果改变图层混合模式没能成功，不妨试下修改图像的RGB曲线</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>[^1]: <a target="_blank" rel="noopener" href="http://www.alloyteam.com/2016/03/image-steganography/">不能说的秘密——前端也能玩的图片隐写术 | AlloyTeam</a><br>[^2]: <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50677827/answer/122388524">阿里巴巴内网的不可见水印用的是什么算法？ - Mize的回答 - 知乎</a></p>
+            <p>又是一个有关安全的问题。很重要，快记笔记</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#ffa2c4>
-                前端
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/总结" style=color:#00a596>
-                总结
-            </a>
+            <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #03a9f4">总结</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/canvas" style=color:#00bcd4>
-                canvas
-            </a>
+            <a href="/tags/canvas/" style="color: #ff7d73">canvas</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/安全" style=color:#ff7d73>
-                安全
-            </a>
+            <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #03a9f4">安全</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/水印" style=color:#00bcd4>
-                水印
-            </a>
+            <a href="/tags/%E6%B0%B4%E5%8D%B0/" style="color: #ff7d73">水印</a>
         </span>
         
     </div>
-
-    <a href="/2021/05/30/浅谈前端水印-浅谈前端水印/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2021/05/30/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0-%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2020/12/27/简单聊两句XSS-简单聊两句xss/">
-        <h2>
-            简单聊两句XSS
-        </h2>
+    <a href="/2020/12/27/%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5XSS-%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5xss/">
+        <h2 class="post-title">简单聊两句XSS</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端基础">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端基础
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2020/12/27
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <blockquote>
-<p>XSS（跨站脚本攻击），聊两句，五毛的。</p>
-</blockquote>
-<h4 id="XSS的危害："><a href="#XSS的危害：" class="headerlink" title="XSS的危害："></a>XSS的危害：</h4><ul>
-<li>窃取Cookie，盗用用户身份信息</li>
-</ul>
-<p>这玩意儿是大多数XSS的目标，也好解决，可以先治个标，直接设置<code>HttpOnly=true</code> ，即不允许客户端脚本访问，设置完成后，通过js去读取cookie，你会发现<code>document.cookie</code> 无法读取到被标识为HttpOnly的Cookie内容了。</p>
-<ul>
-<li>配合其他漏洞，如CSRF（跨站请求伪造）</li>
-</ul>
-<p>这个其实就没那么好解决了，因为XSS利用用户身份构造的请求其实对于服务端来说是合法的。比如说咱在B站上传了一条视频，发现没几个人点赞，于是动了歪心思，打开控制台找到了投币点赞的接口，然后拿到了对应的请求参数。自己构造了一条投币请求，然后诱导其他人点击含有这个脚本的页面为咱的视频投币，这样就完成了一套攻击流程。</p>
-<blockquote>
-<p>不用尝试了，没用的。别问我怎么知道的 &#x3D;。&#x3D;。</p>
-<p>要是没做校验的话，那这就是一个高危漏洞，还传啥视频啊，赶紧发邮件给阿B领赏金去啊。</p>
-</blockquote>
-<ul>
-<li>广告</li>
-</ul>
-<p>只要能发起XSS，我就能往页面里插广告，啥权限都不要，但是能引发这个问题的原因主要有两个。</p>
-<ol>
-<li>XSS。</li>
-<li>用户自己安装外部脚本。</li>
-</ol>
-<blockquote>
-<p>使用外部脚本一定要保证脚本来源的可信性，脚本的安全性。如果脚本是恶意的，那么他所能做的可就不只是弹弹广告这么简单了，替换个按钮，诱导点击钓鱼页面，替换某一条搜索结果，这都是可能的。</p>
-</blockquote>
-<h4 id="XSS扫描及防范"><a href="#XSS扫描及防范" class="headerlink" title="XSS扫描及防范"></a>XSS扫描及防范</h4><p>XSS风险有些是可以通过code review发现的，比如：</p>
-<pre><code class="js">let result = document.getElementById(&#39;test&#39;);
-result.innerHTML = await getInfo();
-</code></pre>
-<p>这段代码很容易看到风险位置——<code>innerHTML</code> ，如果后端返回的数据中包含恶意的代码片段，那么就能够被攻击。所以在使用Vue和React框架时，需要评估是否真的需要使用<code>v-html</code> 和<code>dangerouslySetInnerHTML</code> 功能，在前端的render（渲染）阶段就避免<code>innerHTML</code> 和 <code>outerHTML</code> <a href="%5B%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2xss%E6%94%BB%E5%87%BB%5D(https://tech.meituan.com/2018/09/27/fe-security.html)">^1</a>。</p>
-<blockquote>
-<p>如果不使用框架，那就避免直接使用<code>innerHTML</code> 就好了。</p>
-</blockquote>
-<p>至于review时无法发现的风险，那就交给扫描器吧。</p>
-<p>防范XSS，除了少使用、不使用<code>innerHTML</code> 外，还可以设置严格的CSP<a href="%5B%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%5D(https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)">^2</a>，限制用户的输入长度。</p>
-<blockquote>
-<p>XSS是一个安全问题，它不只是前端的职责，这也是所有RD和QA的职责。</p>
-<p>前端过滤用户输入后发给后端，后端如果不做处理存入数据库，那么这就是一个攻击点：直接抓前端的包，重新组装一下参数，发给后端，完成存储型XSS第一步，用户再访问这部分内容，就完成了一次XSS。</p>
-<p>QA的总能搞出来一些奇奇怪怪的payload（亦称测试用例），这些可能都是RD未能考虑到的方面。</p>
-</blockquote>
-<p>附一段白名单过滤用户输入的代码，点击<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/xssFilter.js">GitHub</a>查看。</p>
+            <p>XSS（跨站脚本攻击），聊两句，五毛的。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/安全" style=color:#ff7d73>
-                安全
-            </a>
+            <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #00bcd4">安全</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/xss" style=color:#ff7d73>
-                xss
-            </a>
+            <a href="/tags/xss/" style="color: #ffa2c4">xss</a>
         </span>
         
     </div>
-
-    <a href="/2020/12/27/简单聊两句XSS-简单聊两句xss/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2020/12/27/%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5XSS-%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5xss/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2020/07/13/angular浏览器兼容性问题解决方案-angular浏览器兼容性问题解决方案/">
-        <h2>
-            angular浏览器兼容性问题解决方案
-        </h2>
+    <a href="/2020/07/13/angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+        <h2 class="post-title">angular浏览器兼容性问题解决方案</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/学习笔记">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 学习笔记
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2020/7/13
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <p><em><strong>问题</strong></em>：edge浏览器下，固定列的边框消失</p>
-<p><em><strong>原因</strong></em>：ng-zorro-antd表格组件使用nzLeft和nzRight指令固定的表格列，这两个指令的实现css3中的标签：</p>
-<pre><code class="css">position: -webkit-sticky !important;
-position: sticky !important;
-</code></pre>
-<p>谷歌、火狐及-webkit-内核的浏览器均支持该属性（css3），IE不支持该属性，所以在IE中，会自动降级，表格无固定列，可滑动的形式。<br>Edge浏览器在1703之后的版本使用了chromium内核，对css3的属性支持较好，也支持sticky属性，可以使用，可以固定表格列，但边框会消失。 </p>
-<p><em><strong>解决方案</strong></em>：<br>目前可行的解决方案有如下几种：</p>
-<ol>
-<li><p>不使用固定列，若产品没有明确要求使用固定列，可以放弃使用nzLeft及nzRight来固定表格。从而使各个浏览器下的展示效果一致。</p>
-<p>针对Edge浏览器降级处理，与IE浏览器效果一致，无固定列，整体可横向滚动。</p>
-</li>
-<li><p>自定义实现固定列，不使用组件的固定列实现，通过使用<code>position: absolute;</code>这种方式来实现表格的固定列。</p>
-</li>
-</ol>
-<p>第二个方案的详细过程如下：</p>
-<p>使用div包裹表格，当表格宽度超过div宽度时，开启滚动：</p>
-<pre><code class="css">.scroll-table &#123;
-  width: 100%;
-  overflow-x: scroll;
-&#125;
-</code></pre>
-<p>针对表格，我们可以指定宽度，让其超过外层div宽度（这样可以看到滚动效果）。</p>
-<pre><code class="css">.fixed-table &#123;
-  width: 1300px; /* 可由th，td动态扩充，也可指定宽度 */
-  border-collapse: collapse;
-&#125;
-</code></pre>
-<p>最后一个最核心的问题，就是固定列的实现了，非常简单，将表格的一列设置成绝对定位,在设置了绝对定位后，该列会脱离原来的文档流，表格少了一列，所以需要加一个背景板来保证表格能够给这个固定列留出一个位置。</p>
-<p>HTML代码大致如下，这个fixed-col可以为固定列的样式，也可以设置成背景板的样式，demo中是用其指定了固定列的样式。</p>
-<pre><code class="HTML">&lt;div class=&quot;scroll-table&quot;&gt;
-    &lt;table class=&quot;fixed-table&quot;&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;无效背景板&lt;/th&gt;
-                &lt;th class=&quot;fixed-col&quot;&gt;固定列&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td&gt;无效背景板&lt;/td&gt;
-                &lt;td class=&quot;fixed-col&quot;&gt;固定列&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-</code></pre>
-<p>参考代码：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/guyg/p/6896847.html">Ironape</a></p>
-<hr>
-<p><em><strong>问题</strong></em>：Edge浏览器的日历（nz-range-picker）确认按钮需要点两次</p>
-<p><em><strong>原因</strong></em>：尚未明确</p>
-<p><em><strong>解决方案</strong></em>：</p>
-<ol>
-<li><strong>升级组件版本</strong>，目前ng-zorro-antd 8.5之上的版本未见这个问题。</li>
-<li><strong>自定义页脚</strong>，加入额外的页脚，来替代确定功能，此时有两种方式来实现：<br>只覆盖对应的按钮，如确定按钮，此时按钮的样式与默认的页脚按钮是不一致的，为保持一致，可以自定义样式，也可以直接使用默认页脚中按钮的样式，下例中选择直接使用组件库的样式：ant-calendar-ok-btn，第二步则是覆盖原来的按钮，可以使用绝对定位的方式来实现覆盖：</li>
-</ol>
-<pre><code class="html">&lt;nz-range-picker [nzRenderExtraFooter]=&quot;renderExtraFooterTpl&quot;&gt;
-&lt;ng-template #renderExtraFooterTpl&gt;
-  &lt;div&gt;
-    &lt;button nz-button nzType=&quot;primary&quot; class=&quot;ant-calendar-ok-btn abs-right&quot;&gt;确 定&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/ng-template&gt;
-</code></pre>
-<p>对应css：</p>
-<pre><code class="css">.abs-right &#123;
-  position: absolute;
-  right: 12px;
-  top: 7px;
-  z-index: 1;
-  box-shadow: none;
-&#125;
-</code></pre>
-<p>删除默认页脚，完全自定义实现页脚。此时需要删除原来的页脚，可通过：</p>
-<pre><code class="css">::ng-deep .ant-calendar-footer-btn &#123;
-  display: none;
-&#125;
-</code></pre>
-<blockquote>
-<p>这种方式删除默认页脚，此时额外的页脚不可使用绝对定位。</p>
-</blockquote>
-<hr>
-<p><em><strong>问题</strong></em>：IE浏览器下，在多个tab页中切换，echart所在容器高度坍塌</p>
-<p><em><strong>原因</strong></em>：IE浏览器下父元素不能动态调整高度（即通过子元素动态改变调整高度）</p>
-<p><em><strong>解决方案</strong></em>：固定echart图表所在的容器高度</p>
-<hr>
-<p><em><strong>问题</strong></em>：IE浏览器下，初始化表单时，触发表单验证</p>
-<p><em><strong>原因</strong></em>：这个是IE的问题，IE10+实现了input事件，但是触发的时机却是错误的。比如在placeholder改变时，placeholder的文字不是英语的时候就会触发，Edge15+修复了这个问题，但是IE可能永远都不会修复这个问题。</p>
-<p><em><strong>解决方案</strong></em>：</p>
-<ol>
-<li>使用表单的reset()重置表单，但是重置的操作需要放在setTimeout中，或者通过其他手段将重置的操作作为表单初始化时的最后一个宏任务执行。这种方式经验证，最终的效果是，初始化表单后，表单输入元素的边框闪烁（红色）一下。</li>
-<li>使用自定义的服务商插件（较为推荐），这种方式对原有代码的破坏性小（遵循了OCP原则），该插件是由DerSizeS提供的。只需要在对应的module中增加一个服务商即可</li>
-</ol>
-<pre><code class="Javascript">@NgModule(&#123;
-    providers: [&#123;
-        provide: EVENT_MANAGER_PLUGINS, multi: true,
-        useClass: UniqueInputEventPlugin, deps: [UNIQUE_INPUT_EVENT_PLUGIN_CONFIG],
-    &#125;]	
-&#125;)
-class MyModule &#123;&#125;
-</code></pre>
-<blockquote>
-<p> 需要注意的是，插件需要自己添加到项目文件中（根据angular团队所说，这个插件修复了一个IE10或者IE11的bug，但是提交了太多的代码，这会给增加现有的应用的打包体积，虽然后面关于这个PR讨论了挺久，但是看样子是准备把这个放到FAQ里面，而不会把他并入框架），并在对应的模块中引用。</p>
-</blockquote>
-<ol start="3">
-<li>IE的输入框会因为placeholder为中文而触发表单验证，placeholder改变了也会触发表单验证，所以，有一个讨巧的方法，<em><strong>placeholder里面的内容写成英文形式(推荐）</strong></em>，但这显然不符合中文产品的需求，而且这显然没有国际化。所以可以想办法绕过这一条，使用 <em><strong>HTML实体</strong></em>（已验证，可行），Unicode编码（不可以）</li>
-</ol>
+            <p>记录一点小的问题解决方案</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/浏览器兼容" style=color:#ffa2c4>
-                浏览器兼容
-            </a>
+            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9/" style="color: #00a596">浏览器兼容</a>
         </span>
         
     </div>
-
-    <a href="/2020/07/13/angular浏览器兼容性问题解决方案-angular浏览器兼容性问题解决方案/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2020/07/13/angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2020/04/01/想学canvas？那一定要看看这篇文章-想学canvas那一定要看看这篇文章/">
-        <h2>
-            想学canvas？那一定要看看这篇文章
-        </h2>
+    <a href="/2020/04/01/%E6%83%B3%E5%AD%A6canvas%EF%BC%9F%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0-%E6%83%B3%E5%AD%A6canvas%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0/">
+        <h2 class="post-title">想学canvas？那一定要看看这篇文章</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/学习笔记">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 学习笔记
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2020/4/1
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h3 id="canvas简介"><a href="#canvas简介" class="headerlink" title="canvas简介"></a>canvas简介</h3><p>在学习一项新技术之前，先了解这项技术的历史发展及成因会帮助我们更深刻的理解这项技术。</p>
-<p>历史上，canvas最早是由Apple Inc. 提出的，在Mac OS X webkit中创建控制板组件使用，而在canvas称为HTML草案及标准之前，我们是通过一些替代方式去绘图的，比如为人所诟病的Flash，以及非常强大的SVG（Scalable Vector Graphics，可伸缩的矢量标记图），还有只能在IE（IE 5.0以上的版本）中使用的VML（Vector Markup Language，矢量可标记图）。甚至于有些前端可以使用div+css来完成绘图。</p>
-<p>总的来说，没有canvas的时候，在浏览器绘制图形是比较复杂的，而在canvas出现之后，绘制2D图形相对变得容易了。</p>
-<blockquote>
-<p>NOTE： 用div绘制一些简单的图形，如矩形，圆形，三角形，梯形，倒也算是没那么复杂。	</p>
-</blockquote>
-<p>但canvas也有缺点。因为canvas本质上是一个与 <strong>分辨率相关</strong> 的 <strong>位图画布</strong> ，也就注定了在不同分辨率下，canvas绘制的内容显示的时候会有所不同。此外，canvas绘制的内容 <strong>不属于任何DOM元素</strong> ，在浏览器的元素查看器中也找不到，那自然无法检测鼠标点击了canvas中的哪个内容，很显然，这两方面，canvas都是不如SVG的。</p>
-<blockquote>
-<p>举个例子：如果使用CSS设置canvas元素的尺寸，那可能会导致绘制出来的图形变得扭曲，如长方形变正方形，圆形变椭圆等，这是因为画布尺寸和元素尺寸是不一样的，画布会自动适应元素的尺寸，如果二者是成比例的，那么画布就会等比例缩放，不会出现扭曲。</p>
-</blockquote>
-<p>这么说来，canvas有这么明显的缺点，那直接使用SVG岂不是更好？</p>
-<p>No，听过一句话吗？没有完美的方案，只有适不适合。</p>
-<p>SVG是基于XML的，那么就说明，SVG里面的元素都可以认为是 <strong>DOM元素</strong> ，可以启用DOM操作，同时，SVG中每个绘制的图像均被视为对象，若SVG对象属性变化，浏览器会自动重现图形。</p>
-<p>以上是SVG的优势，但通过这个优势，我们也能发现一些问题：</p>
-<ol>
-<li>通常，过度使用DOM的应用都会变得很慢，所以，复杂的SVG会导致渲染速度变慢。但是像地图这类的应用，首选是SVG。</li>
-<li>浏览器的重排发生在浏览器窗口发生变化，元素尺寸位置变化，字体变化等等。</li>
-<li>即使可以启用DOM操作，但DOM操作的代价还是比较昂贵的（DOM和JS的实现是分开的）。</li>
-</ol>
-<p>回到主题。</p>
-<p>canvas是通过JavaScript进行2D图形的绘制，而 <code>&lt;canvas&gt;</code> 标签本身是没有任何绘制能力的，它仅仅是一个容器。在绘制时，canvas是逐像素的进行渲染的，一旦图形绘制完成，该元素就不再被浏览器所关注（脚本执行结束，绘制的图形也不属于DOM）。</p>
-<p>值得注意的是，在HTML标准（<a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/canvas.html#the-canvas-element">whatwg标准</a>）中明确的指出： <em><strong>Authors should not use the <code>canvas</code> element in a document when a more suitable  element is available.</strong></em> 所以，不要滥用元素。</p>
-<blockquote>
-<p>canvas目前几乎被所有的浏览器支持，但是IE 9.0 之前的版本不支持 <code>canvas</code>元素</p>
-</blockquote>
-<h3 id="canvas基本使用"><a href="#canvas基本使用" class="headerlink" title="canvas基本使用"></a>canvas基本使用</h3><p>canvas是一个HTML元素，所以要使用canvas，首先需要：</p>
-<pre><code class="html">&lt;canvas id=&quot;canvas&quot; width=&quot;600&quot; height=&quot;300&quot;&gt;
-    当前浏览器不支持canvas
-&lt;/canvas&gt;
-</code></pre>
-<p>在第一行HTML代码中可以看到两个属性：<code>width</code> 和 <code>height</code> ，它指明了画布的宽高，在上文中提到过，不要使用CSS规定尺寸，因为当CSS规定的尺寸和画布尺寸比例不一致时，无法成比例缩放，导致绘制出来的图形变得扭曲。在没有设置画布大小时，canvas默认会初始化成300px * 150px的画布。</p>
-<p>“当前浏览器不支持canvas”是元素的内容，但他只是作为一个后备内容（即<a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/dom.html#fallback-content">fallback content</a>），只有当浏览器不支持canvas时，这个内容才会被显示出来。</p>
-<p>canvas元素本身没有绘制能力，只是作为一个容器，所以需要通过JavaScript这类脚本进行绘制：</p>
-<pre><code class="javascript">const canvas = document.getElementById(&#39;canvas&#39;);
-const context = canvas.getContext(&#39;2d&#39;);
-</code></pre>
-<p>上面的HTML+JS代码是使用canvas所必须的，无论要绘制什么内容，这几行代码不可缺少。</p>
-<p><code>getContext()</code> 是canvas元素提供的方法，用于获取绘制上下文（或者说渲染上下文，The rendering context），他只有一个参数：上下文格式。这里传入<code>2d</code> 表示获取2D图像绘制环境。由于<code>getContext</code>是canvas元素提供的方法，故我们可以通过检测<code>getContext</code>方法的存在性来检查浏览器的支持性。</p>
-<blockquote>
-<p>context变量的类型是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D"><code>CanvasRenderingContext2D</code></a> 。</p>
-<p>渲染上下文不好理解，可以理解为画图用的笔刷。</p>
-</blockquote>
-<p>在画布中如何确定绘制的位置？是坐标。</p>
-<p>在canvas中，画布的左上角为原点，横轴为x轴表示宽，纵轴为y轴表示高[^1]。原点的位置是可以移动的，我们暂时不考虑原点的移动问题。</p>
-<p>在<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/html_ref_canvas.asp">w3c school</a> 中，将canvas提供的绘制API大致分为以下几种[^2]：</p>
-<ol>
-<li>颜色、样式、阴影</li>
-<li>线条样式</li>
-<li>矩形</li>
-<li>路径</li>
-<li>转换</li>
-<li>文本</li>
-<li>图像绘制</li>
-<li>像素操作</li>
-<li>合成</li>
-<li>其他</li>
-</ol>
-<p><img src="https://iachieveall.com/upload/2020/3/canvas%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B-9fad467b7d9e4deab5767ecb18af4c8b.png" alt="canvas组合示例"></p>
-<p>在上面这个例子中，包含了矩形，圆形，线，文字及“文字”几大块内容，细讲下去，会涉及到不少API，会使得本文变得很长，而且没有必要，值得一提的是贝塞尔曲线，这是二维图形应用程序的数学曲线，一般的矢量图形软件就是通过它来精确画出曲线的，贝塞尔曲线是计算机图形学中相当重要的参数曲线[^3]。</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%80%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-f3dc4156502b47fcb7997c0519b07bb7.gif" alt="一次贝塞尔曲线"></p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%BA%8C%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-579634ef264e4a5785e0aac4ecbda2a8.gif" alt="二次贝塞尔曲线"></p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E4%B8%89%E6%AC%A1%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF-56a8481f836948e0810c4f3e35c0947d.gif" alt="三次贝塞尔曲线"></p>
-<p>以上图片按顺序分别是一次贝塞尔曲线，二次贝塞尔曲线，三次贝塞尔曲线。从图中，可以很清楚的看到，一次贝塞尔曲线实际上是一条直线。当然，还有更高阶次的曲线，不过canvas只提供了二次和三次贝塞尔曲线。</p>
-<p>以二次贝塞尔曲线的API为例：</p>
-<pre><code class="javascript">quadraticCurveTo(cp1x, cp1y, x, y);
-</code></pre>
-<p>(cp1x,  cp1y)表示控制点坐标，(x, y)表示结束点坐标。这里还缺少一个起始点坐标，假设是(x0, y0)，那这个(x0, y0)是谁？</p>
-<p>就是在调用 <code>quadraticCurveTo</code> 函数时，context（绘制上下文）所处的坐标。举个例子：</p>
-<pre><code class="javascript">var cxt = canvas.getContext(&#39;2d&#39;); // 认为canvas已经获取到
-cxt.beginPath();
-cxt.moveTo(120, 90);
-cxt.quadraticCurveTo(130, 80, 130, 70);
-cxt.quadraticCurveTo(115, 70, 115, 50);
-cxt.quadraticCurveTo(115, 30, 155, 30);
-cxt.quadraticCurveTo(195, 30, 195, 50);
-cxt.quadraticCurveTo(195, 70, 155, 70);
-cxt.quadraticCurveTo(135, 90, 120, 90);
-cxt.stroke();
-</code></pre>
-<p>这段代码运行结果就是一个对话框（在第一张图片中体现），可以看到，在调用二次贝塞尔曲线之前，我们设置了起点，即，将笔刷移动到坐标(120, 90)，在之后调用中，都是以前一次贝塞尔曲线的终点作为本次曲线的起点。</p>
-<p>这时候可能会有人问：我去掉这个<code>moveTo</code>的调用是不是就画不出来了？如果后续是调用<code>lineTo</code>函数，那还真就画不出来了。但是别忘了，还有一次贝塞尔曲线，这就是条直线，他是以(cp1x, cp1y)为起点，(x,y)为终点的一条直线。所以说，去掉<code>moveTo</code>后，只会影响到第一条曲线的绘制。但是如果删除最后一行代码<code>stroke()</code>，那么程序运行结束时，在浏览器上啥都看不到。</p>
-<p>由此，我们应该思考另一个问题：为什么<code>stroke()</code>函数是必须的呢？</p>
-<p>其实，canvas是一种基于状态的绘制，依照此，可以将canvas提供的API分为两种：状态设置，具体绘制。</p>
-<p><code>stroke()</code>、<code>fill()</code>等函数就是将内容绘制到canvas画布容器中的函数。</p>
-<p><code>arc()</code>、<code>lineTo()</code>、<code>rect()</code>等函数就是设置笔刷状态的函数。</p>
-<blockquote>
-<p>在那种玄幻类型的电影、电视剧里面就经常能看到某个道士虚空画符，画完之后往前一推，就印在了对应的符或者人身上了。</p>
-<p>道士虚空画符，这个过程就像是canvas设置笔刷状态的过程。</p>
-<p>往前一推，这个就是具体的绘制了，怎么绘制咱不知道，反正这符是画上去了。（前文提到过，canvas是 <strong>逐像素渲染</strong> 的）</p>
-</blockquote>
-<p>“文字”的绘制，注意，这个文字是打了引号的，普通文字，我们绘制只需要调用<code>fillText()</code>即可，而这里所指的文字是<strong>点阵字体</strong>，在单片机或者LCD这类程序中，通过点亮一系列的点，显示出文字或图案，点亮的过程较为复杂，可以简单的理解为LCD上的像素点置为1时点亮该点，为0时不点亮（实际可能相反）。那么canvas这里的“文字”绘制也是一样的道理，通过建立文字对应的字体库，当需要绘制某个文字的时候，在字体库中找到对应的文字点阵，然后将点阵中标志为1的位置点亮（填充）即可。</p>
-<p>实际操作时，可能并不是点亮这么简单，你可能会想要制作出更酷的内容，用圆形去填充，用矩形去填充，甚至说想要制作出动态爆炸的效果，这时候就牵扯到一些其他的计算了。</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E6%97%B6%E9%97%B4-eca9599bb1fc4d0d8556be0e0590886b.jpg" alt="矩形填充"></p>
-<p>上图是一个用矩形填充的示例，数字对应8x8的点阵。</p>
-<h3 id="canvas的高级动画"><a href="#canvas的高级动画" class="headerlink" title="canvas的高级动画"></a>canvas的高级动画</h3><p>先思考一个问题，假设现在我们已经学会了绘制一个圆形的方法，现在要求做出一个和物理学相关的动画：平抛运动。</p>
-<p>现在该如何去实现呢？</p>
-<p>可能看到这个问题的时候，有些人瞬间懵圈了：我就学了个绘制圆的函数，你就让我模拟这么高难度的动画，你这分明是想谋害郑！</p>
-<p>可能也有人会想到，平抛运动，在高中物理学中学到过，基本都只是研究一个小球的问题，在2维平面中，这小球完全可以视作一个圆，可不就只需要学会画圆就行了？</p>
-<p>经此，我们继续往下思考，在平抛运动中的小球，假设水平方向设有初始速度v0，除了重力外，不受到其他外力影响，也即存在一个重力加速度g（为了计算简单，我们可以简单的设为<code>g = 10m/s^2</code>），同时竖直方向没有初速度vh（或称<code>vh = 0;</code>），如下图：</p>
-<p><img src="https://iachieveall.com/upload/2020/3/%E5%B9%B3%E6%8A%9B%E8%BF%90%E5%8A%A8-7bd2107724094dd29aa338684e6253c8.png" alt="平抛运动"></p>
-<p>从图中，我们可以看到一些很有意思的现象，如：小球的水平方向刚好和canvas画布的横轴一致，竖直方向也和纵轴方向保持一致。</p>
-<p>然后由平抛运动对应的物理公式：</p>
-<pre><code class="javascript">// 竖直方向无初速度，水平方向没有外力
-x = v0 * t; // 水平方向位移
-h = 1/2 * g * t * t; // 竖直方向位移
-
-// 竖直方向有初速度
-h = vh * t - 1/2 * g * t * t; // 竖直方向位移
-</code></pre>
-<p>发现(x, h)和canvas上的坐标(x, y)是一致的，而且我们也不是在做物理题，也就是说，v0, t, g, vh这些参数都是已知的，我们唯一需要做的就是，计算出任意时刻的(x, h)，也即小球在canvas上的坐标(x, y)。</p>
-<p>分析结束，我们现在可以得到小球在任意时刻的位置坐标，那么我们也就可以在画布上画出来任意时刻的小球。</p>
-<p>针对上面的分析，可能会有人说：你这不对，你这个应该是具有特殊性的吧，小球未必是从左边抛出去的，从右边也可以啊，向上抛也可以。</p>
-<p>的确，上面的分析只是取出了其中一个比较特殊的状态来研究，限于篇幅（以及本文主题是canvas而非物理），没有推广到更一般的结论，但其实，这些分析已经足够了，无论是位移还是速度，他都是矢量，带有方向，那么我们不妨规定：以canvas的坐标轴，数值增加的方向为正向，那么从右边抛出，可以认为是反向，可以表示为<code>-v0</code> ，最终通过计算位移的公式，可以得到正确的坐标（但这时候算坐标x是比较麻烦的，不能直接使用上述公式）。</p>
-<p>分析这么多，说点儿咱最关心的实现。</p>
-<p>在之前的分析中，我们知道想求小球任意时刻所在位置坐标，需要的参数有：v0, t, g, vh。这些参数应该存放在哪里呢？怎么设计这个数据结构？</p>
-<p>我们当然可以直接将这些参数设为全局变量，但这显然是不合适的，这些参数里，唯一适合设为全局变量的是重力加速度g。而v0, t, vh这些都应该是小球自身的“属性”，所以我们应该将其抽象成一个类。</p>
-<pre><code class="javascript">function Ball(r, v0, vh, t) &#123;
-    this.r = r;
-    this.v0 = v0;
-    this.vh = vh;
-    this.t = t;
-    this.x = 0;
-    this.h = 0;
-    
-    this.calcX = function() &#123; /* 计算水平位移 */ &#125;
-    this.calcH = function() &#123; /* 计算竖直位移 */ &#125;
-&#125;
-
-var ball = &#123; x: 0, h: 0, r: 10, v0: 0, vh: 0, g: 10&#125;;
-// 重力加速度无论是作为全局变量还是小球属性，均可
-
-// es6之后
-class Ball &#123;
-    constructor();
-&#125;
-</code></pre>
-<p>以上三种方式，各有各的好处，选择一个合适的方式即可。</p>
-<p>“你这说物理我就头大，有没有更简单的？”</p>
-<p>更简单也有啊，反正并没有要求100%还原物理学场景：</p>
-<pre><code class="javascript">var ball = &#123; x: 0, y: 0, r: 10, vx: 5, vy: 0, g: 5 &#125;;
-setInterval(() =&gt; &#123;
-    ball.vy += ball.g; // 竖直方向速度增加
-    ball.y += ball.vy; // 竖直方向位移
-    ball.x += ball.vx; // 水平方向位移
-    cxt.clearRect(0, 0, 800, 300);
-    cxt.beginPath();
-    cxt.fillStyle = &#39;black&#39;;
-    cxt.arc(ball.x, ball.y, ball.r, 0, 2*Math.PI);
-    cxt.fill();
-&#125;, 50);
-</code></pre>
-<p>OK，结束了。</p>
-<p>这就是高级一点的动画。可能在学几个函数，这个动画会更炫一点。比如学完矩形填充再掌握一点rgba的知识，你可以做个“尾巴”出来，即长尾效应。具体只需要将上述代码中的<code>cxt.clearRect()</code>替换成：</p>
-<pre><code class="javascript">cxt.fillStyle = &#39;rgba(255, 255, 255, 0.2)&#39;;
-cxt.fillRect(0, 0, 800, 300);
-</code></pre>
-<p>这就能显得咱们编码能力很厉害的样子。</p>
-<p>做到这一步还是不满足：小球一个劲儿的向下掉，这动画没一会儿就没了。</p>
-<p>没关系，咱们可以做“<strong>碰撞检测</strong>”啊。好像又是一个高大上的词汇，但实际上也没什么高大上的，如果基于本节第一部分的分析，那咱还得考虑一下碰撞造成的动量损失的问题，挺复杂的。</p>
-<p>但是简化版就好说了啊。小球碰到上&#x2F;下边界，竖直方向速度反向，同时速率减半。左右边界可以有类似的处理。</p>
-<pre><code class="javascript">if (ball.r + ball.x &gt; canvas_width) &#123;
-    ball.vx *= -0.5
-&#125;
-if (ball.r + ball.y &gt; canvas_height) &#123;
-    ball.vy *= -0.5;
-&#125;
-</code></pre>
-<blockquote>
-<p>NOTE：碰撞检测在这里指的是“<strong>边界检测</strong>”，小球落到边界的时候再继续下落显然是没有意义的，因为后面的动画咱们是看不到的。所以要么碰到边界就停止，要么重新开始，或者进行其他处理，总之，不能出现无意义的动画。</p>
-<p>像以前玩的贪吃蛇，会有各种墙的存在，控制的小蛇在碰到墙的时候，游戏就失败了，或者说没有墙的时候，小蛇会从另一个方向出来。</p>
-</blockquote>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>说了这么多，你会发现，本文不仅没有直接的罗列不同的DEMO来介绍函数，更是在尽量避免过多的介绍canvas中的API。</p>
-<p>个人看来，canvas其实就是一个函数库，他和我们平时使用的那些什么forEach，splice，split，map，reduce没什么区别，都是封装好了直接用的，查一查函数手册就可以了解用法了，多用几次就会比较熟悉了。</p>
-<p>刚进大学的时候，专业课老师就告诉我们，程序&#x3D;算法+数据结构，即使到现在，也有很多人在强调这一点。如果你有心，再回想一下上一节内容，在分析平抛运动的时候，我本质上是在考虑算法问题；在设计小球的类时，考虑了面向对象，但更多的是在考虑数据结构的问题，在考虑了这些内容的基础上，我才开始了具体的实现。</p>
-<hr>
-<p>参考资料：</p>
-<blockquote>
-<p>[^1]:  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes">MDN文档</a><br>[^2]: <a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/html_ref_canvas.asp">HTML 5 Canvas参考手册</a><br>[^3]: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29460544">贝塞尔曲线</a></p>
-</blockquote>
+            <p>没有canvas的时候，在浏览器绘制图形是比较复杂的，而在canvas出现之后，绘制2D图形相对变得容易了。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/canvas" style=color:#ff7d73>
-                canvas
-            </a>
+            <a href="/tags/canvas/" style="color: #ffa2c4">canvas</a>
         </span>
         
     </div>
-
-    <a href="/2020/04/01/想学canvas？那一定要看看这篇文章-想学canvas那一定要看看这篇文章/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2020/04/01/%E6%83%B3%E5%AD%A6canvas%EF%BC%9F%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0-%E6%83%B3%E5%AD%A6canvas%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2020/02/21/前端缓存技术概述-前端缓存/">
-        <h2>
-            前端缓存技术概述
-        </h2>
+    <a href="/2020/02/21/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0-%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">
+        <h2 class="post-title">前端缓存技术概述</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/前端基础">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 前端基础
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2020/2/21
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h2 id="缓存概述"><a href="#缓存概述" class="headerlink" title="缓存概述"></a>缓存概述</h2><blockquote>
-<p>在计算机领域中，缓存是一项十分重要的技术。  </p>
-</blockquote>
-<p>在软件开发，亦或者是在硬件设计开发中，缓存对性能的影响是十分显著的。</p>
-<p>学过Java，会知道在Integer的自动装箱中 <code>[-128,  127]</code> 这个范围中的转换会有些特殊的表现，稍加研究源码，会知道这是因为Integer中的缓存类有关（该缓存类会使用数组存储[-128, 127]范围内的常量）。当然，在实际开发中，可能存在Redis缓存，框架缓存等。</p>
-<p>再有，cpu cache可能是最常听到的一种硬件缓存机制了。对于计算机专业的同学来说，cpu cache可能了解的更多些，大致如图，这里就不多表述了：</p>
-<p><img src="https://iachieveall.com/upload/2020/2/4683D2A9-353E-461B-B56F-A5D10973D026-2d95875a3abb45c59a8e940a0d83032f.png" alt="CPU Cache"></p>
-<p>前端方向的缓存包括：浏览器缓存，HTTP缓存，DNS缓存，CDN缓存等。</p>
-<p>有人会说，浏览器缓存和前端肯定是有关系的，但是HTTP不是个协议吗，这个怎么缓存？DNS我倒是知道，这玩意儿是请求解析URL对应的IP地址的，这个跟前端又有啥关系？而且这CDN……</p>
-<h2 id="前端缓存"><a href="#前端缓存" class="headerlink" title="前端缓存"></a>前端缓存</h2><p>提到前端缓存，很多人立刻能想到的是浏览器缓存，然后又把浏览器缓存划分两种：1. 强缓存，2. 协商缓存。如果再向下深入，就按下F12打开控制台切换到Network选项卡，然后指着那些请求的Header的每一个字段说：你看，这个Cache-Control和Expires是用来控制强缓存的，这个Last-Modified，ETag还有这些If-xxx-xxx都是用于协商缓存的。</p>
-<p>再继续往下进行，就有人要说了：其实，这里还要划分缓存策略，浏览器按照发生的时间顺序划分策略，1. 存储策略，2. 过期策略，3. 协商策略，每个字段对应有不同的缓存策略，存在一个字段对应多个策略的情况。</p>
-<p>到这里，就有人意识到了，这说了半天本质上都在讲根据HTTP协议制定的缓存机制，也就是常说的HTTP缓存，也是一种浏览器缓存。</p>
-<p>那么，其他的呢？</p>
-<h3 id="客户端缓存"><a href="#客户端缓存" class="headerlink" title="客户端缓存"></a>客户端缓存</h3><p>通常，客户端缓存指的是浏览器缓存，更具体一点，就是本节开头所提到的HTTP缓存。</p>
-<h4 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h4><p>DNS是一个协议，用于域名URL到IP地址的映射，或者说是根据URL去查询IP地址。</p>
-<p>在Windows下，我们可以在C:\window\system32\drivers\etc\目录下找到一个hosts文件，这个文件记录了URL到IP的转换，通常来说，我们不需要手动去修改这个文件，而是在网络协议中配置DNS服务器，通过DNS查询完成URL到IP的转换。</p>
-<blockquote>
-<p>现在hosts还在继续使用，一般内网中会要求员工手动配置hosts文件，或者通过运行脚本进行hosts的写入，这样配置完成之后才可以访问某些内部网络。  </p>
-</blockquote>
-<p>简单来说，DNS协议的实现就是：客户端请求服务器得到结果，这个结果就是IP地址。</p>
-<p>假设DNS解析请求发出到收到结果的时间是100ms，不加DNS缓存：</p>
-<p>浏览器访问网站需要查询URL对应的IP地址，而网站的接口也需要进行查询IP，首先浏览器在DNS请求过程中等待，什么都不做，这时候浏览器只能保持白屏100ms，而在后续的接口请求中，我们还要进行DNS查询，这样的等待是没有意义的，而且这对DNS服务器带来的压力也不小……</p>
-<p>但是在加了DNS缓存后，我们就可以直接在缓存中找到URL对应的IP，省去了等待时间，响应速度一下就上去了。</p>
-<blockquote>
-<p>通常，DNS查询的时间在20ms左右。  </p>
-</blockquote>
-<p>现在的浏览器都实现了DNS缓存，不过采用的方式是不同的，至于具体采用了啥方式，这个我也不知道了，不过有一点，IE设置了30分钟的缓存时间，Chrome和FireFox则是设置了1分钟的DNS缓存有效期。但无论是30分钟还是1分钟，时间长短并不是区分其优劣性的因素。<br>时间设置的短：那么浏览器就对IP变化敏感，可以保证请求是正确的。<br>而时间设置的长了：那么就可以避免重复请求DNS服务器，节省时间。</p>
-<blockquote>
-<p>NOTE：还有一个协议需要了解，就是ARP协议（地址解析协议），我们在得到了IP之后，需要进行TCP握手，这一步需要找到MAC地址，而ARP协议的作用就是IP到MAC的映射。  </p>
-</blockquote>
-<h4 id="HTTP缓存、浏览器缓存"><a href="#HTTP缓存、浏览器缓存" class="headerlink" title="HTTP缓存、浏览器缓存"></a>HTTP缓存、浏览器缓存</h4><p>HTTP缓存就是老生常谈的东西了，HTTP本身只是一个协议，HTTP缓存则是浏览器实现的，在本文开篇就已经提到了，后文统称HTTP缓存。</p>
-<p>浏览器通过设置或者读取HTTP头来实现对应的缓存机制：</p>
-<ol>
-<li>强缓存</li>
-</ol>
-<p>当请求命中强缓存时，浏览器不会将本次请求发往服务器，而是直接从缓存中读取内容，在Chrome中打开控制台，切换到Network选项卡，可以看到一个比较不一样的状态码信息 200 OK (from disk cache)，如下图：</p>
-<p><img src="https://iachieveall.com/upload/2020/2/2C3CEB6E-551B-4317-B3FE-DA8E8FBC17BB-2f0c99c3e098443a8478d7080bfd5187.jpeg" alt="200 OK (from disk cache)"><br><img src="https://iachieveall.com/upload/2020/2/B31F08B9-89FA-441F-8D6D-CCC59EAD2A99-de4d9ab970e8421fa5ec6a32b5e44a81.png" alt="颜色不同的200 OK"></p>
-<p>控制强缓存的字段主要是Cache-Control和Expires（HTTP 1.0标准）。</p>
-<p>Cache-Control：常见的值有public，private，max-age，no-cache，no-store，must-revalidation；少见，但是用的也多的值有max-stale，min-fresh。</p>
-<p>max-age，max-stale，min-fresh这三个值同时使用时，其设置独立生效，但是最保守的缓存策略总是有效（所谓最保守，你可以认为，缓存时间最短的总是有效）。</p>
-<p>此外，no-cache字面意思是不缓存，但实际上，浏览器读到这个值之后，依旧会将资源缓存，在下次请求时检查资源是否有效，如果有效，那服务器就返回304状态码，浏览器读缓存；否则浏览器向服务器请求更新的资源。这与 <code>Cache-Control: max-age, must-validation</code> 效果相同。</p>
-<p>以上各个字段的意义均可在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers">MDN文档</a>中查询到，这里不再赘述。</p>
-<p><img src="https://iachieveall.com/upload/2020/2/66ABC578-CFCF-49D1-80CB-458420A3A782-5668983a6c9641c5aec62f84ab29dba7.png" alt="部分HTTP Header字段"></p>
-<p>Expires：资源到期时间，这个时间是服务器的时间，所以这里就会出现一个问题，服务器时间和本地时间不一致。但问题不大，只是这样本地强缓存会失效而已……等等，本地时间和服务器时间不一致并不一定是本地时间超出了指定的到期时间，也有可能是本地时间被修改至到期时间之前，那么这不就使得本地缓存有效了吗？那不就可能存在本地缓存和服务器资源不一致的问题了？</p>
-<blockquote>
-<p>NOTE：<code>Cache-Control:max-age</code> 的优先级要比Expires高  </p>
-</blockquote>
-<p>如果某天看到HTTP请求头中不包含这两个字段同时也不存在其他缓存设置，是不是就用不到缓存了呢？当然不是，浏览器自身会实现一个启发式缓存算法，通常是取出响应头中Date和Last-Modified两个字段，计算其差值的10%作为缓存时间：(Date - Last-Modified) * 10%。</p>
-<ol start="2">
-<li>协商缓存</li>
-</ol>
-<p>根据字面意思，就是前后端进行协商，校验缓存的有效性。</p>
-<p>相对来说，这一策略就有很多字段能控制了，不过也很好记，基本都是 <code>If-Xxx-Xxx</code> 这种形式的，而If前缀则表示这个字段是用于判断（验证）的。</p>
-<p>ETag：实体标签，服务器资源的唯一标识符，有点像哈希值。<br>Nginx官方采用的计算方式是“文件最后修改时间的16进制-文件长度的16进制”。<br>配合If-Match和If-None-Match使用，验证缓存的有效性。</p>
-<p>通过If-Match配合Range，我们还可以实现文件的断点续传、文件分段下载、并行下载这些听上去挺高大上的功能，原理很简单，就是请求头通过 <code>Range:bytes</code> 请求资源的某一部分，而 <code>If-Match:ETag</code> 可以保证新新范围的请求和前一个请求来自相同的源（ETag不一致，那就说明资源不一致咯）。</p>
-<p>Last-Modified：标记请求资源的最后一次修改时间，GMT时间（格林尼治标准时间），由此可知，该字段可以精确到秒级。此外，该字段记录资源最后的修改时间，但是并不会验证资源内容是否真的发生了变化（资源编译打包就会改变该字段的值）。配合If-Modified-Since和If-Unmodified-Since校验缓存的有效性。</p>
-<p>这个Last-Modified字段除了验证本地缓存资源的有效性之外，倒还可以用于当前请求的服务器文档是否被修改，比如说石墨文档，腾讯文档等共享文档之类的，当然了，这些软件都有很多的其他机制保证编辑修改操作能够正确的进行下去。通过 <code>If-Unmodified-Since:Last-Modified</code> 、 <code>If-Range:Etag | Date</code> 再搭配上 <code>Range:bytes</code> （没有Range字段，If-Range字段就会被忽略）可以保证只有服务器上的文档在没有修改的情况下执行更新，实现一个粗糙的文档协作。</p>
-<blockquote>
-<p>NOTE：<code>Last-Modified</code>字段优先级比<code>Etag</code>低。  </p>
-</blockquote>
-<p>到这里，我们可以知道缓存的优先级为：</p>
-<p>强缓存&gt;协商缓存，<br>Cache-Control&gt;Expires&gt;ETag&gt;Last-Modified</p>
-<blockquote>
-<p>多数人不对HTTP缓存和浏览器缓存区分的，或者说直接合在一起称为“浏览器HTTP缓存”，还有人直接称之为“前端缓存”，其实都在说同一个内容。  </p>
-</blockquote>
-<h3 id="服务器缓存"><a href="#服务器缓存" class="headerlink" title="服务器缓存"></a>服务器缓存</h3><p>提到服务器，一般来说都和后端是相关的，但是前端也必须要了解一些相关的知识，因为每次出现问题的时候，都是会在前端页面上显示出来，比如说接口500，这时候，测试就来到了我们身边，俯下身子在我们耳边吟唱死亡颂歌……</p>
-<blockquote>
-<p>当然了，上面说的有些夸大，因为多数时候遇到5xx的问题，测试会直接找到后端排查，若是遇到参数传递的问题，后端才会报告给前端去解决。  </p>
-</blockquote>
-<h4 id="CDN缓存"><a href="#CDN缓存" class="headerlink" title="CDN缓存"></a>CDN缓存</h4><p>在 <strong>DNS缓存</strong> 中提到过为了得到IP地址，需要进行一次DNS查询。</p>
-<p>在这里，DNS请求获取到的IP地址是服务器的IP地址，对于同一台服务器来说，接收处理的请求越来越多，那么服务器的负载也就越大，服务器对请求的响应可能就会超时。此外，不同地区访问网站的时延是不同的，若服务器在北京，用户在新疆或西藏地区，那么这个访问时延会非常大，用户等待的时间也就越长。</p>
-<p>CDN全称是Content Distribute Network，即内容分发网络。在使用了CDN的情况下，上述的两种情况都能得到很好的解决。</p>
-<p>CDN理论大致可表述如下：通过在 <strong>不同地区</strong> 建立 <strong>多个</strong> 节点服务器，使得用户的请求可以根据其所在地区、当前网络流量、服务器负载、网络连接等因素，被导向最佳的服务器节点。</p>
-<p>其适用场景较为广泛，如站点加速，直播，点播等。</p>
-<p>讲到这里，就应该对CDN有个模糊的概念：这以前没有CDN的时候，直接请求源站，现在有了CDN，那么请求肯定会被转发到其他服务器，而且这个服务器中的资源可能是一个源站资源的拷贝。咱们可以称这个服务器为 <strong>CDN节点</strong> 。</p>
-<p>CDN缓存是指，存在一个缓存服务器，当浏览器向服务器请求资源时，并不是直接向源站服务器请求，而是被导向CDN边缘节点。在这个边缘节点中缓存了用户的数据以及源站服务器资源，他（边缘cache）负责直接响应最终用户的访问请求，将缓存在本地的内容迅速提供给用户。同时，既然缓存了源站服务器的资源，那么就会涉及到资源的一致性，即保证边缘节点与源站服务器内容同步。</p>
-<p>说得简单点，CDN就是一个房产中介，他根据用户的诉求和他掌握的一些信息（如工作地点，交通情况，距离等）为用户提供一个合适的房子。</p>
-<blockquote>
-<p><strong>CDN系统</strong> 在功能上可划分为三大模块：分发服务，负载均衡，运营管理。本节所提到的CDN缓存其实只是从属于分发服务的一个小块。本节内容所说的内容只是一个小的范围-CDN分发服务系统中的边缘cache，并不是指代整个CDN系统。  </p>
-</blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实还有一种缓存没有提到，这种缓存是用来做离线页面的，而且是直接在HTML中主动使用的——Manifest，使用起来十分简单，只需要一行代码：</p>
-<pre><code class="html">&lt;!—- 写在html标签中 —-&gt;
-&lt;html manifest=“/app.appcache”&gt;
-
-&lt;!—- 或者写在meta标签中 —-&gt;
-&lt;meta manifest=“/app.appcache”&gt;
-</code></pre>
-<p>但是很多网站并没有使用这种技术，原因在于这个配置的文件上：</p>
-<ol>
-<li>如果我们想要缓存页面的所有资源，只能手动将资源写入Manifest声明的配置文件中进行缓存，而不能使用通配符缓存，这太麻烦了。</li>
-<li>好不容易把Manifest配置文件写好了，浏览器这边访问起来也很快，这时候，网站的资源更新了，这个缓存会失效吗？不会的，如果不清除缓存，即使连上网络，资源也不会自动更新，浏览器加载的页面还是旧的页面。我们需要改变配置文件的名字，然后，才会更新本地缓存，通常会增加版本号或者使用hash的命名方式。</li>
-<li>解决了这些问题，你又会发现，Manifest在不同设备，不同浏览器上可能存在大小限制。</li>
-</ol>
-<p>综上，Manifest的使用还是比较麻烦的，而且用处看上去不大，但是对于一些静态网页，Manifest就显得比较有用了。</p>
-<p>此外，还有一些没有提到的缓存技术，如代理服务器缓存，反代理服务器缓存等。</p>
+            <p>在软件开发，亦或者是在硬件设计开发中，缓存对性能的影响是十分显著的,是一项十分重要的技术。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/前端开发" style=color:#03a9f4>
-                前端开发
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#ff7d73>
-                前端
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ff7d73">前端</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/HTTP缓存" style=color:#03a9f4>
-                HTTP缓存
-            </a>
+            <a href="/tags/HTTP%E7%BC%93%E5%AD%98/" style="color: #00a596">HTTP缓存</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/总结" style=color:#ffa2c4>
-                总结
-            </a>
+            <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #03a9f4">总结</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/DNS缓存" style=color:#00bcd4>
-                DNS缓存
-            </a>
+            <a href="/tags/DNS%E7%BC%93%E5%AD%98/" style="color: #00a596">DNS缓存</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/CDN缓存" style=color:#ffa2c4>
-                CDN缓存
-            </a>
+            <a href="/tags/CDN%E7%BC%93%E5%AD%98/" style="color: #ff7d73">CDN缓存</a>
         </span>
         
     </div>
-
-    <a href="/2020/02/21/前端缓存技术概述-前端缓存/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2020/02/21/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0-%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2020/01/05/2019年终总结-2019年终总结/">
-        <h2>
-            2019年终总结
-        </h2>
+    <a href="/2020/01/05/2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93-2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
+        <h2 class="post-title">2019年终总结</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/年终总结">
+            <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 年终总结
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2020/1/5
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h3 id="2019碎碎念"><a href="#2019碎碎念" class="headerlink" title="2019碎碎念"></a>2019碎碎念</h3><p>19年发生了很多事情，值得记录的也有很多，但感觉上，于我而言最重要的一件事请就是转到了前端。</p>
-<p>准确的来说，转前端并不是我完全自愿做出的选择，而是被公司分配过去的，也不知道是根据什么因素分配的。为什么说不是 <strong>完全</strong> 自愿选择的？因为期间有几次可以转后端的机会，我都放弃了。因为现阶段无论是在前端还是在后端，你要学的东西其实是相似的，可能说技术栈不同，看上去后端的更丰富，有Java、SQL、Mybatis、MQ、Spring Boot、shell、JUnit等等，而前端却只有HTML+CSS+JavaScript+一套框架（如Angular、Vue、React），但事实上，前端也有单元测试如Karma，也会用到SQL如在Node.js中（一般web开发不用），shell脚本也是前端必须掌握的，那MQ究其本质依旧是一个生产者-消费者模型（说到这里，我要感谢在学校学到的看似无用的知识，正是这些理论知识让我能站在一个比较高的起点上去很快的接受学习不同的技术，真的，这些知识太有用了，技术发展是日新月异的，但是我们总是能够用已有的知识去解释新的技术。），而这两年我们能很清楚的感觉到前后端分离的大趋势，这是不可逆的，技术变得更加精细且繁多，这也使得各端的职责愈加细化。</p>
-<p>在适应了一周后就开始在项目里做一些边边角角的工作，又过了半个月左右，组里有一位前辈离职，组长找到我，让我去跟前辈交接一下，跟进这个项目。</p>
-<p>这算是我第一次正式接触并维护一个大型（？）项目，前端只有我一个人，非常刺激（后来和师父聊，才知道这是一个oa项目，内部用的，功能算是比较完善了，后端也就做做增删改查，前端也就修修补补，每个月增加个小功能组件就行了，所以对我去跟进这个项目还是比较放心的）。</p>
-<p>跟进项目之后，心态就变得平和起来了，又开始按时上下班，手上没活的时候看看书，学习，感觉非常充实的。后来这项目交接给另一组的时候，我这心里还有一点舍不得呢……但是呢，一想到可以开始跟进toB项目，而且还是同时跟进维护两个到三个项目，又感觉有点心潮澎湃。</p>
-<h3 id="2020新征程"><a href="#2020新征程" class="headerlink" title="2020新征程"></a>2020新征程</h3><p>2020年，给自己定一个小目标：成长到中级前端。</p>
-<p>除此之外，还有一些小目标</p>
-<ol>
-<li>能够保证每周能有一篇优质的博客，每个月能有一篇深度的博客，提高博客和公众号的曝光度。</li>
-<li>保持自身技术的高速稳定增长，在今年结束之前达成中级前端的目标。</li>
-<li>参加一些技术社区，论坛活动，技术沙龙，涨涨见识。</li>
-<li>开源项目方面，多提点有意义的issue和pr，阅读别人的代码，无论是好的还是坏的，都会有所收获。</li>
-<li>锻炼身体吧，要开始养生了……</li>
-</ol>
-<p>今年，诸事顺利。</p>
+            <p>19年发生了很多事情，值得记录的也有很多，但感觉上，于我而言最重要的一件事请就是转到了前端。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/年终总结" style=color:#00bcd4>
-                年终总结
-            </a>
+            <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="color: #00a596">年终总结</a>
         </span>
         
     </div>
-
-    <a href="/2020/01/05/2019年终总结-2019年终总结/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2020/01/05/2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93-2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2019/10/01/《你不知道的JavaScript》笔记（一）-《你不知道的JavaScript》笔记（一）/">
-        <h2>
-            《你不知道的JavaScript》笔记（一）
-        </h2>
+    <a href="/2019/10/01/%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89-%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+        <h2 class="post-title">《你不知道的JavaScript》笔记（一）</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/学习笔记">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 学习笔记
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/10/1
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <blockquote>
-<p>用了一个星期把《你不知道的JavaScript》看完了，但是留下了很多疑惑，于是又带着这些疑惑回头看JavaScript的内容，略有所获。</p>
-</blockquote>
-<blockquote>
-<p>第二遍阅读这本书，希望自己能够有更为深刻的理解。</p>
-</blockquote>
-<h1 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h1><blockquote>
-<p>……如果是 <strong>有状态</strong> 的解析过程，还会赋予单词语义……</p>
-</blockquote>
-<p>这本书是以编译原理的部份内容结合JavaScript来开篇的，所以如果没有学过编译原理，这一小部分内容显得有些晦涩。</p>
-<p>虽然多数人没有接触过编译原理，但有一个东西必定知道，就是markdown语法。实际上，从markdown文件到HTML的过程就包含了词法化的过程。</p>
-<p>那什么是有状态？粗略来讲，就是一个模式匹配的问题，或者可以认为是字符串的匹配：</p>
-<p><em><strong>源串：<code>&quot;str782yui&quot;</code>，待匹配的串：<code>&quot;sj1&quot;</code></strong></em> ，思考一下朴素匹配的算法，我们是要从头开始比较的，那么在每一次比较的时候，就两种状态，字符相同&#x2F;不相同，每接受一个字符，就会走向其中一个状态。</p>
-<p><img src="https://iachieveall.com/upload/2019/10/%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-50b59613131e4c7f873727e96fe66c83.png" alt="朴素模式匹配"></p>
-<p>这就是所谓的状态。当然了，这也只是一种粗浅的比喻，可能会有更好的。</p>
-<p>说句心里话，编译原理是很有用的科目，但是真正学起来的时候还是挺痛苦的。</p>
-<blockquote>
-<p>考虑以下代码：</p>
-<pre><code class="javascript">function foo(a) &#123;
-  var b = a*2;
-  function bar(c) &#123;
-      console.log(a, b, c);
-  &#125;
-  bar(b*3);
-&#125;
-foo(2);
-</code></pre>
-<p>在这个例子中有三个逐级 <strong>嵌套的作用域</strong>……</p>
-</blockquote>
-<p>对于java程序员来说，一对花括号就可以限制变量的作用域，而且作用域之间的关系有 <strong>同级</strong> 和 <strong>父子级</strong> 两种，同时还有包(package)这种很方便的东西。</p>
-<p>但是JavaScript就不一样了，一对花括号是不能定义一个作用域的，而且由于var声明的变量存在变量提升，所以有些时候我们会发现某个变量并不能像预期的那样被约束在某对花括号中，于是就出现很多经典的问题。</p>
-<p>JavaScript中函数和catch子块是能够创建作用域的，但是个人认为，为了创建一个作用域而使用catch子块，这等于是给catch增加了一个语义，二义性不好说，这可能会使程序变得不好阅读。但大家都这么做的话，那我也就随大流吧。</p>
-<p>想起一个不知道从哪里传出来的笑话，说：catch不是异常处理关键字，而是流程控制语句。</p>
-<p>提到了作用域，就一定要提变量的<strong>屏蔽</strong>，简单来说就一句话： <em><strong>内部作用域的变量会屏蔽外部作用域的同名变量</strong></em>。</p>
-<p>那可能就有人问了，（上述代码）我通过<code>foo.b</code>这种方式能不能访问呢？</p>
-<p>……想啥呢？想对象了是吧？不过可以通过<code>window.foo</code>这种方式来访问全局变量foo，为啥？这<code>window</code>不是一个全局的对象嘛，所有的全局变量都会自动的成为全局对象的属性。</p>
-<blockquote>
-<p>……词法作用域查找 <strong>只会</strong> 查找一级标识符……</p>
-</blockquote>
-<p>这句话就是在回答上面我提出来的问题。</p>
-<blockquote>
-<pre><code class="javascript">function foo(str, a) &#123;
-  eval(str);
-  console.log(a, b);
-&#125;
-var b = 2;
-foo(&quot;var b = 3&quot;, 1);
-</code></pre>
-<p><code>eval(..)</code>调用中的”<code>var b = 3;</code>“这段diamante会被当做本来就在哪里一样处理……</p>
-</blockquote>
-<p>这话说的好拗口啊？</p>
-<p>有时候写程序的时候，我就会想，哎呀，要是能把一个字符串变成一个变量就好了，多方便啊。</p>
-<p>eval差不多就是在完成这件事。书上说的这么绕，可能是为了可以让读者更好的理解。</p>
-<p>在我看来，<strong>eval函数所做的就是动态的生成一段代码，插入到对应的位置上，变成了另一个程序，照此执行。</strong></p>
-<blockquote>
-<p>with声明实际上是根据你传递给它的对象凭空创建了一个 <strong>全新的词法作用域</strong>。</p>
-</blockquote>
-<p>到这里又增加了一个能够创建作用域的关键字。</p>
-<pre><code class="javascript">var obj = &#123;
-    a: 1
-&#125;;
-with(obj) &#123;
-    a = 2;
-    b = 3;
-&#125;;
-</code></pre>
-<p>对上述代码，我们可以这么理解，with将obj声明为一个作用域，with内部的语句都是在这个作用域中的，so……</p>
-<blockquote>
-<p>eval(..)和with会在运行时修改或创建新的作用域，以此来欺骗其他书写时定义的词法作用域。</p>
-</blockquote>
-<p>eval是修改，with是创建作用域。</p>
-<p>这两个都会导致程序性能的下降，原因是影响了<strong>编译优化</strong>，其实这俩就像是一个开关，任意一个存在时，都会打开禁止编译优化的按钮。就像是所谓的禁止指令重排一样。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>|ू･ω･&#96; )：这本书真好看。</p>
+            <p>用了一个星期把《你不知道的JavaScript》看完了，但是留下了很多疑惑，于是又带着这些疑惑回头看JavaScript的内容，略有所获。第二遍阅读这本书，希望自己能够有更为深刻的理解。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/JavaScript" style=color:#00a596>
-                JavaScript
-            </a>
+            <a href="/tags/JavaScript/" style="color: #ffa2c4">JavaScript</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/前端" style=color:#00a596>
-                前端
-            </a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #03a9f4">前端</a>
         </span>
         
     </div>
-
-    <a href="/2019/10/01/《你不知道的JavaScript》笔记（一）-《你不知道的JavaScript》笔记（一）/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2019/10/01/%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89-%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2019/09/22/数据结构碎碎念（二）-数据结构碎碎念（二）/">
-        <h2>
-            数据结构碎碎念（二）
-        </h2>
+    <a href="/2019/09/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89/">
+        <h2 class="post-title">数据结构碎碎念（二）</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/总结">
+            <a href="/categories/%E6%80%BB%E7%BB%93/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 总结
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/9/23
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <blockquote>
-<p>聊聊数据结构中的 <strong>栈</strong></p>
-</blockquote>
-<h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>在<a href="">数据结构碎碎念（一）</a>中，提到了栈，这在计算机领域中可以说是非常重要的一个概念，我们可以在高级语言中找到其使用（如<code>stack&lt;int&gt;</code>），我们还可以在汇编语言中找到（助记符<code>push</code>，及相关的栈的概念），甚至于可以在硬件中看到栈的实现（如x86特有的浮点寄存器结构）。</p>
-<p>我们在说栈的时候，通常指如下两种情况：</p>
-<ol>
-<li><p>编程中使用的栈（<code>stack&lt;int&gt;</code>）及其相关的操作。</p>
-</li>
-<li><p>栈指针（不是<code>stack&lt;int&gt;</code>中的<code>top</code>变量，而是程序运行时栈溢出这类内存分配的问题）</p>
-</li>
-</ol>
-<blockquote>
-<p>有一个问题：我们通常所说的 <strong>堆栈</strong>，其实是 <strong>堆</strong> 和 <strong>栈</strong> 两个内容。对于堆的认识，聊得最多的是 <strong>堆排序</strong>，对语言底层比较了解的，会聊聊 <em>某某变量是在堆上分配，而某某变量则是在栈上分配</em>，再深一点会聊内存上的堆区和栈区（聊聊增长方向，缓存，生命周期之类的），更深入的……emmm……不好意思，我的水平有限，聊不下去了。</p>
-</blockquote>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>在数据结构中对栈的定义十分简单： 一个 <strong>只能对栈顶进行操作的线性表</strong>。</p>
-<p>这个定义中明确的规定了栈必须是一个线性表，同时隐式的限制了栈顶的数量。</p>
-<p>可能会有人说，这个栈顶不是应该就只有一个吗？怎么就要讨论栈顶的数量？</p>
-<p>如果栈顶是一个绝对概念（顶部就是上面，上面就是顶部），那么栈顶的确可以说只有一个。</p>
-<p>但栈顶的定义其实是相对于栈底来说的，栈顶在上面，那么栈底就在下面，反之亦然。</p>
-<blockquote>
-<p>就像我问，<em>两条平行线会相交吗？</em>，几乎所有人下意识的会回答，两条平行线永远不会相交，有错吗？<br>没错。但在回答这个问题之前，我们已经默认了这个问题是在欧式几何体系中讨论的。而在其他非欧式几何中，这个问题的答案就未必是这样了。</p>
-</blockquote>
-<h2 id="栈顶的数量"><a href="#栈顶的数量" class="headerlink" title="栈顶的数量"></a>栈顶的数量</h2><ol>
-<li>栈顶数量为0，可以吗？</li>
-</ol>
-<p>答案是否定的，如果不规定栈顶（没有栈顶），那就没有了操作的入口，那这个栈就没有存在的意义。</p>
-<blockquote>
-<p>或者有人可能会说，这是不是从栈退化成一个普通的线性表了？这个我也不能明确的给出答案，因为栈本身就是一个线性表，只是施加了一个 <strong>约束条件</strong> 后，栈才具有了其特殊性。没有了这个约束条件，那也就不能称之为栈了。</p>
-</blockquote>
-<ol start="2">
-<li>栈顶数量为1，标准栈</li>
-</ol>
-<p>这种类型的栈我们首先就会想到自下而上增长的栈：</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E5%A2%9E%E9%95%BF%E7%9A%84%E6%A0%88-ef615738be2d467b8d150c58e89dc33c.png" alt="自下而上增长的栈"></p>
-<p>其实现如下：</p>
-<pre><code class="c++">const int MAXSIZE = 10;
-// 1. 声明一个栈
-int stack[MAXSIZE];
-int top = -1;
-
-// 2. 栈空
-top == -1;
-
-// 3. 栈满
-top == MAXSIZE;
-
-// 4. 压栈push(x)
-stack[top++] = x;
-
-// 5. 弹栈pop()
-int x = stack[top--];
-
-// 6. 读取栈顶元素
-int x = stack[top];
-</code></pre>
-<p>这个实现方法可以说是通用的，只要是支持数组的语言，基本上都可以用该方法实现一个简单的固定大小的栈。</p>
-<p>在这个实现中，我们默认将栈底设置在了-1索引位置处，栈的增长方向是 <strong>-1-&gt;10</strong> ，反过来设置也是可以的，因为栈底和栈顶的位置是相对的。</p>
-<blockquote>
-<p><strong>NOTE</strong> ：在多数语言中，-1是一个非法的索引，使用stack[-1]会出现访问越界错误，而这个错误是一个致命错误（fetal error），会导致程序终止运行。但是某些语言中，-1却是是一个合法的索引，表示从后往前索引，即 <code>stack[-1] = stack[MAXSIZE-1];</code> 。<br>这里说-1索引，仅仅是表示数组第一个元素之前，不要试图访问、存取-1位置的值，这不仅仅是语言规定了该操作非法，同时，在内存中，-1对应的位置可能并没有初始化，访问该位置，可能会得到一个无效的值（如果真的访问成功，一般会是一个有符号的int型数值），可能这个位置已经被分给了其他的变量，或者程序，那么这时候访问成功，会使得其他程序，甚至于操作系统崩溃，带来无法挽回的损失。<br>当然了，编译器和虚拟机会检查这个问题，所以在数组中，咱没办法存取非法索引的内容，甚至只是访问都会报错。如果是链表实现的 <strong>链式栈</strong> ，就需要小心指针的使用了。</p>
-</blockquote>
-<ol start="3">
-<li>栈顶数量为2，可以吗？</li>
-</ol>
-<p>当然可以，共享栈就是两个栈顶，分别对应位置-1和MAXSIZE，两边同时向中间增长。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E6%95%B0%E7%BB%84-1%E5%92%8C10%E7%B4%A2%E5%BC%95-a5a3853030b64a69acc5348e8dbd41ec.png" alt="数组1和10索引"></p>
-<p><img src="https://iachieveall.com/upload/2019/9/%E5%85%B1%E4%BA%AB%E6%A0%88-c43e2752378b4acf8e893c0beff525a4.png" alt="共享栈"></p>
-<pre><code class="c++">top1 = -1;
-top2 = MAXSIZE;
-
-// top1压栈做自增操作，弹栈做自减操作
-// top2压栈做自减操作，弹栈做自增操作
-// 栈满是top1+1 == top2;
-</code></pre>
-<blockquote>
-<p>在内存中，栈和堆是共享自由空间的，有点像共享栈，所以我们直呼“堆栈堆栈”，还是有原因的。</p>
-</blockquote>
-<ol start="4">
-<li>栈顶的数量大于2，存在吗？</li>
-</ol>
-<p>目前为止，我们所讨论内容的都是一维的，再怎么开脑洞也找不到栈顶大于2的情况。</p>
-<p>等等，如果强行对共享栈进行扩展，咱还真能找到栈顶数量大于2的情况，但这时候，我们应该就会发现本文的一个逻辑漏洞，这个漏洞对于本节的讨论是致命的。</p>
-<h1 id="致命的漏洞"><a href="#致命的漏洞" class="headerlink" title="致命的漏洞"></a>致命的漏洞</h1><p>本文在讨论栈的时候是以栈顶的数量为标准进行划分的，但看到这里，我们应该能发现一个逻辑漏洞，即当栈顶数量大于等于2的时候，他就是多个栈，而不是一个栈了。</p>
-<p>所以，栈顶数量是不能作为栈类型的划分依据的，那本文在讨论什么？栈的复合吗？有点像诶。但是对于我们来说，好像下面这种使用才像是复合：</p>
-<pre><code class="c++">template &lt;class T&gt;
-class MinStack&lt;T&gt; &#123;
-private:
-  stack&lt;T&gt; st;
-  stack&lt;T&gt; min;
-&#125;
-
-// 最小栈的算法，还是挺经典的，可以自己查一查。
-</code></pre>
-<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/min-stack/description/">最小栈</a></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文的内容，上一节算是总结，关于栈，还能聊两句基本的概念。</p>
-<p>根据物理结构的不同，栈被划分成两个大类：</p>
-<ol>
-<li>顺序栈</li>
-</ol>
-<p>采用顺序存储的栈称为顺序栈：就是在内存中申请一组 <strong>连续的</strong> 存储单元存放栈中的元素，可以认为就是数组实现。</p>
-<ol start="2">
-<li>链式栈</li>
-</ol>
-<p>采用链式存储的栈称为链式栈：栈中的元素在内存中 <strong>不连续</strong> ，同时每个存储单元中预留一小块位置存放下一个元素的地址，可以认为就是单链表实现。</p>
-<p><img src="https://iachieveall.com/upload/2019/9/image-e5726701d73d445b9e877f565761f47d.png" alt="顺序栈和链式栈"></p>
-<blockquote>
-<p>想了想，实现一个栈并不是很难，在这里放一个实现，文章就有点长了，所以就不放代码了。</p>
-</blockquote>
-<blockquote>
-<p><span style="color: white;">彩蛋|ू･ω･ )：能从本文中获得什么，也不是我说了能算的，只是希望，在这个谁都能发文章，谁都敢发文章，谁都敢说自己文章非常有深度的年代，不要被那些看似很有道理的、很有深度文章误导，要学会独立思考。不能对自己所说的话，所写过的文章负责的人，实在是太讨厌了。</span></p>
-</blockquote>
+            <p>栈，这在计算机领域中可以说是非常重要的一个概念，我们可以在高级语言中找到其使用（如<code>stack&lt;int&gt;</code>），我们还可以在汇编语言中找到（助记符<code>push</code>，及相关的栈的概念），甚至于可以在硬件中看到栈的实现（如x86特有的浮点寄存器结构）。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/栈" style=color:#00bcd4>
-                栈
-            </a>
+            <a href="/tags/%E6%A0%88/" style="color: #00a596">栈</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/数据结构" style=color:#00bcd4>
-                数据结构
-            </a>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00bcd4">数据结构</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/思考" style=color:#ffa2c4>
-                思考
-            </a>
+            <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #00a596">思考</a>
         </span>
         
     </div>
-
-    <a href="/2019/09/22/数据结构碎碎念（二）-数据结构碎碎念（二）/ " class="go-post">
-        阅读全文
-    </a>
+    <a href="/2019/09/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
-
-    <a href="/2019/09/05/数据结构碎碎念（一）-数据结构碎碎念（一）/">
-        <h2>
-            数据结构碎碎念（一）
-        </h2>
+    <a href="/2019/09/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89/">
+        <h2 class="post-title">数据结构碎碎念（一）</h2>
     </a>
-
     <div class="category-and-date">
-
         
         <span class="category">
-            <a href="/categories/总结">
+            <a href="/categories/%E6%80%BB%E7%BB%93/">
                 <span class="icon">
-                    <a-icon type="book" theme="filled" /></span>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
                 总结
             </a>
         </span>
         
-
         <span class="date">
             <span class="icon">
-                <a-icon type="calendar" theme="filled" />
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2019/9/5
         </span>
-
+        
+        
     </div>
-
-    <div class="excerpt">
+    <div class="description">
         <div class="content" v-pre>
             
-            
-            <h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>在大一学习C语言的时候，举过一个用栈实现的括号匹配算法，当时觉得很难，不过现在回顾起来，这个算法也算是比较简单的一个关于栈的应用了。而现在所常见的算法问题也都是什么中缀表达式转后缀表达式，双栈找最小值之类的。难度比之括号匹配稍有提升，不过倒也算是必须要掌握的算法。</p>
-<p>上述所说的表达式求值在程序设计语言中是一个最基本的问题，也是栈的实现的一个典型范例。</p>
-<p>为什么说是最基本？<br>我们知道，中缀表达式对于人来说是比较友好的，学过四则运算就可以对其求值，然而对于计算机来说，虽然也可以想办法计算，但是却算不上友好了；相反，后缀表达式虽然对人不友好，但是却是计算机所喜欢的。</p>
-<p>（话说，后缀表达式在编译原理中的重要性也是能栖身前列的。）</p>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>在C语言入门的时候，我们就会通过 <strong>递归</strong> 来求 <strong>斐波那契数列</strong> ，很简单：</p>
-<pre><code class="c++">int fibonacci(int n) &#123;
-    if (n==0 || n==1) return 1;
-    return fibonacci(n-1) + fibonacci(n-2);
-&#125;
-</code></pre>
-<blockquote>
-<p>这段代码不是一般求斐波那契数列的方式，他一般只存在于教科书中，是一个经典的反例。绘制其调用过程，可以得到一棵树，还是二叉树。实际求解斐波那契数列的方式是使用一个循环。</p>
-</blockquote>
-<p>但是那时候还不懂原理，仅仅知道，递归就是 <strong>函数调用其本身</strong> ，但是接触到数据结构的时候，再一次提出了递归的概念。</p>
-<blockquote>
-<p> 什么是递归？递归就是<strong>函数调用其本身</strong>。</p>
-</blockquote>
-<pre><code class="c++">reverse(know) &#123;	// 1. go on
-    if (you know) return you know; // 2. look 4
-    else back to see the 1; // 3. go back to 1.
-&#125; // 4. you know what is recurision now.
-</code></pre>
-<p>这时候，我们不仅知道递归真正的用法，同时也知道了一个事实，即<strong>递归程序的开销通常很大</strong>，但与之相反的，其代码量又是非常少的。</p>
-<p>通常情况下，我们会选择将递归程序改写成非递归程序，即所谓<strong>消除递归</strong>，但是当改写后和改写前的程序并不会有太大的性能提升，我们也没有必要去改写，比如：<code>cout &lt;&lt; fibonacci(5);</code>，为了这样的调用去消除递归，有必要吗？</p>
-<blockquote>
-<p>可实际情况是，一个应用所要处理的数据并不算小，消除递归是不可避免的。</p>
-</blockquote>
-<p><em><strong>递归的精髓在于能否将原始的问题转换为属性相同，但问题规模较小的问题</strong></em>，学过算法就知道，这同样也是贪心策略和动态规划的本质。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>对于递归程序的优化，我们通常会选择栈做辅助，为什么？我们知道，在操作系统中，有一种叫做 <strong>“函数调用堆栈”</strong> 的名词，大概的解释就是：当在某一函数A中调用另一函数B时，我们将A中的内容保存后，压入系统堆栈（你可以说这是在创建还原点，也可以说这个是现场保护，开心就好。），然后执行函数B的内容，当函数B执行结束后，将A从系统堆栈中弹出，继续从断点处执行，同时销毁之前申请的栈空间。</p>
-<p>同时，我们要知道，操作系统的主存是由空间上限的，不可能是无限的。系统堆栈的大小自然是受操作系统存储空间大小的约束的，而且绝对小于系统存储空间（不可能等于）。所以，当递归程序不断申请栈空间到达系统栈所能分配的上限时，就有了所谓的“ <strong>系统堆栈溢出</strong> ”，即我们通常所说的“爆栈”。</p>
-<ul>
-<li>斐波那契函数n&#x3D;6时，递归调用树</li>
-</ul>
-<p><img src="https://iachieveall.com/upload/2019/9/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%A0%91-26a0b9dea5044f0d9372f572dd31ba1b.jpg" alt="斐波那契函数n=6时，递归调用树"></p>
-<ul>
-<li><p>n&#x3D;3时，栈的申请情况<br><img src="https://iachieveall.com/upload/2019/9/n=3%E6%97%B6%E7%9A%84%E6%A0%88-bb702f39ec064f30b8cc3bfd35824403.jpg" alt="n=3时，栈的申请情况"></p>
-</li>
-<li><p>n&#x3D;6时，栈的申请情况<br><img src="https://iachieveall.com/upload/2019/9/n=6%E6%97%B6%E7%9A%84%E6%A0%88-6dd24132ff0d4f08a1362557a8117fc7.jpg" alt="n=6时，栈的申请情况"></p>
-</li>
-</ul>
-<blockquote>
-<p>java中，异常<font color="red">java.lang.StackOverflowError</font>就是一种堆栈溢出错误，不过，可以通过修改JVM参数来增大虚拟机栈空间，如<font color="black">-vm args-Xss128k</font>；但这也只是权宜之计，治标不治本呐。</p>
-</blockquote>
-<p>但是呢，一个递归程序并不一定非要用栈辅助改写成非递归程序（即消除递归），有时候，一个循环就够了。</p>
-<pre><code class="c++">int main() &#123;
-    int n, i=j=1, tmp=0;
-    cin &gt;&gt; n;
-    while (n--) &#123;
-        tmp = i+j;
-        i = j;
-        j = tmp;
-    &#125;
-&#125;
-</code></pre>
-<blockquote>
-<p>暂时就说这么多，至于后面的，那就后面再说吧，毕竟这也只是（一）嘛。</p>
-</blockquote>
+            <p>表达式求值在程序设计语言中是一个最基本的问题，也是栈的实现的一个典型范例。</p>
 
             
         </div>
     </div>
-
     <div class="post-tags">
         
         <span class="icon">
-            <a-icon type="tags" theme="filled" />
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
+        
         
         
         <span class="tag">
             
-            <a href="/tags/栈" style=color:#ffa2c4>
-                栈
-            </a>
+            <a href="/tags/%E6%A0%88/" style="color: #00a596">栈</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/斐波那契" style=color:#00a596>
-                斐波那契
-            </a>
+            <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="color: #03a9f4">斐波那契</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/递归" style=color:#ff7d73>
-                递归
-            </a>
+            <a href="/tags/%E9%80%92%E5%BD%92/" style="color: #00a596">递归</a>
         </span>
         
     </div>
+    <a href="/2019/09/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89/" class="go-post">阅读全文</a>
+</div>
 
-    <a href="/2019/09/05/数据结构碎碎念（一）-数据结构碎碎念（一）/ " class="go-post">
-        阅读全文
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    <a class="page-num" href="/page/2">2</a>
+    
+    
+    
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
     </a>
+    
 </div>
 
-
-             
-<div class="page-current">
-
-    <div class="prev">
-        
-    </div>
-
-    <div class="page-index">
-
-        
-
-        <span class="current">
-            1
-        </span>
-
-        
-        <span>
-            <a href="/page/2/">
-                <span class="page-num">
-                    2
-                </span>
-            </a>
-            
-
-            
-
-        </span>
-        
-
-    </div>
-
-    <div class="next">
-        
-        <a href="/page/2/ ">
-            <span class="page-num">
-                <a-icon type="caret-right" theme="filled" />
-            </span>
-        </a>
-        
-    </div>
-
-</div>
-
-        </div>
     </div>
     
     <div id="home-card">
-        <a-affix :offset-top="card_top">
-    <a-card class="card-style" style="width: 300px">
+        <div id="card-style">
+    <div id="card-div">
         <div class="avatar">
-            <img src="image/profile.webp " alt="头像">
+            <img src="/images/profile.webp" alt="avatar" />
         </div>
-        <div class="name">
-            z
+        <div class="name">z</div>
+        <div class="description">
+            <p>不积跬步，无以至千里</p>
+
         </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                光芒万丈
-            </div>
-            
-        </div>
+        
         <div class="icon-links">
             
             <span class="icon-link">
                 <a target="_blank" rel="noopener" href="https://github.com/ai977313677">
-
-                    
-                    <a-icon type="github"
-                        theme="filled" />
-                    
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
                 </a>
             </span>
             
             <span class="icon-link">
                 <a target="_blank" rel="noopener" href="https://space.bilibili.com/20090830">
-
-                    
-                    <a-icon type="youtube"
-                        theme="" />
-                    
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
                 </a>
             </span>
             
         </div>
+        
+        
         <div class="friend-links">
             
             <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/keepsmart/">
-                    博客园
-                </a>
+                <a target="_blank" rel="noopener" href="https://www.cnblogs.com/keepsmart/">博客园</a>
             </div>
             
         </div>
-    </a-card>
-</a-affix>
+        
+    </div>
+</div>
+
     </div>
     
 </div>
-                     
-<footer id="footer">
-    <div class="footer-wrap">
+
+            <footer id="footer">
+    <div id="footer-wrap">
         <div>
-            © 2018 - 2023 贪婪的君子
-            <span class="footer-icon">
-                <a-icon type="flag" theme="filled" /></span>
-            @z
+            &copy;
+            2015 - 2023 贪婪的君子
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;z
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+        <div>
+            备案号：
+            
+            <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/recordQuery">京ICP备19039964号-1</a>
+            
+        </div>
         
     </div>
-
 </footer>
 
-<script src="/js/highlight.min.js"></script>
-<script src="/js/particle.js"></script>
-                </div>
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
             </div>
         </transition>
+        
     </div>
-
-    <script>
-    new Vue({
-        el: "#layout",
-        data: {
-            show_page: false,
-            onload_menu: false,
-            menu_show: false,
-            card_top: 100
-        },
-        created: function () {
-            var that = this
-            window.onload = function () {
-                that.show_page = true
-                document.getElementById("loadcontent").style.opacity = 0
-                setTimeout(function () {
-                    document.getElementById("loadleft").style.width = 0
-                    document.getElementById("loadright").style.width = 0
-                }, 300)
-                setTimeout(function () {
-                    document.getElementById("loading").style = "display:none"
-                }, 600)
-            }
-        },
-        mounted: function () {
-            var that = this
-            window.addEventListener('scroll', function (e) {
-                that.menu_show = false
-            })
-        },
-        methods: {
-            home_click: function () {
-                window.scrollTo({
-                    top: window.innerHeight - 80,
-                    behavior: "smooth",
-                });
-            }
-        }
-    })
-</script>
-
+    <script src="/js/main.js"></script>
+    
 </body>
-
 </html>

@@ -1,838 +1,757 @@
 
 <!DOCTYPE html>
-<html lang="zh ">
-
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贪婪的君子 || 我的技术博客</title>
-    <meta name="author" content="z">
-    <meta name="description" content="不忘初心，方得始终 ">
-    <meta name="keywords" content=" ">
-    <link rel="icon" href="/image/profile.webp">
-    <link rel="stylesheet" href="/css/antd.min.css">
-    
-    <link rel="stylesheet" href="/css/full-theme.css">
-    
-    <script src="/js/vue.js"></script>
-    <script src="/js/antd.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Archives | 贪婪的君子</title>
+    <meta name="author" content="z" />
+    <meta name="description" content="不忘初心，方得始终" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/profile.webp" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+<script src="/js/lib/search.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
 <meta name="generator" content="Hexo 6.3.0"></head>
-
 <body>
-
-    <div id="loading"
-        style="height: 100vh; width: 100%; position: fixed;display: flex;z-index: 200; justify-content: space-between;">
-        <div id="loadleft" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div id="loadright" style="width: 50%;background-color: #ffffff;transition: width 0.6s ease-out;"></div>
-        <div
-            style="position: fixed; height: 100vh; width: 100%;display: flex;justify-content: center;align-items: center;">
-            <div id="loadcontent"
-                style="width:400px;height:400px;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px#a3ddfb; text-align:center;opacity:1;transition:opacity 0.3s ease-out;">
-                <div>
-                    <h2>LOADING...</h2>
-                    <p>加载过慢请开启缓存(浏览器默认开启)</p>
-                    <div>
-                        <img src="/dancingkitty.gif" alt="loading">
-                    </div>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="layout">
-        <transition name="into">
-            <div v-show="show_page" style="display: none;">
-                <div id="menu_show">
-                     
-<nav id="menu">
-    <div class="desktop-menu">
-        <a href="/">
-            <span class="title">贪婪的君子</span>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>贪婪的君子</span>
         </a>
         
         <a href="/">
-            <span>
-                <a-icon type="home" theme="filled" />
-            </span>
-            <span>home</span>
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/archives">
-            <span>
-                <a-icon type="folder" theme="filled" />
-            </span>
-            <span>archives</span>
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
         </a>
         
-    </div>
-
-    <div :class="'phone-menu ' + menu_show" id="phone-menu">
-        <div :class="'title'" @click="menu_show=!menu_show">
-            <span style="margin-right: 10px;">
-                <a-icon type="appstore" theme="filled" />
-            </span>
-            <span>贪婪的君子</span>
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;贪婪的君子</span>
         </div>
-        <div class="items" v-show="menu_show">
-            
-            <a href="/">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="home" theme="filled" />
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">home</div>
-                </div>
-            </a>
-            
-            <a href="/archives">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="folder" theme="filled" />
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                     </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">archives</div>
-                </div>
-            </a>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             
-        </div>
-        <div class="curtain" v-show="menu_show"></div>
-    </div>
-
-</nav>
-                </div>
-
-                <div id="main">
-                    
 <div id="archives">
     
-    <a-timeline>
-        <a-timeline-item timestamp="2022/3/14" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2022/3/14</div>
-                <a href="/2022/03/14/浅浅的聊一下 WebSocket-qian-qian-de-liao-yi-xia-websocket/">
-                    <h3>浅浅的聊一下 WebSocket</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/前端基础">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            前端基础
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端开发" style=color:#03a9f4>
-                                前端开发
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端" style=color:#00a596>
-                                前端
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/思考" style=color:#00bcd4>
-                                思考
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端基础" style=color:#00bcd4>
-                                前端基础
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/websocket" style=color:#ff7d73>
-                                websocket
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
     
-    <a-timeline>
-        <a-timeline-item timestamp="2021/5/30" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2021/5/30</div>
-                <a href="/2021/05/30/浅谈前端水印-浅谈前端水印/">
-                    <h3>浅谈前端水印</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/学习笔记">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            学习笔记
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端" style=color:#ffa2c4>
-                                前端
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/总结" style=color:#00a596>
-                                总结
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/canvas" style=color:#00bcd4>
-                                canvas
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/安全" style=color:#00bcd4>
-                                安全
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/水印" style=color:#03a9f4>
-                                水印
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/12/27" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/12/27</div>
-                <a href="/2020/12/27/简单聊两句XSS-简单聊两句xss/">
-                    <h3>简单聊两句XSS</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/前端基础">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            前端基础
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/安全" style=color:#ff7d73>
-                                安全
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/xss" style=color:#03a9f4>
-                                xss
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/7/13" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/7/13</div>
-                <a href="/2020/07/13/angular浏览器兼容性问题解决方案-angular浏览器兼容性问题解决方案/">
-                    <h3>angular浏览器兼容性问题解决方案</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/学习笔记">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            学习笔记
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/浏览器兼容" style=color:#03a9f4>
-                                浏览器兼容
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/4/1" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/4/1</div>
-                <a href="/2020/04/01/想学canvas？那一定要看看这篇文章-想学canvas那一定要看看这篇文章/">
-                    <h3>想学canvas？那一定要看看这篇文章</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/学习笔记">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            学习笔记
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/canvas" style=color:#03a9f4>
-                                canvas
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/2/21" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/2/21</div>
-                <a href="/2020/02/21/前端缓存技术概述-前端缓存/">
-                    <h3>前端缓存技术概述</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/前端基础">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            前端基础
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端开发" style=color:#00bcd4>
-                                前端开发
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端" style=color:#00a596>
-                                前端
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/HTTP缓存" style=color:#00bcd4>
-                                HTTP缓存
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/总结" style=color:#00a596>
-                                总结
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/DNS缓存" style=color:#ff7d73>
-                                DNS缓存
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/CDN缓存" style=color:#00a596>
-                                CDN缓存
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/1/5" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/1/5</div>
-                <a href="/2020/01/05/2019年终总结-2019年终总结/">
-                    <h3>2019年终总结</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/年终总结">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            年终总结
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/年终总结" style=color:#ff7d73>
-                                年终总结
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/10/1" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2019/10/1</div>
-                <a href="/2019/10/01/《你不知道的JavaScript》笔记（一）-《你不知道的JavaScript》笔记（一）/">
-                    <h3>《你不知道的JavaScript》笔记（一）</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/学习笔记">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            学习笔记
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/JavaScript" style=color:#ff7d73>
-                                JavaScript
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端" style=color:#ffa2c4>
-                                前端
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/9/23" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2019/9/23</div>
-                <a href="/2019/09/22/数据结构碎碎念（二）-数据结构碎碎念（二）/">
-                    <h3>数据结构碎碎念（二）</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/总结">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            总结
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/栈" style=color:#03a9f4>
-                                栈
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/数据结构" style=color:#ffa2c4>
-                                数据结构
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/思考" style=color:#00a596>
-                                思考
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
-            <a-card hoverable>
+    <div id="timeline-wrap" ref="timeline">
+        
+        <div class="timeline" data-title="css或angular框架限制文本字数">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
                 <div class="item-time">2019/9/5</div>
-                <a href="/2019/09/05/数据结构碎碎念（一）-数据结构碎碎念（一）/">
-                    <h3>数据结构碎碎念（一）</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/总结">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            总结
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/栈" style=color:#00a596>
-                                栈
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/斐波那契" style=color:#ffa2c4>
-                                斐波那契
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/递归" style=color:#00bcd4>
-                                递归
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2019/9/5</div>
-                <a href="/2019/09/05/部份css样式详解(附实际应用)-部份css样式详解(附实际应用)/">
-                    <h3>部份css样式详解(附实际应用)</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/前端基础">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            前端基础
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端开发" style=color:#00bcd4>
-                                前端开发
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/css" style=color:#03a9f4>
-                                css
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端基础" style=color:#00a596>
-                                前端基础
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2019/9/5</div>
-                <a href="/2019/09/05/TypeScript中使用getElementXXX()-TypeScript中使用getElementXXX()/">
-                    <h3>TypeScript中使用getElementXXX()</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/前端框架">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
-                            前端框架
-                        </a>
-                    </span>
-                    
-
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/前端开发" style=color:#03a9f4>
-                                前端开发
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/TypeScript" style=color:#ff7d73>
-                                TypeScript
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/angular" style=color:#00bcd4>
-                                angular
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2019/9/5" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2019/9/5</div>
-                <a href="/2019/09/05/css或Angular框架限制文本字数-css或Angular框架限制文本字数/">
+                <a href="/2019/09/05/css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0-css%E6%88%96Angular%E6%A1%86%E6%9E%B6%E9%99%90%E5%88%B6%E6%96%87%E6%9C%AC%E5%AD%97%E6%95%B0/">
                     <h3>css或Angular框架限制文本字数</h3>
                 </a>
                 <div class="info">
                     
                     <span class="category">
-                        <a href="/categories/前端框架">
-                            <span class="icon"><a-icon type="book" theme="filled" /></span>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
                             前端框架
                         </a>
                     </span>
                     
-
                     
                     <span class="tags">
                         <span class="icon">
-                            <a-icon type="tags" />
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00a596">前端开发</a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/前端开发" style=color:#03a9f4>
-                                前端开发
-                            </a>
+                            <a href="/tags/angular/" style="color: #ff7d73">angular</a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/angular" style=color:#ffa2c4>
-                                angular
-                            </a>
+                            <a href="/tags/css/" style="color: #03a9f4">css</a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/css" style=color:#ff7d73>
-                                css
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/JavaScript" style=color:#03a9f4>
-                                JavaScript
-                            </a>
+                            <a href="/tags/JavaScript/" style="color: #ff7d73">JavaScript</a>
                         </span>
                         
                     </span>
                     
                 </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-</div>
-
-                     
-<footer id="footer">
-    <div class="footer-wrap">
-        <div>
-            © 2018 - 2023 贪婪的君子
-            <span class="footer-icon">
-                <a-icon type="flag" theme="filled" /></span>
-            @z
+            </div>
         </div>
-        <div></div>
-        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
-                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
         
-    </div>
-
-</footer>
-
-<script src="/js/highlight.min.js"></script>
-<script src="/js/particle.js"></script>
+        <div class="timeline" data-title="typescript中使用getelementxxx()">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()-TypeScript%E4%B8%AD%E4%BD%BF%E7%94%A8getElementXXX()/">
+                    <h3>TypeScript中使用getElementXXX()</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            前端框架
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/TypeScript/" style="color: #00a596">TypeScript</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/angular/" style="color: #00bcd4">angular</a>
+                        </span>
+                        
+                    </span>
+                    
                 </div>
             </div>
-        </transition>
+        </div>
+        
+        <div class="timeline" data-title="部份css样式详解(附实际应用)">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)-%E9%83%A8%E4%BB%BDcss%E6%A0%B7%E5%BC%8F%E8%AF%A6%E8%A7%A3(%E9%99%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8)/">
+                    <h3>部份css样式详解(附实际应用)</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/css/" style="color: #ffa2c4">css</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">前端基础</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="数据结构碎碎念（一）">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2019/9/5</div>
+                <a href="/2019/09/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%B8%80%EF%BC%89/">
+                    <h3>数据结构碎碎念（一）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E6%80%BB%E7%BB%93/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            总结
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%A0%88/" style="color: #03a9f4">栈</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="color: #ffa2c4">斐波那契</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E9%80%92%E5%BD%92/" style="color: #ff7d73">递归</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="数据结构碎碎念（二）">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2019/9/23</div>
+                <a href="/2019/09/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                    <h3>数据结构碎碎念（二）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E6%80%BB%E7%BB%93/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            总结
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%A0%88/" style="color: #00bcd4">栈</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00a596">数据结构</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #00bcd4">思考</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="《你不知道的javascript》笔记（一）">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2019/10/1</div>
+                <a href="/2019/10/01/%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89-%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+                    <h3>《你不知道的JavaScript》笔记（一）</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/JavaScript/" style="color: #03a9f4">JavaScript</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="2019年终总结">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2020/1/5</div>
+                <a href="/2020/01/05/2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93-2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
+                    <h3>2019年终总结</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            年终总结
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="color: #00bcd4">年终总结</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="前端缓存技术概述">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2020/2/21</div>
+                <a href="/2020/02/21/%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0-%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98/">
+                    <h3>前端缓存技术概述</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/HTTP%E7%BC%93%E5%AD%98/" style="color: #ff7d73">HTTP缓存</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #03a9f4">总结</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/DNS%E7%BC%93%E5%AD%98/" style="color: #00bcd4">DNS缓存</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/CDN%E7%BC%93%E5%AD%98/" style="color: #03a9f4">CDN缓存</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="想学canvas？那一定要看看这篇文章">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2020/4/1</div>
+                <a href="/2020/04/01/%E6%83%B3%E5%AD%A6canvas%EF%BC%9F%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0-%E6%83%B3%E5%AD%A6canvas%E9%82%A3%E4%B8%80%E5%AE%9A%E8%A6%81%E7%9C%8B%E7%9C%8B%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0/">
+                    <h3>想学canvas？那一定要看看这篇文章</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/canvas/" style="color: #00a596">canvas</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="angular浏览器兼容性问题解决方案">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2020/7/13</div>
+                <a href="/2020/07/13/angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-angular%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                    <h3>angular浏览器兼容性问题解决方案</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9/" style="color: #03a9f4">浏览器兼容</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="简单聊两句xss">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2020/12/27</div>
+                <a href="/2020/12/27/%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5XSS-%E7%AE%80%E5%8D%95%E8%81%8A%E4%B8%A4%E5%8F%A5xss/">
+                    <h3>简单聊两句XSS</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #00a596">安全</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/xss/" style="color: #03a9f4">xss</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="浅谈前端水印">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2021/5/30</div>
+                <a href="/2021/05/30/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0-%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%B0%B4%E5%8D%B0/">
+                    <h3>浅谈前端水印</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            学习笔记
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ff7d73">前端</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #00a596">总结</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/canvas/" style="color: #00bcd4">canvas</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #03a9f4">安全</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%B0%B4%E5%8D%B0/" style="color: #00a596">水印</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="浅浅的聊一下websocket">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2022/3/14</div>
+                <a href="/2022/03/14/%E6%B5%85%E6%B5%85%E7%9A%84%E8%81%8A%E4%B8%80%E4%B8%8B%20WebSocket-qian-qian-de-liao-yi-xia-websocket/">
+                    <h3>浅浅的聊一下 WebSocket</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            前端基础
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ffa2c4">前端开发</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #00bcd4">前端</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%80%9D%E8%80%83/" style="color: #03a9f4">思考</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">前端基础</a>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/websocket/" style="color: #ffa2c4">websocket</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
     </div>
+</div>
 
-    <script>
-    new Vue({
-        el: "#layout",
-        data: {
-            show_page: false,
-            onload_menu: false,
-            menu_show: false,
-            card_top: 100
-        },
-        created: function () {
-            var that = this
-            window.onload = function () {
-                that.show_page = true
-                document.getElementById("loadcontent").style.opacity = 0
-                setTimeout(function () {
-                    document.getElementById("loadleft").style.width = 0
-                    document.getElementById("loadright").style.width = 0
-                }, 300)
-                setTimeout(function () {
-                    document.getElementById("loading").style = "display:none"
-                }, 600)
-            }
-        },
-        mounted: function () {
-            var that = this
-            window.addEventListener('scroll', function (e) {
-                that.menu_show = false
-            })
-        },
-        methods: {
-            home_click: function () {
-                window.scrollTo({
-                    top: window.innerHeight - 80,
-                    behavior: "smooth",
-                });
-            }
-        }
-    })
-</script>
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2015 - 2023 贪婪的君子
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;z
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+        <div>
+            备案号：
+            
+            <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/recordQuery">京ICP备19039964号-1</a>
+            
+        </div>
+        
+    </div>
+</footer>
 
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
 </body>
-
 </html>
