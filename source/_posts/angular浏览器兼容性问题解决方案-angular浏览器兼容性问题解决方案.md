@@ -1,5 +1,6 @@
 ---
 title: angular浏览器兼容性问题解决方案
+description: 记录一点小的问题解决方案
 date: 2020-07-13 16:49:28.267
 updated: 2020-12-27 16:28:28.234
 url: https://iachieveall.com/archives/angular浏览器兼容性问题解决方案

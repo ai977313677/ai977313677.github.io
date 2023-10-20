@@ -1,5 +1,6 @@
 ---
 title: 浅浅的聊一下 WebSocket
+description: WebSocket是在2008年6月诞生的1。经由IEFT标准化后，2009年chrome 4第一个提供了该标准支持，并默认启用。于2011年由IEFT标准化为[RFC 6455](https://datatracker.ietf.org/doc/html/rfc6455)。第一次看到 `ws://` 和 `wss://` 时候，感觉好高级啊，还有这种协议。
 date: 2022-03-14 20:58:54.556
 updated: 2022-03-14 21:00:05.386
 url: https://iachieveall.com/archives/qian-qian-de-liao-yi-xia-websocket

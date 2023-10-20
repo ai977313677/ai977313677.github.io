@@ -1,5 +1,6 @@
 ---
 title: 部份css样式详解(附实际应用)
+description: 本文的所有实例均基于博客园的页面定制。所有表格内容来自W3CSchool。
 date: 2019-09-05 08:46:33.709
 updated: 2019-09-17 07:17:52.6
 url: https://iachieveall.com/archives/部份css样式详解(附实际应用)

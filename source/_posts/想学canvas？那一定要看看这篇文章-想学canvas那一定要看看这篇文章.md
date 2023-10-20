@@ -1,5 +1,6 @@
 ---
 title: 想学canvas？那一定要看看这篇文章
+description: 没有canvas的时候，在浏览器绘制图形是比较复杂的，而在canvas出现之后，绘制2D图形相对变得容易了。
 date: 2020-04-01 11:56:30.155
 updated: 2020-04-06 22:50:41.652
 url: https://iachieveall.com/archives/想学canvas那一定要看看这篇文章

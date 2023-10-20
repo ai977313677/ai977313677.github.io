@@ -1,5 +1,6 @@
 ---
 title: TypeScript中使用getElementXXX()
+descrption: Angular 和 Typescript 没有必然的关系哟~
 date: 2019-09-05 08:37:29.235
 updated: 2019-09-19 09:06:06.4
 url: https://iachieveall.com/archives/TypeScript中使用getElementXXX()

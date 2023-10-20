@@ -1,5 +1,6 @@
 ---
 title: 《你不知道的JavaScript》笔记（一）
+description: 用了一个星期把《你不知道的JavaScript》看完了，但是留下了很多疑惑，于是又带着这些疑惑回头看JavaScript的内容，略有所获。第二遍阅读这本书，希望自己能够有更为深刻的理解。
 date: 2019-10-01 17:29:43.472
 updated: 2020-01-05 21:20:52.666
 url: https://iachieveall.com/archives/《你不知道的JavaScript》笔记（一）

@@ -1,5 +1,6 @@
 ---
 title: 简单聊两句XSS
+description: XSS（跨站脚本攻击），聊两句，五毛的。
 date: 2020-12-27 16:28:06.838
 updated: 2022-03-14 20:59:55.186
 url: https://iachieveall.com/archives/简单聊两句xss
