@@ -150,22 +150,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #ffa2c4">前端</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #00bcd4">前端</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #00bcd4">总结</a>
+                <a href="/tags/%E6%80%BB%E7%BB%93/" style="color: #00a596">总结</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/canvas/" style="color: #ff7d73">canvas</a>
+                <a href="/tags/canvas/" style="color: #00bcd4">canvas</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #03a9f4">安全</a>
+                <a href="/tags/%E5%AE%89%E5%85%A8/" style="color: #ffa2c4">安全</a>
             </span>
             
             <span class="tag">
@@ -307,7 +307,7 @@ tail -c 50 result.png
 <p>其实黑底蓝字的图片就是解码出来的水印数据，详细代码：<a target="_blank" rel="noopener" href="https://github.com/ai977313677/blog/blob/master/snippet/index.html">https://github.com/ai977313677/blog/blob/master/snippet/index.html</a></p>
 </blockquote>
 <p>好像这种方式可以在用户截图时也能够保留我们的水印？其实并没有。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43b1be13fefd46508223f37fb3137d64~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img src="/upload/2021/05/watermarker.jpg" alt="image.png"></p>
 <p>这是解码截图的结果，可以明显的看到，QQ截图之后的图片并没有能够解码出来我们所需要的水印内容，甚至于将图片压缩之后，可能就会失去我们的水印，所以说这其实也并不是一个可靠的水印方式。</p>
 <p>那如何才能保证我们的水印至少在截图的时候也能发挥作用呢？</p>
 <p>也不是不行，首先确定我们水印要加在哪里（确定需求），因为图片来源无非是网页搜索结果，或者说我们截得图多数来自于网页，所以我们考虑的是在网页上覆盖一层水印，保证用户从网页上截取的图片可以被我们追踪到来源。</p>
