@@ -46,6 +46,9 @@
 
 
 
+<script src="https://cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.8.0/gitalk.min.css" />
+
 
 
 
@@ -146,12 +149,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ff7d73">前端开发</a>
+                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/angular/" style="color: #00bcd4">angular</a>
+                <a href="/tags/angular/" style="color: #ff7d73">angular</a>
             </span>
             
             <span class="tag">
@@ -161,7 +164,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/JavaScript/" style="color: #ffa2c4">JavaScript</a>
+                <a href="/tags/JavaScript/" style="color: #00a596">JavaScript</a>
             </span>
             
         </span>
@@ -257,6 +260,10 @@ export class clipPipe implements PipeTransform &#123;
     
     
     
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
     
     
     
@@ -300,6 +307,20 @@ export class clipPipe implements PipeTransform &#123;
     <script src="/js/main.js"></script>
     
     
+
+<script>
+    const gitalk = new Gitalk({
+        clientID: "9be4c9d7a42498361b79",
+        clientSecret: "e8554e2d630e522805c277b138ae0ce35039e477",
+        repo: "ai977313677.github.io",
+        owner: "ai977313677",
+        admin: "ai977313677".split(","),
+        language: "zh-CN",
+        id: location.pathname,
+        
+    })
+    gitalk.render("gitalk-container");
+</script>
 
 
 

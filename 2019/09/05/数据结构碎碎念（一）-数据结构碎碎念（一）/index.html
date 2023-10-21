@@ -46,6 +46,9 @@
 
 
 
+<script src="https://cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.8.0/gitalk.min.css" />
+
 
 
 
@@ -151,12 +154,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="color: #00a596">斐波那契</a>
+                <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="color: #ff7d73">斐波那契</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E9%80%92%E5%BD%92/" style="color: #03a9f4">递归</a>
+                <a href="/tags/%E9%80%92%E5%BD%92/" style="color: #ffa2c4">递归</a>
             </span>
             
         </span>
@@ -226,6 +229,10 @@
     
     
     
+    <div id="comment">
+        <div id="gitalk-container"></div>
+    </div>
+    
     
     
     
@@ -269,6 +276,20 @@
     <script src="/js/main.js"></script>
     
     
+
+<script>
+    const gitalk = new Gitalk({
+        clientID: "9be4c9d7a42498361b79",
+        clientSecret: "e8554e2d630e522805c277b138ae0ce35039e477",
+        repo: "ai977313677.github.io",
+        owner: "ai977313677",
+        admin: "ai977313677".split(","),
+        language: "zh-CN",
+        id: location.pathname,
+        
+    })
+    gitalk.render("gitalk-container");
+</script>
 
 
 
